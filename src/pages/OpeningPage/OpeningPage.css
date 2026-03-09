@@ -3,13 +3,23 @@ body {
     font-family: "Fredoka";
 }
 
+.opening-content {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    gap: 2rem;
+    z-index: 15;
+}
+
 .opening-page-header {
     color: #002446;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: clamp(2rem, 3vw, 3.5rem);
+    font-size: clamp(1.8rem, 2vw + 1rem, 3.2rem);
 }
 
 .start-btn-to-topics {
@@ -18,21 +28,107 @@ body {
     color: white;
     border: none;
     border-radius: 2vw;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: clamp(1.8rem, 1.5vw, 2.8rem);
-    padding: 0% 2%;
+    cursor: pointer;
+    filter: drop-shadow(0 6px 6px rgba(255, 0, 0, 0.25));
+    font-size: clamp(1.2rem, 1vw + 0.8rem, 2rem);
+    padding: clamp(0.1rem, 0.2vw, 0.3rem) clamp(1.5rem, 2vw, 2.5rem);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
 }
 
-.road-opening-page {
+.start-btn-to-topics:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 10px 18px rgba(0,0,0,0.25);
+}
+
+.start-btn-to-topics:active{
+    transform: translateY(0) scale(0.97);
+}
+
+.topics-opening-page-container {
+    display: flex;
+    justify-content: center;
+}
+
+.opening-content-topics {
+    /* position: absolute; */
+    /* top: 40%; */
+    /* right: 50%; */
+    /* transform: translate(-50%, -50%); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    gap: 2rem;
+    z-index: 13;
+}
+
+.topics-screen{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transform: translateY(30px);
+    opacity:0;
+}
+
+.topics-screen.fade-in{
+    transform: translateY(0);
+    opacity:1;
+}
+
+.topic {
+    width: 30%;
+    padding: 2%;
+}
+
+.logo-bahad13-opening-page-topics {
     position: absolute;
-    bottom: 0%;
-    left: 0%;
-    width: 100%;
+    top: 2%;
+    left: 2%;
+    width: 6%;
     height: auto;
-    z-index: 10;
+}
+
+.topics-opening-page-header {
+    color: #002446;
+    font-size: clamp(1.5rem, 1.8vw + 0.5rem, 3rem);
+    font-weight: 600;
+    text-align: center;
+}
+
+.fade-in{
+    opacity:1;
+    transform: translate(-50%, -50%) scale(1);
+    transition: all 0.6s ease;
+}
+
+.fade-out{
+    opacity:0;
+    transform: translate(-50%, -60%) scale(0.95);
+    transition: all 0.6s ease;
+    pointer-events:none;
+}
+
+.hidden{
+    opacity:0;
+    transform: scale(0.95);
+    transition: all 0.6s ease;
+}
+
+.hidden{
+    opacity:0;
+    transform: scale(0.95);
+    transition: all 0.6s ease;
 }
 
 .big-cloud-opening-page-left {
@@ -71,54 +167,150 @@ body {
     height: auto;
 }
 
-.lighting-pole-opening-page-left {
-    width: 8%;
-    height: auto;
-    z-index: 10;
-    position: absolute;
-    bottom: 21.5%;
-    left: 6%;
-}
-
-.lighting-pole-opening-page-right {
-    width: 8%;
-    height: auto;
-    z-index: 10;
-    position: absolute;
-    bottom: 21.5%;
-    right: 6%;
-}
-
 .car-opening-page {
-    position: absolute;
-    width: 30%;
-    height: auto;
-    z-index: 11;
-    bottom: 4%;
+    position:absolute;
+    width:30%;
+    bottom:4%;
+    right:-40%;
+    z-index:16;
+    filter: drop-shadow(0 6px 6px rgba(0,0,0,0.25));
+
+    animation: carEnter 4s ease-out forwards;
+}
+
+@keyframes carEnter{
+    from{
+        transform: translateX(0);
+    }
+
+    to{
+        transform: translateX(-140%);
+    }
+}
+
+.car-drive{
+    animation: carDriveForward 2s ease forwards;
+}
+
+@keyframes carDriveForward{
+    from{
+        transform: translateX(-140%);
+    }
+
+    to{
+        transform: translateX(-350%);
+    }
 }
 
 .logo-bahad13-opening-page {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 7.5%;
+    width: 18%;
 }
 
-.bush-left-opening-page {
+.ground-area {
     position: absolute;
-    left: 0%;
-    bottom: 15%;
-    z-index: 1;
-    width: 13.5%;
-    height: auto;
-}
-
-.bush-right-opening-page {
-    position: absolute;
+    bottom: 0%;
     right: 0%;
-    bottom: 15%;
-    z-index: 1;
-    width: 13.5%;
-    height: auto;
+    width: 100%;
+}
+
+.road-opening-page {
+    width: 100%;
+    display: block;
+    z-index: 10;
+    position: relative;
+}
+
+.lighting-pole-left {
+    position: absolute;
+    bottom: 95%;
+    left: 6%;
+    width: 8%;
+    z-index: 8;
+}
+
+.pole-move-left{
+    animation: poleLeftMove 2s forwards;
+}
+
+@keyframes poleLeftMove{
+    to{
+        transform: translateX(70vw);
+    }
+}
+
+.lighting-pole-right {
+    position: absolute;
+    bottom: 95%;
+    right: 6%;
+    width: 8%;
+    z-index: 8;
+}
+
+.pole-move-right{
+    animation: poleRightMove 2s forwards;
+}
+
+@keyframes poleRightMove{
+    to{
+        transform: translateX(120vw);
+    }
+}
+
+.bush-left {
+    position: absolute;
+    bottom: 70%;
+    left: 0;
+    width: 14%;
+    z-index: 7;
+}
+
+.bush-right {
+    position: absolute;
+    bottom: 70%;
+    right: 0;
+    width: 14%;
+    z-index: 7;
+}
+
+/* cloudes animation */
+@keyframes cloudMove {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(40px);
+    }
+}
+
+/* .big-cloud-opening-page-left {
+    animation: cloudMove 15s linear infinite alternate;
+}
+
+.big-cloud-opening-page-right {
+    animation: cloudMove 15s linear infinite alternate;
+}
+
+.small-cloud-opening-page-left {
+    animation: cloudMove 15s linear infinite alternate;
+}
+
+.small-cloud-opening-page-right {
+    animation: cloudMove 15s linear infinite alternate;
+} */
+
+.big-cloud-opening-page-left{
+    animation: cloudMove 20s linear infinite alternate;
+}
+
+.big-cloud-opening-page-right{
+    animation: cloudMove 18s linear infinite alternate;
+}
+
+.small-cloud-opening-page-left{
+    animation: cloudMove 25s linear infinite alternate;
+}
+
+.small-cloud-opening-page-right{
+    animation: cloudMove 23s linear infinite alternate;
 }
