@@ -4,7 +4,7 @@ import "./OpeningPage.css";
 import road from "../../assets/road.svg";
 import BigCloud from "../../assets/cloud-big.svg";
 import SmallCloud from "../../assets/cloud-small.svg";
-import lightingPole from "../../assets/lightingPole.svg";
+import lightingPole from "../../assets/LightingPole.svg";
 import car from "../../assets/car-on-the-side.svg";
 import logo from "../../assets/logo.png";
 import tillBlackLogo from "../../assets/till_blacklogo.svg";
