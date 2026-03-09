@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "Fredoka";
+    src: url("/Fredoka-VariableFont_wdth,wght.ttf");
+}
+
+@font-face {
+font-family: "Agam";
+src: url("/OHAgamNaim-Regular.ttf");
+}
+
+body {
+    font-family: "Fredoka";
+    direction: rtl;
+}
