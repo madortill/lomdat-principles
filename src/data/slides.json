@@ -1,10 +1,200 @@
 [
-  {
-    "type": "normal",
-    "text": "לוחית רישוי מזהה את סוג הרכב"
-  },
-  {
-    "type": "normal",
-    "text": "רכב פרטי מסומן בלוחית צהובה"
-  }
+    {
+        "id": 1,
+        "type": "normal",
+        "header": "רכב חום - הגדרה",
+        "text": "כלי רכב שהוגדר כייעודי למשימה ספציפית ולמטרה מוגדרת, המחייבת שימוש בו. כל רכב שלוחית הרישוי שלו בצבע שחור ולפני המספר מופיעה האות צ’ מוגדר כרכב חום. רכב זה אינו חייב להיות בצבע חום.",
+        "image": "media/brown-car-plate.png"
+    },
+    {
+        "id": 2,
+        "type": "normal",
+        "header": "רכב לבן/צמוד - הגדרה",
+        "text": "כלי רכב שהוצמד לאיש קבע מתפקיד המ”פ (מפקד פלוגה). רכב זה הינו אישי וצמוד לאיש הקבע לכל נסיעה ושימוש לצורך צבאי או אישי. לרכב זה לוחית רישוי צהובה וסימן זיהוי צבאי מתאים. רכב זה אינו חייב להיות בצבע לבן.",
+        "image": "media/white-car-plate.png"
+    },
+    {
+        "id": 3,
+        "type": "flipCards",
+        "header": "זיהוי רכב צבאי",
+        "text": "כאשר לרכב יש לוחית רישוי צהובה, נוכל לזהות אם הוא רכב צבאי לפי מספר דגשים. לחצו על הקלפים כדי לגלות!",
+        "cards": [
+            {
+                "front": {
+                    "text": "דגש 1",
+                    "image": "media/police-siren-light.png"
+                },
+                "back": {
+                    "text": "רכבים ספציפיים אשר נפוצים בצה”ל (נרחיב עליהם בהמשך).",
+                    "image": "media/flip-card-1-1.png"
+                }
+            },
+            {
+                "front": {
+                    "text": "דגש 2",
+                    "image": "media/police-siren-light.png"
+                },
+                "back": {
+                    "text": "נוהל 6 - מדבקת “איך אני נוהג?” מתחת ללוחית הרישוי.",
+                    "image": "media/flip-card-1-2.png"
+                }
+            },
+            {
+                "front": {
+                    "text": "דגש 3",
+                    "image": "media/police-siren-light.png"
+                },
+                "back": {
+                    "text": "מדבקת לחץ אוויר בצידו התחתון והשמאלי של השמשה הקדמית.",
+                    "image": "media/flip-card-1-3.png"
+                }
+            },
+            {
+                "front": {
+                    "text": "דגש 4",
+                    "image": "media/police-siren-light.png"
+                },
+                "back": {
+                    "text": "מדבקת אישור בדיקת חורף בצידו התחתון והשמאלי של השמשה הקדמית.",
+                    "image": "media/flip-card-1-4.png"
+                }
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "type": "vehicleTypes",
+        "header": "זיהוי רכב צבאי - רכבים צמודים",
+        "text": "רכבי מפקדי פלוגה",
+        "image": "media/mp.svg",
+        "vehicles": [
+            {
+                "title": "קיה ריו",
+                "image": "media/pic.png"
+            },
+            {
+                "title": "יונדאי i20",
+                "image": "media/pic.png"
+            },
+            {
+                "title": "סיאט איביזה",
+                "image": "media/pic.png"
+            },
+            {
+                "title": "סקודה קאמיק",
+                "image": "media/pic.png"
+            },
+            {
+                "title": "סקודה סקאלה",
+                "image": "media/pic.png"
+            },
+            {
+                "title": "סקודה פאביה",
+                "image": "media/pic.png"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "type": "vehicleTypes",
+        "header": "זיהוי רכב צבאי - רכבים צמודים",
+        "text": "רכבי סאל (סגן אלוף)",
+        "image": "media/saal.svg",
+        "vehicles": [
+            {
+                "title": "צ'רי (סאל בעל 3 ילדים ומעלה)",
+                "image": "media/pic.png"
+            },
+            {
+                "title": "קיה נירו",
+                "image": "media/pic.png"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "type": "vehicleTypes",
+        "header": "זיהוי רכב צבאי - רכבים צמודים",
+        "text": null,
+        "image": null,
+        "vehicles": [
+            {
+                "title": "יונדאי אלנטרה - אלוף משנה",
+                "image": "media/pic.png"
+            },
+            {
+                "title": "סקודה סופרב - תת אלוף",
+                "image": "media/pic.png"
+            },
+            {
+                "title": "טויוטה לנד קרוזר - אלוף",
+                "image": "media/pic.png"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "type": "vehicleTypes",
+        "header": "זיהוי רכב צבאי - רכבי יחידה",
+        "text": null,
+        "image": null,
+        "vehicles": [
+            {
+                "title": "אופל קומבו",
+                "image": "media/pic.png"
+            },
+            {
+                "title": "רנו קנגו",
+                "image": "media/pic.png"
+            },
+            {
+                "title": "סיטוראן ברלינגו",
+                "image": "media/pic.png"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "type": "twoOptions",
+        "header": "זיהוי רכב צבאי - ניידות מצ",
+        "options": [
+            {
+                "title": "ניידות גלויות",
+                "image": "media/police-siren-light.png",
+                "popup": {
+                    "title": "ניידות גלויות",
+                    "image": ["media/pic.png", "media/pic.png", "media/pic.png"]
+                }
+            },
+            {
+                "title": "ניידות סמויות",
+                "image": "media/Police-siren-light-samui.svg",
+                "popup": {
+                    "title": "ניידות סמויות",
+                    "image": ["media/pic.png", "media/pic.png", "media/pic.png"]
+                }
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "type": "vehicleTypes",
+        "header": "זיהוי רכב צבאי - רכבים חומים",
+        "text": null,
+        "image": "media/brown-car-plate.png",
+        "vehicles": [
+            {
+                "title": "",
+                "image": "media/pic.png"
+            },
+            {
+                "title": "",
+                "image": "media/pic.png"
+            },
+            {
+                "title": "",
+                "image": "media/pic.png"
+            }
+        ]
+    }
 ]

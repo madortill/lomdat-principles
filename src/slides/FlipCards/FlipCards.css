@@ -1,0 +1,134 @@
+.flipcards-slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2vh;
+}
+
+.slide-title {
+    /* font-size: clamp(1.3rem, 2.5vw, 2rem); */
+    font-size:clamp(1.3rem,1.9rem,2rem);
+    text-align: center;
+    font-family: "Agam";
+    font-weight: 600;
+    padding-top: 1.5%;
+}
+
+.slide-text {
+    /* font-size: clamp(0.9rem, 1.5vw, 1.2rem); */
+    font-size:clamp(0.9rem,1.1rem,1.4rem);
+    text-align: center;
+    max-width: 60%;
+}
+
+/* grid רספונסיבי */
+/* .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 2vw;
+    width: 90%;
+    max-width: 900px;
+    margin-top: 2vh;
+} */
+
+.cards-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(120px, 160px));
+
+    justify-content: center;
+
+    gap: clamp(10px, 2vw, 28px);
+
+    width: 100%;
+    max-width: 650px;
+}
+
+.flip-card {
+    /* padding-left: clamp(10px, 2vw, 28px); */
+    width: 100%;
+    max-width: 160px;
+    aspect-ratio: 1/1;
+
+    perspective: 1200px;
+    cursor: pointer;
+}
+
+/* כרטיס */
+/* .flip-card {
+    width: 100%;
+    aspect-ratio: 1/1;
+    perspective: 1200px;
+    cursor: pointer;
+} */
+
+/* פנים הכרטיס */
+.flip-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+}
+
+/* מצב flipped */
+.flip-card.flipped .flip-inner {
+    transform: rotateY(180deg);
+}
+
+/* צדדים */
+.flip-front,
+.flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    /* padding: 1vw; */
+    border-radius: 12px;
+
+    /* נראה כמו כרטיס אמיתי */
+    /* background: white; */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.flip-front {
+    font-family: "Agam";
+    background: radial-gradient(50% 50% at 50% 50%, #88AED0 36.54%, #AFCAE2 100%);
+    font-size: clamp(1rem, 1.6vw, 2rem);
+    font-weight: 600;
+}
+
+.flip-back {
+    background: radial-gradient(50% 50% at 50% 50%, #D2625C 36.54%, #E59590 100%);
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
+}
+
+/* תמונות */
+.flip-front img,
+.flip-back img {
+    width: 50%;
+    max-width: 90px;
+    margin-bottom: 1vh;
+}
+
+/* טקסט */
+.flip-front p,
+.flip-back p {
+    /* font-size: clamp(0.8rem, 1.2vw, 1rem); */
+    text-align: center;
+}
+
+/* הצד האחורי */
+.flip-back {
+    transform: rotateY(180deg);
+}
