@@ -11,4 +11,11 @@ src: url("/OHAgamNaim-Regular.ttf");
 body {
     font-family: "Fredoka";
     direction: rtl;
+    text-align: center;
+}
+
+::selection {
+    /* background-color: #da5952; */
+    background-color: #26547E;
+    color: aliceblue;
 }

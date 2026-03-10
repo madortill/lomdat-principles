@@ -25,9 +25,9 @@ function VehicleTypesSlide({ data }) {
 
                     <div className="vehicle-card" key={index}>
 
-                        <img src={vehicle.image} alt="" />
-
                         <p>{vehicle.title}</p>
+
+                        <img src={vehicle.image} alt="" />
 
                     </div>
 

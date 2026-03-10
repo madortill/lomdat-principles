@@ -163,7 +163,11 @@
                 "image": "media/police-siren-light.png",
                 "popup": {
                     "title": "ניידות גלויות",
-                    "image": ["media/pic.png", "media/pic.png", "media/pic.png"]
+                    "image": [
+                        "media/pic.png",
+                        "media/pic.png",
+                        "media/pic.png"
+                    ]
                 }
             },
             {
@@ -171,7 +175,11 @@
                 "image": "media/Police-siren-light-samui.svg",
                 "popup": {
                     "title": "ניידות סמויות",
-                    "image": ["media/pic.png", "media/pic.png", "media/pic.png"]
+                    "image": [
+                        "media/pic.png",
+                        "media/pic.png",
+                        "media/pic.png"
+                    ]
                 }
             }
         ]
@@ -194,6 +202,174 @@
             {
                 "title": "",
                 "image": "media/pic.png"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "type": "question",
+        "header": "שאלת ביניים",
+        "question": "מהו נוהל 6?",
+        "answers": [
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
+            },
+            {
+                "text": "מדבקת איך אני נוהג?",
+                "correct": true
+            },
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
+            },
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "type": "question",
+        "header": "שאלת ביניים",
+        "question": "מנה 3 דוגמאות לזיהוי רכבים צבאיים",
+        "answers": [
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
+            },
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
+            },
+            {
+                "text": "מדבקת לחץ אוויר, מדבקת דלקן, אישור בדיקת חורף",
+                "correct": true
+            },
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "type": "flipCards",
+        "header": "זיהוי רכב צבאי",
+        "text": "כאשר לרכב יש לוחית רישוי צהובה, נוכל לזהות אם הוא רכב צבאי לפי מספר דגשים. לחצו על הקלפים כדי לגלות!",
+        "cards": [
+            {
+                "front": {
+                    "text": "רכב אישי",
+                    "image": "media/pic.png"
+                },
+                "back": {
+                    "text": "כלי רכב שהוקצה לשימוש עצמי ופרטי (צמוד-לבן). ניתן לראות זאת בכרטיס העבודה.",
+                    "image": null
+                }
+            },
+            {
+                "front": {
+                    "text": "רכב יחידה",
+                    "image": "media/pic.png"
+                },
+                "back": {
+                    "text": "כלי רכב שהוקצה ליחידה לשימוש צרכיה ואינו משמש כרכב אישי (חום).",
+                    "image": null
+                }
+            },
+            {
+                "front": {
+                    "text": "רכב פינוי",
+                    "image": "media/pic.png"
+                },
+                "back": {
+                    "text": "רכב המאפשר כניסה לשטח הפעילות עד לקרבת הנפגע ופינויו (חום).",
+                    "image": null
+                }
+            },
+            {
+                "front": {
+                    "text": "רכב ביטחון",
+                    "image": "media/pic.png"
+                },
+                "back": {
+                    "text": "אמבולנס, מכבי אש וכו’ (חום).",
+                    "image": null
+                }
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "type": "question",
+        "header": "שאלת ביניים",
+        "question": "מהו רכב אישי?",
+        "answers": [
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
+            },
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
+            },
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
+            },
+            {
+                "text": "כלי רכב שהוקצה לשימוש עצמי",
+                "correct": true
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "type": "question",
+        "header": "שאלת ביניים",
+        "question": "מנה 3 דוגמאות לזיהוי רכבים צבאיים",
+        "answers": [
+            {
+                "text": "רכב המאפשר כניסה לשטח הפעילות עד לקרבת הנפגע ופינויו",
+                "correct": true
+            },
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
+            },
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
+            },
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "type": "question",
+        "header": "שאלת ביניים",
+        "question": "הבא 2 דוגמאות לרכב הביטחון",
+        "answers": [
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
+            },
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
+            },
+            {
+                "text": "אמבולנס, מכבי אש",
+                "correct": true
+            },
+            {
+                "text": "תשובה לא נכונה",
+                "correct": false
             }
         ]
     }

@@ -39,7 +39,7 @@
     max-width: 650px;
 } */
 
-.vehicles-grid {
+/* .vehicles-grid {
     display: grid;
 
     grid-template-columns:
@@ -51,6 +51,20 @@
 
     width: 100%;
     max-width: 600px;
+} */
+
+.vehicles-grid{
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(110px,140px));
+
+justify-content:center;
+
+gap:clamp(12px,2vw,24px);
+
+width:100%;
+max-width:550px;
 }
 
 .vehicle-card {

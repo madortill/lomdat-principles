@@ -73,13 +73,13 @@ function FlipCardsSlide({ data }) {
                         <div className="flip-inner">
 
                             <div className="flip-front">
-                                <img src={card.front.image} alt="" />
-                                <p>{card.front.text}</p>
+                                <img src={card.front.image} alt="front img" />
+                                <div>{card.front.text}</div>
                             </div>
 
                             <div className="flip-back">
-                                <img src={card.back.image} alt="" />
-                                <p>{card.back.text}</p>
+                                <div>{card.back.text}</div>
+                                {card.back.image !== null && <img src={card.back.image} alt="back img" />}
                             </div>
 
                         </div>
