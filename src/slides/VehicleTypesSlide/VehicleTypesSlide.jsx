@@ -1,124 +1,69 @@
-// import { useState } from "react";
-// import "./VehicleTypesSlide.css";
-
-// function VehicleTypesSlide({ data }) {
-//     const [zoomImg,setZoomImg] = useState(null);
-
-//     return (
-//         <div className="vehicle-slide">
-
-//             <div className="slide-title">{data.header}</div>
-
-//             {data.text && (
-//                 <div className="vehicle-text">{data.text}</div>
-//             )}
-
-//             {data.image && (
-//                 <img
-//                     src={data.image}
-//                     className="rank-image"
-//                     alt=""
-//                     onClick={() => setZoomImg(data.image)}
-//                 />
-//             )}
-
-//             <div className="vehicles-grid">
-
-//                 {data.vehicles.map((vehicle, index) => (
-
-//                     <div className="vehicle-card" key={index}>
-
-//                         <p>{vehicle.title}</p>
-
-//                         <img src={vehicle.image} alt="" />
-
-//                     </div>
-
-//                 ))}
-
-//             </div>
-//             {zoomImg && (
-
-//                 <div className="image-zoom-overlay" onClick={() => setZoomImg(null)}>
-
-//                     <img src={zoomImg} className="image-zoom" />
-
-//                 </div>
-
-//             )}
-
-//         </div>
-//     );
-// }
-
-// export default VehicleTypesSlide;
-
-
 import { useState } from "react";
 import "./VehicleTypesSlide.css";
 
 function VehicleTypesSlide({ data }) {
 
-const [zoomImg,setZoomImg] = useState(null);
+    const [zoomImg, setZoomImg] = useState(null);
 
-return (
+    return (
+        <>
+            <div className="vehicle-slide">
 
-<div className="vehicle-slide">
+                <div className="slide-title">{data.header}</div>
 
-<div className="slide-title">{data.header}</div>
+                {data.text && (
+                    <div className="vehicle-text">{data.text}</div>
+                )}
 
-{data.text && (
-<div className="vehicle-text">{data.text}</div>
-)}
+                {data.image && (
+                    <img
+                        src={data.image}
+                        className="rank-image"
+                        alt=""
+                        onClick={() => setZoomImg(data.image)}
+                    />
+                )}
 
-{data.image && (
-<img
-src={data.image}
-className="rank-image"
-alt=""
-onClick={()=>setZoomImg(data.image)}
-/>
-)}
+                <div className={`vehicles-grid vehicles-${data.vehicles.length}`}>
 
-<div className="vehicles-grid">
+                    {data.vehicles.map((vehicle, index) => (
 
-{data.vehicles.map((vehicle,index)=>(
+                        <div className="vehicle-card" key={index}>
 
-<div className="vehicle-card" key={index}>
+                            <p>{vehicle.title}</p>
 
-<p>{vehicle.title}</p>
+                            <img
+                                src={vehicle.image}
+                                alt=""
+                                onClick={() => setZoomImg(vehicle.image)}
+                            />
 
-<img
-src={vehicle.image}
-alt=""
-onClick={()=>setZoomImg(vehicle.image)}
-/>
+                        </div>
 
-</div>
+                    ))}
 
-))}
+                </div>
 
-</div>
+                {zoomImg && (
 
-{zoomImg && (
+                    <div
+                        className="image-zoom-overlay"
+                        onClick={() => setZoomImg(null)}
+                    >
 
-<div
-className="image-zoom-overlay"
-onClick={()=>setZoomImg(null)}
->
+                        <img
+                            src={zoomImg}
+                            className="image-zoom"
+                        />
 
-<img
-src={zoomImg}
-className="image-zoom"
-/>
+                    </div>
 
-</div>
+                )}
 
-)}
+            </div>
+        </>
 
-</div>
-
-);
+    );
 
 }
 

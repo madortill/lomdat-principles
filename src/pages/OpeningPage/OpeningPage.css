@@ -65,6 +65,7 @@ body {
     text-align: center;
     gap: 2rem;
     z-index: 13;
+    margin-top: -10%;
 }
 
 .topics-screen{

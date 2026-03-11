@@ -19,7 +19,8 @@
 
 .slide-text {
     /* font-size: clamp(0.9rem, 1.5vw, 1.2rem); */
-    font-size: clamp(0.9rem, 1.1rem, 1.4rem);
+    /* font-size: clamp(0.9rem, 1.1rem, 1.4rem); */
+    font-size: clamp(0.95rem, 0.8vw + 0.6vh, 1.3rem);
     text-align: center;
     /* max-width: 60%; */
 }
@@ -79,18 +80,36 @@ max-width:520px;
 justify-items:center;
 } */
 
-.cards-container{
+/* .cards-container {
 
-display:grid;
+    display: grid;
 
-grid-template-columns:repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
 
-gap:clamp(14px,2vw,28px);
+    gap: clamp(14px, 2vw, 28px);
 
-width:100%;
-max-width:640px;
+    width: 100%;
+    max-width: 640px;
 
-justify-items:center;
+    justify-items: center;
+
+    padding-top: 2%;
+} */
+
+.cards-container {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: clamp(10px, 1.6vh, 24px);
+
+    width: 100%;
+
+    max-width: 680px;
+
+    justify-items: center;
+
 }
 
 /* .flip-card {
@@ -137,59 +156,95 @@ perspective:1200px;
 cursor:pointer;
 } */
 
-.flip-card{
+/* .flip-card {
+    width: clamp(110px, 8vw, 170px);
+    aspect-ratio: 1/1;
+    perspective: 1200px;
+    cursor: pointer;
+} */
 
-width:clamp(110px,8vw,170px);
+.flip-card {
 
-aspect-ratio:1/1;
+    /* width: clamp(110px, 14vh, 190px); */
+    height: clamp(110px, 25vh, 500px);
 
-perspective:1200px;
+    aspect-ratio: 1 / 1.1;
 
-cursor:pointer;
-}
+    perspective: 1200px;
 
-@media (max-height:750px){
-
-.flip-card{
-max-width:90px;
-}
-
-}
-
-@media (min-height:900px){
-
-.flip-card{
-max-width:140px;
-}
+    cursor: pointer;
 
 }
 
-@media (max-height:750px){
+@media (max-height:750px) {
 
-.flip-card{
-
-aspect-ratio:1/1.25;
-
-}
-
-.flip-front,
-.flip-back{
-
-font-size:0.9rem;
-
-padding:6px;
+    .flip-card {
+        max-width: 90px;
+    }
 
 }
 
+@media (min-height:900px) {
+
+    .flip-card {
+        max-width: 140px;
+    }
+
 }
+
+@media (max-height:750px) {
+
+    .flip-card {
+
+        aspect-ratio: 1/1.25;
+
+    }
+
+    .flip-front,
+    .flip-back {
+
+        font-size: 0.9rem;
+
+        padding: 6px;
+
+    }
+
+}
+
+/* .flip-front img,
+.flip-back img {
+
+    width: clamp(50px, 4vw, 80px);
+
+    margin-bottom: 0.8vh;
+
+} */
 
 .flip-front img,
-.flip-back img{
+.flip-back img {
+    height: clamp(50px, 5vh, 100px);
+    width: auto;
 
-width:clamp(50px,4vw,80px);
+    margin-bottom: 0.6vh;
+}
 
-margin-bottom:0.8vh;
+.flip-back img {
+    margin-top: 0.5vh;
+    animation: pulse-img 2s linear infinite;
+}
 
+@keyframes pulse-img {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* פנים הכרטיס */
@@ -243,15 +298,21 @@ margin-bottom:0.8vh;
 .flip-back img {
     width: 50%;
     max-width: 90px;
-    margin-bottom: 1vh;
+    /* margin-bottom: 1vh; */
 }
 
 /* טקסט */
-.flip-front p,
-.flip-back p {
-    padding: 0.5%;
-    /* font-size: clamp(0.8rem, 1.2vw, 1rem); */
+.flip-front p {
+    /* padding: 0.5%; */
+    font-size: clamp(0.8rem, 1.5vw, 1.5rem);
     text-align: center;
+}
+
+.flip-back p {
+    /* margin: 0.5%; */
+    font-size: clamp(0.6rem, 1vw, 1rem);
+    text-align: center;
+    /* margin-bottom: -0.1vh; */
 }
 
 /* הצד האחורי */
@@ -259,45 +320,77 @@ margin-bottom:0.8vh;
     transform: rotateY(180deg);
 }
 
-.image-zoom-overlay{
+.image-zoom-overlay {
 
-position:fixed;
-inset:0;
+    position: fixed;
+    inset: 0;
 
-/* background:rgba(0,0,0,0.75); */
+    /* background:rgba(0,0,0,0.75); */
 
-display:flex;
-justify-content:center;
-align-items:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-z-index:9999;
-cursor:pointer;
-
-}
-
-.image-zoom{
-
-max-width:80vw;
-max-height:80vh;
-
-border-radius:14px;
-
-box-shadow:0 10px 40px rgba(0,0,0,0.5);
-
-animation:zoomIn .3s ease;
+    z-index: 9999;
+    cursor: pointer;
 
 }
 
-@keyframes zoomIn{
+.image-zoom {
 
-from{
-transform:scale(.8);
-opacity:0;
+    max-width: 80vw;
+    max-height: 80vh;
+
+    border-radius: 14px;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+    animation: zoomIn .3s ease;
+
 }
 
-to{
-transform:scale(1);
-opacity:1;
+@keyframes zoomIn {
+
+    from {
+        transform: scale(.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+
 }
+
+
+.flip-card {
+    position: relative;
+}
+
+.card-check {
+
+    position: absolute;
+    z-index: 20;
+
+    top: -8px;
+    right: -8px;
+
+    width: 26px;
+    height: 26px;
+
+    border-radius: 50%;
+
+    background: #4CAF50;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 
 }

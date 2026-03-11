@@ -77,7 +77,7 @@ body,
     right: 2%;
     width: 7%;
     height: auto;
-    z-index: 15;
+    z-index: 20;
 }
 
 /* הרכב */
@@ -103,14 +103,14 @@ body,
 /* ניווט לסליידים רגילים */
 .nav-buttons-container {
     position: absolute;
-    bottom: 2%;
+    bottom: 12%;
     left: 50%;
     transform: translateX(-50%);
-    width: 52%;
+    width: 45%;
     display: flex;
     justify-content: space-between;
     z-index: 25;
-    /* מעל הרכב */
+    direction: ltr;
 }
 
 .btn-nav {
@@ -120,12 +120,24 @@ body,
 }
 
 .btn-nav:hover {
-    transform: scale(1.08);
+    /* transform: scale(1.08); */
+    transform: translateY(-3px) scale(1.1);
+    /* box-shadow: 0 10px 18px rgba(0,0,0,0.25); */
 }
 
-.btn-nav.disabled {
+.btn-nav:active{
+    transform: translateY(0) scale(0.97);
+}
+
+/* .btn-nav.disabled {
     opacity: 0.4;
     pointer-events: none;
+} */
+
+.btn-nav.disabled{
+opacity:0.4;
+pointer-events:none;
+filter:grayscale(100%);
 }
 
 /* סלייד רגיל */
@@ -326,4 +338,12 @@ height:100%;
         transform: translateY(-100%);
         opacity: 0;
     }
+}
+
+.sign-photo {
+    position: absolute;
+    right: 4%;
+    bottom: 0%;
+    height: 45%;
+    z-index: 20;
 }
