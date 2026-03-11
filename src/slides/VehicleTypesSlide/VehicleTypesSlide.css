@@ -6,11 +6,18 @@
     gap: 2vh;
 }
 
-.vehicle-text {
+/* .vehicle-text {
     font-size: clamp(1rem, 2vw, 2rem);
     text-align: center;
     max-width: 70%;
     font-family: "Agam";
+} */
+
+.vehicle-text{
+font-size:clamp(1rem,2vw + 0.6vh,1.6rem);
+text-align:center;
+max-width:70%;
+font-family:"Agam";
 }
 
 .rank-image {
@@ -53,7 +60,7 @@
     max-width: 600px;
 } */
 
-.vehicles-grid{
+/* .vehicles-grid{
 display:grid;
 
 grid-template-columns:
@@ -65,9 +72,52 @@ gap:clamp(12px,2vw,24px);
 
 width:100%;
 max-width:550px;
+} */
+
+/* .vehicles-grid{
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(120px,150px));
+
+justify-content:center;
+
+gap:clamp(12px,1.8vw,24px);
+
+width:100%;
+max-width:650px;
+} */
+
+/* .vehicles-grid {
+
+display:grid;
+
+grid-template-columns:
+repeat(3,minmax(100px,1fr));
+
+gap:clamp(10px,1.8vw,20px);
+
+width:100%;
+max-width:420px;
+
+justify-items:center;
+} */
+
+.vehicles-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:clamp(12px,2vw,24px);
+
+width:100%;
+max-width:480px;
+
+justify-items:center;
 }
 
-.vehicle-card {
+/* .vehicle-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,15 +128,105 @@ max-width:550px;
     border-radius: 12px;
 
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+} */
+
+.vehicle-card{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+padding:clamp(6px,1vw,10px);
+
+background:white;
+border-radius:12px;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
-.vehicle-card img {
+/* .vehicle-card img {
     width: 70%;
     max-width: 120px;
+} */
+
+.vehicle-card img{
+width:clamp(70px,8vw,110px);
 }
 
 .vehicle-card p {
     font-size: clamp(0.8rem, 1.2vw, 1rem);
     text-align: center;
     margin-top: 0.5vh;
+}
+
+@media (max-height:750px){
+
+.vehicles-grid{
+/* grid-template-columns:repeat(4,1fr); */
+max-width:520px;
+}
+
+.vehicle-card img{
+width:70px;
+}
+
+}
+
+
+.vehicle-card img,
+.flip-back img{
+
+cursor:pointer;
+transition:transform .2s;
+
+}
+
+.vehicle-card img:hover,
+.flip-back img:hover{
+
+transform:scale(1.08);
+
+}
+
+.image-zoom-overlay{
+
+position:fixed;
+inset:0;
+
+/* background:rgba(0,0,0,0.75); */
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+z-index:9999;
+cursor:pointer;
+
+}
+
+.image-zoom{
+
+max-width:80vw;
+max-height:80vh;
+
+border-radius:14px;
+
+box-shadow:0 10px 40px rgba(0,0,0,0.5);
+
+animation:zoomIn .3s ease;
+
+}
+
+@keyframes zoomIn{
+
+from{
+transform:scale(.8);
+opacity:0;
+}
+
+to{
+transform:scale(1);
+opacity:1;
+}
+
 }

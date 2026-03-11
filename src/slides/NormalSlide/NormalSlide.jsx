@@ -1,3 +1,5 @@
+import "./NormalSlide.css"
+
 function NormalSlide({ data }) {
 
     return (

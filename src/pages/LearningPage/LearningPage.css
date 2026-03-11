@@ -68,6 +68,7 @@ body,
     left: 2%;
     width: 6%;
     height: auto;
+    z-index: 15;
 }
 
 .till-logo-white-learning-pages {
@@ -128,7 +129,7 @@ body,
 }
 
 /* סלייד רגיל */
-.slide-wrapper {
+/* .slide-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
@@ -136,7 +137,18 @@ body,
     justify-content: center;
     align-items: center;
     z-index: 20;
-    /* מעל הרכב, נמוך מהשאלות */
+} */
+
+.slide-wrapper {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 20;
 }
 
 /* Overlay לשאלות */
@@ -183,9 +195,9 @@ body,
 }
 
 
-.safe-area {
+/* .safe-area {
   position: relative;
-  top: 0%; /* מתחיל קצת מעל הרכב */
+  top: 0%;
   width: 60%;
   max-width: 600px;
   margin: 0 auto;
@@ -194,36 +206,124 @@ body,
   justify-content: center;
   align-items: center;
   gap: 1.5vh;
-  z-index: 20; /* מעל הרכב */
+  z-index: 20;
+} */
+
+/* .safe-area {
+    position: absolute;
+
+    top: 14%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: min(60vw, 720px);
+    height: min(45vh, 420px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: clamp(10px, 1.5vh, 18px);
+
+    z-index: 20;
+} */
+
+/* .safe-area {
+
+    position: absolute;
+
+    left: 49.5%;
+    transform: translateX(-50%);
+
+    bottom: 13%;
+
+    width: 38%;
+    height: 64%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    gap: clamp(10px, 1.5vh, 18px);
+
+    z-index: 20;
+
+overflow:hidden;
+
+} */
+
+.safe-area {
+
+position:absolute;
+
+left:49.5%;
+transform:translateX(-50%);
+
+bottom:13%;
+
+/* גדל עם המסך והרכב */
+width:clamp(420px,38vw,720px);
+height:clamp(260px,64vh,520px);
+
+display:flex;
+flex-direction:column;
+
+justify-content:flex-start;
+align-items:center;
+
+/* padding-top:clamp(8px,2vh,18px); */
+
+gap:clamp(10px,1.5vh,18px);
+
+z-index:20;
 }
 
-
+.safe-area > *{
+width:100%;
+height:100%;
+}
 
 .garage-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  transform: translateY(-100%);
-  opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    transform: translateY(-100%);
+    opacity: 0;
 }
 
 .garage-wrapper.slide-down {
-  animation: slideDownGarage 1s forwards;
+    animation: slideDownGarage 1s forwards;
 }
 
 .garage-wrapper.slide-up {
-  animation: slideUpGarage 1s forwards;
+    animation: slideUpGarage 1s forwards;
 }
 
 @keyframes slideDownGarage {
-  from { transform: translateY(-100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 @keyframes slideUpGarage {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-100%); opacity: 0; }
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
 }

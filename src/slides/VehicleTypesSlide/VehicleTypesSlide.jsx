@@ -1,42 +1,125 @@
+// import { useState } from "react";
+// import "./VehicleTypesSlide.css";
+
+// function VehicleTypesSlide({ data }) {
+//     const [zoomImg,setZoomImg] = useState(null);
+
+//     return (
+//         <div className="vehicle-slide">
+
+//             <div className="slide-title">{data.header}</div>
+
+//             {data.text && (
+//                 <div className="vehicle-text">{data.text}</div>
+//             )}
+
+//             {data.image && (
+//                 <img
+//                     src={data.image}
+//                     className="rank-image"
+//                     alt=""
+//                     onClick={() => setZoomImg(data.image)}
+//                 />
+//             )}
+
+//             <div className="vehicles-grid">
+
+//                 {data.vehicles.map((vehicle, index) => (
+
+//                     <div className="vehicle-card" key={index}>
+
+//                         <p>{vehicle.title}</p>
+
+//                         <img src={vehicle.image} alt="" />
+
+//                     </div>
+
+//                 ))}
+
+//             </div>
+//             {zoomImg && (
+
+//                 <div className="image-zoom-overlay" onClick={() => setZoomImg(null)}>
+
+//                     <img src={zoomImg} className="image-zoom" />
+
+//                 </div>
+
+//             )}
+
+//         </div>
+//     );
+// }
+
+// export default VehicleTypesSlide;
+
+
+import { useState } from "react";
 import "./VehicleTypesSlide.css";
 
 function VehicleTypesSlide({ data }) {
 
-    return (
-        <div className="vehicle-slide">
+const [zoomImg,setZoomImg] = useState(null);
 
-            <div className="slide-title">{data.header}</div>
+return (
 
-            {data.text && (
-                <div className="vehicle-text">{data.text}</div>
-            )}
+<div className="vehicle-slide">
 
-            {data.image && (
-                <img
-                    src={data.image}
-                    className="rank-image"
-                    alt=""
-                />
-            )}
+<div className="slide-title">{data.header}</div>
 
-            <div className="vehicles-grid">
+{data.text && (
+<div className="vehicle-text">{data.text}</div>
+)}
 
-                {data.vehicles.map((vehicle, index) => (
+{data.image && (
+<img
+src={data.image}
+className="rank-image"
+alt=""
+onClick={()=>setZoomImg(data.image)}
+/>
+)}
 
-                    <div className="vehicle-card" key={index}>
+<div className="vehicles-grid">
 
-                        <p>{vehicle.title}</p>
+{data.vehicles.map((vehicle,index)=>(
 
-                        <img src={vehicle.image} alt="" />
+<div className="vehicle-card" key={index}>
 
-                    </div>
+<p>{vehicle.title}</p>
 
-                ))}
+<img
+src={vehicle.image}
+alt=""
+onClick={()=>setZoomImg(vehicle.image)}
+/>
 
-            </div>
+</div>
 
-        </div>
-    );
+))}
+
+</div>
+
+{zoomImg && (
+
+<div
+className="image-zoom-overlay"
+onClick={()=>setZoomImg(null)}
+>
+
+<img
+src={zoomImg}
+className="image-zoom"
+/>
+
+</div>
+
+)}
+
+</div>
+
+);
+
 }
 
 export default VehicleTypesSlide;

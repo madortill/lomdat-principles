@@ -24,7 +24,7 @@
     /* max-width: 60%; */
 }
 
-.cards-container {
+/* .cards-container {
     display: grid;
 
     justify-content: center;
@@ -34,9 +34,66 @@
     width: 100%;
     max-width: 600px;
     grid-template-columns:repeat(4,1fr);
+} */
+
+/* .cards-container {
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(110px,1fr));
+
+justify-content:center;
+
+gap:clamp(12px,1.8vw,24px);
+
+width:100%;
+max-width:650px;
+} */
+
+/* .cards-container {
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(90px,1fr));
+
+gap: clamp(10px,1.5vw,20px);
+
+width:100%;
+max-width:520px;
+
+justify-items:center;
+} */
+
+/* .cards-container {
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:clamp(12px,2vw,24px);
+
+width:100%;
+max-width:520px;
+
+justify-items:center;
+} */
+
+.cards-container{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:clamp(14px,2vw,28px);
+
+width:100%;
+max-width:640px;
+
+justify-items:center;
 }
 
-.flip-card {
+/* .flip-card {
     width: 100%;
     max-width: 150px;
 
@@ -45,6 +102,94 @@
     perspective: 1200px;
 
     cursor: pointer;
+} */
+
+/* .flip-card {
+width:100%;
+max-width:140px;
+
+aspect-ratio:1/1;
+
+perspective:1200px;
+
+cursor:pointer;
+} */
+
+/* .flip-card {
+
+width:100%;
+max-width:110px;
+
+aspect-ratio:1/1;
+
+perspective:1200px;
+cursor:pointer;
+} */
+
+/* .flip-card{
+
+width:100%;
+max-width:120px;
+
+aspect-ratio:1/1;
+
+perspective:1200px;
+cursor:pointer;
+} */
+
+.flip-card{
+
+width:clamp(110px,8vw,170px);
+
+aspect-ratio:1/1;
+
+perspective:1200px;
+
+cursor:pointer;
+}
+
+@media (max-height:750px){
+
+.flip-card{
+max-width:90px;
+}
+
+}
+
+@media (min-height:900px){
+
+.flip-card{
+max-width:140px;
+}
+
+}
+
+@media (max-height:750px){
+
+.flip-card{
+
+aspect-ratio:1/1.25;
+
+}
+
+.flip-front,
+.flip-back{
+
+font-size:0.9rem;
+
+padding:6px;
+
+}
+
+}
+
+.flip-front img,
+.flip-back img{
+
+width:clamp(50px,4vw,80px);
+
+margin-bottom:0.8vh;
+
 }
 
 /* פנים הכרטיס */
@@ -112,4 +257,47 @@
 /* הצד האחורי */
 .flip-back {
     transform: rotateY(180deg);
+}
+
+.image-zoom-overlay{
+
+position:fixed;
+inset:0;
+
+/* background:rgba(0,0,0,0.75); */
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+z-index:9999;
+cursor:pointer;
+
+}
+
+.image-zoom{
+
+max-width:80vw;
+max-height:80vh;
+
+border-radius:14px;
+
+box-shadow:0 10px 40px rgba(0,0,0,0.5);
+
+animation:zoomIn .3s ease;
+
+}
+
+@keyframes zoomIn{
+
+from{
+transform:scale(.8);
+opacity:0;
+}
+
+to{
+transform:scale(1);
+opacity:1;
+}
+
 }
