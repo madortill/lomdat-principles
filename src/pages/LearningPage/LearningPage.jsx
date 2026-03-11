@@ -10,13 +10,14 @@ import carFront from "../../assets/car-front.svg";
 import nextBtn from "../../assets/next-btn.svg";
 import backBtn from "../../assets/back-btn.svg";
 import sign from "../../assets/sign-photos.svg";
+import garageSVG from "../../assets/Shutter.svg";
 
 import NormalSlide from "../../slides/NormalSlide/NormalSlide";
 import FlipCardsSlide from "../../slides/FlipCards/FlipCards";
 import VehicleTypesSlide from "../../slides/VehicleTypesSlide/VehicleTypesSlide";
 import TwoOptionsSlide from "../../slides/TwoOptionsSlide/TwoOptionsSlide";
 import QuestionSlide from "../../components/QuestionOverlay/QuestionOverlay";
-import garageSVG from "../../assets/Shutter.svg";
+import DriveTypesSlide from "../../slides/DriveTypesSlide/DriveTypesSlide";
 
 function LearningPage() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -65,6 +66,8 @@ function LearningPage() {
                         isLastQuestion={currentSlide === slides.length - 1}
                     />
                 );
+            case "driveTypes":
+                return <DriveTypesSlide data={slide} unlock={() => setCanProceed(true)} />;
             default:
                 return null;
         }

@@ -46,7 +46,7 @@
 
 .vehicles-2 {
     grid-template-columns: repeat(2, 1fr);
-    max-width: 420px;
+    max-width: 460px;
 }
 
 .vehicles-1 {

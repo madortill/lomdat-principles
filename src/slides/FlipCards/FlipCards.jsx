@@ -170,7 +170,7 @@ function FlipCardsSlide({ data, unlock }) {
                             )}
 
                             <div className="flip-front">
-                                <img src={import.meta.env.BASE_URL + card.front.image} alt="" />
+                                <img src={card.front.image} alt="" />
                                 <p>{card.front.text}</p>
                             </div>
 
@@ -179,7 +179,7 @@ function FlipCardsSlide({ data, unlock }) {
 
                                 {card.back.image !== null &&
                                     <img
-                                        src={import.meta.env.BASE_URL + card.back.image}
+                                        src={card.back.image}
                                         alt="back img"
                                         onClick={(e) => {
                                             e.stopPropagation();
