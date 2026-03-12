@@ -1,0 +1,61 @@
+.road-sign-slide {
+    width: 100%;
+}
+
+.road-sign-slide h2 {
+    font-size: clamp(1.3rem, 1.8vw + 0.8vh, 2.2rem);
+    font-family: "Agam";
+    text-align: center;
+}
+
+.sign-image {
+    width: 100%;
+    margin-top: 2vh;
+}
+
+.content-sign {
+    position: absolute;
+    text-align: right;
+    color: white;
+    width: 50%;
+    top: 12vh;
+    right: 19vh;
+    background-color: #009484;
+    padding: 1vh;
+    border-radius: 5px;
+}
+
+.content-border {
+    border: 0.22vh solid white;
+    border-radius: 12px;
+    padding: 2vh;
+}
+
+.img1-sign {
+    width: 4vh;
+}
+
+.img2-sign {
+    width: 1.8vh;
+    margin-left: 2%;
+}
+
+.text1-sign, .text2-sign {
+    display: flex;
+    align-items: center;
+    padding-bottom: 2vh;
+}
+
+.text-sign {
+    font-size: clamp(0.5rem, 0.7vw + 0.3vh, 1rem);
+}
+
+.text3-sign {
+    color: black;
+    background-color: #EABC51;
+    text-align: center;
+    border-radius: 12px;
+    border: 0.22vh solid black;
+    padding: 0.4vh;
+    /* font-size: clamp(0.5rem, 0.6vw + 0.3vh, 0.9rem); */
+}

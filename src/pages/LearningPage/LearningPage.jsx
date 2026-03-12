@@ -18,6 +18,8 @@ import VehicleTypesSlide from "../../slides/VehicleTypesSlide/VehicleTypesSlide"
 import TwoOptionsSlide from "../../slides/TwoOptionsSlide/TwoOptionsSlide";
 import QuestionSlide from "../../components/QuestionOverlay/QuestionOverlay";
 import DriveTypesSlide from "../../slides/DriveTypesSlide/DriveTypesSlide";
+import RoadSign from "../../slides/RoadSign/RoadSign";
+import BillboardCarsSlide from "../../slides/BillboardCarsSlide/BillboardCarsSlide";
 
 function LearningPage() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -68,6 +70,10 @@ function LearningPage() {
                 );
             case "driveTypes":
                 return <DriveTypesSlide data={slide} unlock={() => setCanProceed(true)} />;
+            case "roadSign":
+                return <RoadSign data={slide} />
+            case "billBoard":
+                return <BillboardCarsSlide data={slide} unlock={() => setCanProceed(true)} />;
             default:
                 return null;
         }
@@ -75,7 +81,7 @@ function LearningPage() {
 
     useEffect(() => {
 
-        if (slide.type === "flipCards" || slide.type === "twoOptions") {
+        if (slide.type === "flipCards" || slide.type === "twoOptions" || slide.type === "driveTypes" || slide.type === "billBoard") {
             setCanProceed(false);
         } else {
             setCanProceed(true);

@@ -46,7 +46,7 @@
     font-family: "Agam";
     color: #f96262;
     font-size: 1.4rem;
-    font-size: clamp(0.9rem, 0.9vw + 1vh, 2rem);
+    font-size: clamp(0.9rem, 0.9vw + 1.5vh, 2rem);
     z-index: 30;
     font-weight: 600;
 }
@@ -87,18 +87,20 @@
 } */
 
 .car {
-
     position: absolute;
-
     bottom: 5px;
-
     width: clamp(90px, 7vw, 140px);
-
     transition: transform 1s cubic-bezier(.22, .61, .36, 1);
-
     z-index: 30;
-
 }
+
+/* .car {
+    z-index: 30;
+    position: absolute;
+    bottom: 5px;
+    width: clamp(90px, 7vw, 140px);
+    transition: transform 1.2s cubic-bezier(.34, 1.56, .64, 1);
+} */
 
 .road {
     height: clamp(60px, 8vh, 90px);
@@ -143,6 +145,31 @@
     right: 20px;
 }
 
+/* .drive-left {
+
+    transform: translateX(-405%);
+    right: 20px;
+
+    animation: carStop 0.25s ease-out;
+
+} */
+
+/* @keyframes carStop {
+
+    0% {
+        transform: translateX(-420%);
+    }
+
+    60% {
+        transform: translateX(-395%);
+    }
+
+    100% {
+        transform: translateX(-405%);
+    }
+
+} */
+
 
 .smoke {
 
@@ -185,10 +212,10 @@
 
 }
 
-.drive-description{
+.drive-description {
 
-max-width:65%;
+    max-width: 65%;
 
-margin:auto;
+    margin: auto;
 
 }
