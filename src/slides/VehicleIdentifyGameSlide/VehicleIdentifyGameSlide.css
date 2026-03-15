@@ -1,0 +1,490 @@
+.vehicle-game-slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3vh;
+    position: relative;
+}
+
+/* מסך פתיחה */
+
+/* .game-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3vh;
+    margin-top: 5vh;
+    text-align: center;
+} */
+
+.game-intro {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 3vh;
+
+    margin-top: 15vh;
+    text-align: center;
+
+    max-width: 700px;
+}
+
+.intro-text {
+    font-size: clamp(1rem, 1vw + .4vh, 1.3rem);
+}
+
+/* .start-btn {
+    background: #3BA55D;
+    border: none;
+    color: white;
+    font-family: "Agam";
+    font-size: clamp(1.1rem, 1vw, 1.5rem);
+    padding: .6rem 2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.start-btn:hover {
+    transform: scale(1.08);
+} */
+
+.start-btn-cars {
+    background-color: #CB4B44;
+    font-family: "Agam";
+    color: white;
+    border: none;
+    border-radius: 2vw;
+    cursor: pointer;
+    filter: drop-shadow(0 6px 6px rgba(255, 0, 0, 0.25));
+    font-size: clamp(1.2rem, 1vw + 0.8rem, 2rem);
+    padding: clamp(0.1rem, 0.2vw, 0.3rem) clamp(1.5rem, 2vw, 2.5rem);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.start-btn-cars:hover , .back-to-learning:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25);
+}
+
+.start-btn-cars:active , .back-to-learning:active {
+    transform: translateY(0) scale(0.97);
+}
+
+.back-to-learning {
+    /* position: absolute; */
+    /* top: 3vh; */
+    /* right: 3vw; */
+    background: white;
+    /* padding: .5rem 1.5rem; */
+    cursor: pointer;
+    font-family: "Agam";
+
+    background-color: #d18b88;
+    color: white;
+    font-family: "Agam";
+    border: none;
+    border-radius: 2vw;
+
+    font-size: clamp(1.2rem, 1vw + 0.8rem, 2rem);
+    padding: clamp(0.1rem, 0.2vw, 0.3rem) clamp(1.5rem, 2vw, 2.5rem);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.btns-cars-practice {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+}
+
+/* שאלה */
+
+/* .game-question {
+    font-size: clamp(1.1rem, 1vw + .4vh, 1.4rem);
+    margin-top: 1vh;
+} */
+
+.game-question{
+    font-size: clamp(1.1rem, 1vw + .4vh, 1.4rem);
+    background: rgba(255,255,255,0.9);
+    padding: 0.7rem 1.6rem;
+    border-radius: 14px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+    margin-top: 1vh;
+}
+
+/* שיחים */
+.bush {
+    position: absolute;
+    bottom: 0;
+    width: 20vh;
+
+    z-index: 12;
+}
+
+.bush-left {
+    left: 2%;
+}
+
+.bush-right {
+    right: 2%;
+}
+
+
+/* כביש */
+
+/* .road-wrapper {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45vh;
+} */
+
+.road-wrapper {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45vh;
+
+    background: #c9a36a;
+    /* שוליים */
+}
+
+/* .road-shoulder {
+    position: absolute;
+    bottom: 0;
+    width: 20%;
+    height: 100%;
+    background: #c9a36a;
+}
+
+.road-shoulder.left {
+    left: 0;
+}
+
+.road-shoulder.right {
+    right: 0;
+} */
+
+/* .road {
+    width: 100%;
+    height: 42vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: linear-gradient(to bottom,
+            #4b4b4b 0%,
+            #2d2d2d 60%,
+            #1c1c1c 100%);
+
+    clip-path: polygon(30% 0%,
+            70% 0%,
+            100% 100%,
+            0% 100%);
+} */
+
+.road-car-practice {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 45vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    box-shadow: inset 0 40px 80px rgba(0,0,0,.35);
+
+    background: linear-gradient(to bottom,
+            #4b4b4b 0%,
+            #2d2d2d 60%,
+            #1c1c1c 100%);
+
+    clip-path: polygon(30% 0%,
+            70% 0%,
+            100% 100%,
+            0% 100%);
+
+    z-index: 10;
+}
+
+/* .road{
+    position:absolute;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:70%;
+    height:100%;
+
+    background:linear-gradient(
+        to bottom,
+        #4b4b4b 0%,
+        #2d2d2d 60%,
+        #1c1c1c 100%
+    );
+
+    clip-path: polygon(
+        30% 0%,
+        70% 0%,
+        100% 100%,
+        0% 100%
+    );
+} */
+
+/* פס אמצע */
+
+.road-lines{
+
+    position:absolute;
+
+    left:50%;
+    top:0;
+
+    transform:translateX(-50%);
+
+    width:8px;
+    height:100%;
+
+    background:repeating-linear-gradient(
+        to bottom,
+        white 0px,
+        white 40px,
+        transparent 40px,
+        transparent 80px
+    );
+
+    animation:roadMove 2s linear infinite;
+}
+
+/* @keyframes roadMove {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 0 120px;
+    }
+} */
+
+@keyframes roadMove {
+    from{
+        background-position:0 0;
+    }
+    to{
+        background-position:0 80px;
+    }
+}
+
+.road-car-practice::after{
+    display:none;
+}
+
+/* מכוניות */
+
+/* .cars {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding-bottom: 1vh;
+} */
+
+/* .cars {
+    position: absolute;
+    bottom: 2vh;
+
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+} */
+
+/* .cars {
+    position: absolute;
+    bottom: 5vh;
+
+    width: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+
+    justify-content: center;
+    gap: 8vw;
+} */
+
+.cars{
+    position:absolute;
+    bottom:5vh;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:70%;
+
+    display:flex;
+    justify-content:center;
+    gap:6vw;
+
+    z-index:20;
+}
+
+.game-car {
+    /* width: clamp(130px, 12vw, 230px); */
+    /* width: clamp(260px, 18vw, 420px); */
+    /* width: clamp(360px, 22vw, 520px); */
+    height:clamp(200px,45vh,375px);
+    width:auto;
+    cursor: pointer;
+    transition: .3s;
+    animation: driveIn .5s ease;
+}
+
+.game-car:hover {
+    transform: scale(1.06);
+}
+
+/* תשובה נכונה */
+
+.correct {
+    filter: drop-shadow(0 0 25px #00ff55);
+}
+
+/* תשובה לא נכונה */
+
+.wrong {
+    filter: drop-shadow(0 0 25px red);
+    opacity: .7;
+}
+
+/* פידבק */
+
+/* .feedback {
+    font-size: clamp(1.3rem, 1.2vw, 2rem);
+    font-weight: 700;
+    margin-top: 2vh;
+} */
+
+.feedback{
+    position:absolute;
+    top:38%;
+    font-size: clamp(1.3rem,1.2vw,2rem);
+    font-weight:700;
+    padding:.6rem 1.6rem;
+    border-radius:12px;
+    background:white;
+    box-shadow:0 8px 18px rgba(0,0,0,0.25);
+
+    animation: popIn .3s ease;
+}
+
+/* .correct-text {
+    color: #0c8c3b;
+} */
+
+/* .wrong-text {
+    color: #cc2e2e;
+} */
+
+.correct-text{
+    color:#0c8c3b;
+    border:2px solid #0c8c3b;
+}
+
+.wrong-text{
+    color:#cc2e2e;
+    border:2px solid #cc2e2e;
+}
+
+@keyframes popIn{
+    from{
+        transform:scale(.6);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* פופאפ סיום */
+
+.game-finish-overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.game-finish-popup {
+    background: white;
+    padding: 40px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    text-align: center;
+    width: min(420px, 85vw);
+}
+
+.continue-btn {
+    background: #CB4B44;
+    border: none;
+    color: white;
+    font-family: "Agam";
+    font-size: clamp(1.2rem, 1vw, 1.5rem);
+    padding: .6rem 2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.continue-btn:hover {
+    transform: scale(1.08);
+}
+
+/* אנימציית כניסה */
+
+/* @keyframes driveIn {
+    from {
+        transform: translateY(120px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+} */
+
+@keyframes driveIn {
+    from {
+        transform: translateY(200px) scale(.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}

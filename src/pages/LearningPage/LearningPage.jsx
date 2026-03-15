@@ -20,6 +20,7 @@ import QuestionSlide from "../../components/QuestionOverlay/QuestionOverlay";
 import DriveTypesSlide from "../../slides/DriveTypesSlide/DriveTypesSlide";
 import RoadSign from "../../slides/RoadSign/RoadSign";
 import BillboardCarsSlide from "../../slides/BillboardCarsSlide/BillboardCarsSlide";
+import VehicleGameSlide from "../../slides/VehicleIdentifyGameSlide/VehicleIdentifyGameSlide";
 
 function LearningPage() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -74,6 +75,14 @@ function LearningPage() {
                 return <RoadSign data={slide} />
             case "billBoard":
                 return <BillboardCarsSlide data={slide} unlock={() => setCanProceed(true)} />;
+            case "vehicleGame":
+                return (
+                    <VehicleGameSlide
+                        data={slide}
+                        unlock={nextSlide}
+                        goBack={prevSlide}
+                    />
+                )
             default:
                 return null;
         }
@@ -108,12 +117,12 @@ function LearningPage() {
             </div>
 
             {/* הרכב */}
-            <div className="car-wrapper">
+            {slide.type !== "vehicleGame" && (<div className="car-wrapper">
                 <img src={carFront} className="car-img" alt="car" />
-            </div>
+            </div>)}
 
             {/* סלייד רגיל */}
-            {slide.type !== "question" && (
+            {slide.type !== "question" && slide.type !== "vehicleGame" && (
                 <div className="slide-wrapper">
                     <div className="safe-area">
                         {renderSlide()}
@@ -122,7 +131,7 @@ function LearningPage() {
             )}
 
             {/* כפתורי ניווט לסליידים רגילים */}
-            {slide.type !== "question" && (
+            {slide.type !== "question" && slide.type !== "vehicleGame" && (
                 <div className="nav-buttons-container">
                     <img
                         src={nextBtn}
@@ -145,6 +154,13 @@ function LearningPage() {
                     <div className="garage-wrapper">
                         <img src={garageSVG} className="garage-bg" alt="garage" />
                     </div>
+                    {renderSlide()}
+                </div>
+            )}
+
+            {/* שאלות זיהוי רכבים */}
+            {slide.type === "vehicleGame" && (
+                <div className="vehicle-game-overlay">
                     {renderSlide()}
                 </div>
             )}
