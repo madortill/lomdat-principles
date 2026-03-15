@@ -79,6 +79,7 @@
 
 import { useState } from "react";
 import "./TwoOptionsSlide.css";
+import NotebookPopup from "../../components/NotebookPopup/NotebookPopup";
 
 function TwoOptionsSlide({ data, unlock }) {
 
@@ -97,14 +98,20 @@ function TwoOptionsSlide({ data, unlock }) {
             }
         }
 
-        setPopup(opt.popup);
+        if (opt.type === "images") {
+            setPopup(opt.popup);
+        } else {
+            setPopup(opt);
+        }
+
     };
 
     return (
         <>
             <div className="two-options-slide">
 
-                <h2 className="slide-title">{data.header}</h2>
+                <div className="slide-title">{data.header}</div>
+                <div className="slide-text">{data.text}</div>
 
                 <div className="options-container">
 
@@ -133,8 +140,16 @@ function TwoOptionsSlide({ data, unlock }) {
 
             </div>
 
-            {popup && (
+            {popup && popup.type === "notebook" && (
 
+                <NotebookPopup
+                    data={popup}
+                    onClose={() => setPopup(null)}
+                />
+
+            )}
+
+            {popup && popup.type === "images" && (
                 <div className="popup-overlay">
 
                     <div className="popup">
@@ -159,8 +174,8 @@ function TwoOptionsSlide({ data, unlock }) {
                     </div>
 
                 </div>
-
             )}
+
         </>
     );
 }

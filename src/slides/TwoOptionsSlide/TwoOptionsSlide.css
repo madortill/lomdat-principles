@@ -51,6 +51,14 @@
     width: clamp(80px, 30vh, 180px);
 }
 
+/* .option-card:active img {
+
+    transform: rotate(90deg);
+
+    transition: transform .3s;
+
+} */
+
 .option-card p {
     margin-top: 1vh;
     font-size: clamp(0.9rem, 0.8vw + 0.4vh, 1.2rem);
