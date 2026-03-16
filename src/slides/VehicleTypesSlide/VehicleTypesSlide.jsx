@@ -20,27 +20,50 @@ function VehicleTypesSlide({ data }) {
                         src={data.image}
                         className="rank-image"
                         alt=""
-                        onClick={() => setZoomImg(data.image)}
+                    // onClick={() => setZoomImg(data.image)}
                     />
                 )}
 
-                <div className={`vehicles-grid vehicles-${data.vehicles.length}`}>
+                <div className="vehicles-area">
+                    <div className={`vehicles-grid vehicles-${data.vehicles.length}`}>
 
-                    {data.vehicles.map((vehicle, index) => (
+                        {data.vehicles.map((vehicle, index) => (
 
-                        <div className="vehicle-card" key={index}>
+                            <div className="vehicle-card" key={index}>
 
-                            <p>{vehicle.title}</p>
+                                <p>{vehicle.title}</p>
 
-                            <img
-                                src={vehicle.image}
-                                alt=""
-                                onClick={() => setZoomImg(vehicle.image)}
-                            />
+                                <div className="vehicle-image-box">
 
-                        </div>
+                                    <img
+                                        src={vehicle.image}
+                                        alt=""
+                                        className="vehicle-image-box-img"
+                                        onClick={() => setZoomImg(vehicle.image)}
+                                    />
 
-                    ))}
+                                    {vehicle.badge && (
+                                        <img
+                                            src={vehicle.badge}
+                                            className="vehicle-badge"
+                                            onClick={() => setZoomImg(vehicle.image)}
+                                        />
+                                    )}
+
+                                    {vehicle.extraImage && (
+                                        <img
+                                            src={vehicle.extraImage}
+                                            className="vehicle-extra"
+                                            onClick={() => setZoomImg(vehicle.image)}
+                                        />
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        ))}
+                    </div>
 
                 </div>
 

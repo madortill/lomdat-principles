@@ -103,7 +103,8 @@
         "vehicles": [
             {
                 "title": "צ'רי (סאל בעל 3 ילדים ומעלה)",
-                "image": "media/pic.png"
+                "image": "media/pic.png",
+                "extraImage": "media/baby.svg"
             },
             {
                 "title": "קיה נירו",
@@ -120,15 +121,18 @@
         "vehicles": [
             {
                 "title": "יונדאי אלנטרה - אלוף משנה",
-                "image": "media/pic.png"
+                "image": "media/pic.png",
+                "badge": "media/alufMishne.svg"
             },
             {
                 "title": "סקודה סופרב - תת אלוף",
-                "image": "media/pic.png"
+                "image": "media/pic.png",
+                "badge": "media/TtAluf.svg"
             },
             {
                 "title": "טויוטה לנד קרוזר - אלוף",
-                "image": "media/pic.png"
+                "image": "media/pic.png",
+                "badge": "media/Aluf.svg"
             }
         ]
     },
@@ -136,8 +140,8 @@
         "id": 7,
         "type": "vehicleTypes",
         "header": "זיהוי רכב צבאי - רכבי יחידה",
-        "text": null,
-        "image": null,
+        "text": "סוגי רכבי יחידה",
+        "image": "media/work-tools2.svg",
         "vehicles": [
             {
                 "title": "אופל קומבו",
@@ -193,8 +197,8 @@
         "id": 9,
         "type": "vehicleTypes",
         "header": "זיהוי רכב צבאי - רכבים חומים",
-        "text": null,
-        "image": "media/brown-car-plate.png",
+        "text": "סוגי רכבים חומים",
+        "image": "media/brown-car-plate-on-the-side.svg",
         "vehicles": [
             {
                 "title": "",
