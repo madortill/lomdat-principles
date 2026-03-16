@@ -36,7 +36,7 @@ function VehicleGameSlide({ data, unlock, goBack }) {
     return (
 
         <div className="vehicle-game-slide">
-            <img src={tillBlackLogo} alt="till logo" className="till-logo-black-opening-page" />
+            <img src={tillBlackLogo} alt="till logo" className="till-logo-black-end-page" />
 
             {/* מסך פתיחה */}
 

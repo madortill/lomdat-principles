@@ -514,3 +514,11 @@
         opacity: 1;
     }
 }
+
+.till-logo-black-end-page {
+    position: absolute;
+    top: 2%;
+    left: 9%;
+    width: 7%;
+    height: auto;
+}

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import slides from "../../data/slides.json";
 import "./LearningPage.css";
 
@@ -21,34 +22,94 @@ import DriveTypesSlide from "../../slides/DriveTypesSlide/DriveTypesSlide";
 import RoadSign from "../../slides/RoadSign/RoadSign";
 import BillboardCarsSlide from "../../slides/BillboardCarsSlide/BillboardCarsSlide";
 import VehicleGameSlide from "../../slides/VehicleIdentifyGameSlide/VehicleIdentifyGameSlide";
+import NavbarLearning from "../../components/NavbarLearning/NavbarLearning";
 
 function LearningPage() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [showGarage, setShowGarage] = useState(false);
     const [firstLoad, setFirstLoad] = useState(true);
     const [canProceed, setCanProceed] = useState(false);
+    const navigate = useNavigate();
+    const [maxVisitedSlide, setMaxVisitedSlide] = useState(0);
+    // const isLastSlide = currentSlide === slides.length - 1;
+
+    // const nextSlide = () => {
+    //     const isLastSlide = currentSlide === slides.length - 1;
+
+    //     if (isLastSlide) {
+    //         navigate("/end");
+    //         return;
+    //     }
+
+    //     setCurrentSlide(prev => prev + 1);
+    // };
 
     const nextSlide = () => {
-        if (currentSlide < slides.length - 1) setCurrentSlide(currentSlide + 1);
+        const isLastSlide = currentSlide === slides.length - 1;
+
+        if (isLastSlide) {
+            navigate("/end");
+            return;
+        }
+
+        const next = currentSlide + 1;
+
+        setCurrentSlide(next);
+        setMaxVisitedSlide(prev => Math.max(prev, next));
     };
 
+    // const prevSlide = () => {
+    //     if (currentSlide > 0) setCurrentSlide(currentSlide - 1);
+    // };
+
     const prevSlide = () => {
-        if (currentSlide > 0) setCurrentSlide(currentSlide - 1);
+        let prevIndex = currentSlide - 1;
+
+        while (prevIndex >= 0 && slides[prevIndex].type === "question") {
+            prevIndex--;
+        }
+
+        if (prevIndex >= 0) {
+            setCurrentSlide(prevIndex);
+        }
     };
+
+    const finishLearning = () => {
+        navigate("/end");
+    };
+
+    useEffect(() => {
+        if (!slides || slides.length === 0) {
+            navigate("/end");
+        }
+    }, []);
 
     const slide = slides[currentSlide];
 
+    if (!slide) return null;
+
     // בדיקה אם הגראז' צריך להופיע או להיעלם
     useEffect(() => {
+        if (!slide) return;
+
         if (!firstLoad) {
-            if (slide.type === "question") setShowGarage(true);
-            else setShowGarage(false);
+            setShowGarage(slide.type === "question");
         } else {
-            // בעמוד הראשון – אם זה שאלה, הגראז' יורד, אחרת נשאר מוסתר
             if (slide.type === "question") setShowGarage(true);
             setFirstLoad(false);
         }
     }, [slide]);
+
+    const sectionsLearning1 = [
+        { title: "רכב חום", slideIndex: 0 },
+        { title: "רכב לבן", slideIndex: 1 },
+        { title: "זיהוי רכב צבאי", slideIndex: 2 },
+        { title: "סוגי רכבים", slideIndex: 12 },
+        { title: "סוגי נסיעות", slideIndex: 16 },
+        { title: "הוראות לרכב חום", slideIndex: 20 },
+        { title: "הוראות לרכב אישי", slideIndex: 21 },
+        { title: "סיכום", slideIndex: 25 }
+    ];
 
     const renderSlide = () => {
         switch (slide.type) {
@@ -63,7 +124,7 @@ function LearningPage() {
             case "question":
                 return (
                     <QuestionSlide
-                        key={slide.id} // מבטיח איפוס state
+                        key={slide.id}
                         data={slide}
                         onCorrect={nextSlide}
                         isLastQuestion={currentSlide === slides.length - 1}
@@ -106,6 +167,13 @@ function LearningPage() {
             <img src={BigCloud} className="big-cloud-learning-page-right" />
             <img src={SmallCloud} className="small-cloud-opening-page-left" />
             <img src={SmallCloud} className="small-cloud-opening-page-right" />
+
+            <NavbarLearning
+                sectionsLearning1={sectionsLearning1}
+                currentSlide={currentSlide}
+                setCurrentSlide={setCurrentSlide}
+                maxVisitedSlide={maxVisitedSlide}
+            />
 
             {(slide.type === "flipCards" || slide.type === "vehicleTypes") && (
                 <img src={sign} alt="" className="sign-photo" />
@@ -151,9 +219,9 @@ function LearningPage() {
             {/* Overlay לשאלות */}
             {slide.type === "question" && (
                 <div className="question-overlay-container">
-                    <div className="garage-wrapper">
+                    {/* <div className="garage-wrapper">
                         <img src={garageSVG} className="garage-bg" alt="garage" />
-                    </div>
+                    </div> */}
                     {renderSlide()}
                 </div>
             )}

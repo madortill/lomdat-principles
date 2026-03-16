@@ -1,0 +1,33 @@
+.end-opening-page-header {
+    color: #002446;
+    font-size: clamp(1.5rem, 1vw + 0.7vh, 2rem);
+    text-align: center;
+}
+
+.end-page-header {
+    color: #002446;
+    font-weight: 600;
+    font-size: clamp(1.8rem, 1.5vw + 1.4vh, 3.2rem);
+}
+
+.logo-bahad13-end-page {
+    height: 17vh;
+}
+
+.about-btn-end {
+    animation: aboutPulse 2s infinite;
+}
+
+@keyframes aboutPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.04);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

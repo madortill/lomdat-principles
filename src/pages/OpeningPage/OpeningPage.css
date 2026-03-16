@@ -300,25 +300,8 @@ body {
 }
 
 .about-btn {
-    /* width: 80%; */
     height: 6.5vh;
     cursor: pointer;
-
-    animation: aboutPulse 2s infinite;
-}
-
-@keyframes aboutPulse {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.04);
-    }
-
-    100% {
-        transform: scale(1);
-    }
 }
 
 .about-btn:hover {
@@ -338,7 +321,7 @@ body {
     border-radius: 14px;
     border: 0.33vh solid #95193D;
 
-    width: clamp(180px, 18vw, 320px);
+    width: clamp(150px, 6vw, 320px);
 
     max-width: 90vw;
 
@@ -382,7 +365,7 @@ body {
 }
 
 .about-dev-img {
-    width: 13vh;
+    width: 10vh;
 }
 
 /* .about-dev-img{
