@@ -69,7 +69,7 @@ function BillboardCarsSlide({ data, unlock }) {
 
                 {/* <img src={LightingPole} className="lamp" /> */}
 
-                <div className="cars">
+                <div className="cars-billboard">
 
                     {data.cars.map((car, index) => (
                         <div

@@ -42,7 +42,7 @@
     opacity: 0.35;
 }
 
-.cars {
+.cars-billboard {
     display: flex;
     justify-content: center;
     gap: clamp(30px, 6vw, 80px);

@@ -436,7 +436,7 @@
     z-index: 9999;
 }
 
-.game-finish-popup {
+/* .game-finish-popup {
     background: white;
     padding: 40px;
     border-radius: 14px;
@@ -446,6 +446,32 @@
     gap: 2vh;
     text-align: center;
     width: min(420px, 85vw);
+} */
+
+.game-finish-popup{
+    background:white;
+
+    padding:clamp(1.5rem,2vw,3rem);
+
+    border-radius:14px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:1.5vh;
+
+    text-align:center;
+
+    width:min(520px,90vw);
+    max-height:80vh;
+}
+
+.game-finish-popup h2{
+    font-size:clamp(1.4rem,1.4vw,2rem);
+}
+
+.game-finish-popup p{
+    font-size:clamp(1rem,1vw,1.3rem);
 }
 
 .continue-btn {

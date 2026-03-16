@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./OpeningPage.css";
+
 import road from "../../assets/road.svg";
 import BigCloud from "../../assets/cloud-big.svg";
 import SmallCloud from "../../assets/cloud-small.svg";
@@ -12,11 +13,15 @@ import bushLeft from "../../assets/bush-left.svg";
 import bushRight from "../../assets/bush-right.svg";
 import topic1 from "../../assets/car-plate-topic-1.svg";
 import topic2 from "../../assets/car-plate-topic-2.svg";
+import aboutIcon from "../../assets/aboutIcon.svg";
+import mapal from "../../assets/keshet.svg";
 
 function OpeningPage() {
     const navigate = useNavigate();
     const [inTopics, setInTopics] = useState(false);
     const [driveMode, setDriveMode] = useState(false);
+    const [aboutOpen, setAboutOpen] = useState(false);
+    const popupRef = useRef(null);
 
     const handleToTopics = () => {
         setDriveMode(true);
@@ -25,6 +30,20 @@ function OpeningPage() {
             setInTopics(true);
         }, 2000);
     };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (popupRef.current && !popupRef.current.contains(event.target)) {
+                setAboutOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, []);
 
     return (
         <div className="opening-page">
@@ -42,8 +61,8 @@ function OpeningPage() {
                     className={`lighting-pole-right ${driveMode ? "pole-move-right" : ""}`}
                 />
 
-                <img src={bushLeft} className="bush-left" />
-                <img src={bushRight} className="bush-right" />
+                <img src={bushLeft} className="bush-left-open" />
+                <img src={bushRight} className="bush-right-open" />
 
                 <img
                     src={car}
@@ -56,6 +75,51 @@ function OpeningPage() {
             <img src={SmallCloud} alt="small cloud" className="small-cloud-opening-page-left" />
             <img src={SmallCloud} alt="small cloud" className="small-cloud-opening-page-right" />
             <img src={tillBlackLogo} alt="till logo" className="till-logo-black-opening-page" />
+
+            <div className="about-container">
+
+                <img
+                    src={aboutIcon}
+                    className="about-btn"
+                    onClick={() => setAboutOpen(!aboutOpen)}
+                />
+
+                {aboutOpen && (
+                    <div className="about-popup">
+
+                        {/* <h3>אודות הלומדה</h3> */}
+
+                        <div className="about-section">
+                            <strong>מפתחת ראשית:</strong>
+                            <img src={mapal} className="about-dev-img" />
+                            <span>טוראי קשת פרי</span>
+                        </div>
+
+                        <div className="about-section">
+                            <strong>גרפיקה:</strong>
+                            <span>טוראי קשת פרי</span>
+                        </div>
+
+                        <div className="about-section">
+                            <strong>מומחי תוכן:</strong>
+                            <span>סגן עדן רוקח</span>
+                            <span>סמל שיר אשר לוי</span>
+                        </div>
+
+                        <div className="about-section">
+                            <strong>רמ״ד טי״ל:</strong>
+                            <span>רס”מ עדן בן חמו</span>
+                        </div>
+
+                        <div className="about-section">
+                            <strong>גרסה:</strong>
+                            <span>מרץ 2026</span>
+                        </div>
+
+                    </div>
+                )}
+
+            </div>
 
             <div className={`opening-content first ${inTopics ? "fade-out" : "fade-in"}`}>
                 <img src={logo} className="logo-bahad13-opening-page" />
