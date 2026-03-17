@@ -82,8 +82,8 @@ function VehicleGameSlide({ data, unlock, goBack }) {
                     </>
                 )}
 
-                <img src={cactus} className="bush bush-left" />
-                <img src={cactus} className="bush bush-right" />
+                <img src={cactus} className="cactus cactus-left" />
+                <img src={cactus} className="cactus cactus-right" />
 
                 <div className="road-wrapper">
 
