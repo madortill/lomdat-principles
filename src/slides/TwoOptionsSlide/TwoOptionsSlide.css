@@ -218,3 +218,12 @@
     }
 
 }
+
+/* Zoom img */
+.popup-images {
+    cursor: zoom-in;
+}
+
+.image-zoom {
+    cursor: zoom-out;
+}

@@ -175,7 +175,7 @@ function LearningPage() {
                 maxVisitedSlide={maxVisitedSlide}
             />
 
-            {(slide.type === "flipCards" || slide.type === "vehicleTypes") && (
+            {(slide.id == "3" || slide.type === "vehicleTypes") && (
                 <img src={sign} alt="" className="sign-photo" />
             )}
 

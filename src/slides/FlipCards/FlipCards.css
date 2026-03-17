@@ -231,6 +231,8 @@ cursor:pointer;
 .flip-back img {
     margin-top: 0.5vh;
     animation: pulse-img 2s linear infinite;
+
+    cursor: zoom-in;
 }
 
 @keyframes pulse-img {
@@ -332,7 +334,7 @@ cursor:pointer;
     align-items: center;
 
     z-index: 9999;
-    cursor: pointer;
+    cursor: zoom-out;
 
 }
 

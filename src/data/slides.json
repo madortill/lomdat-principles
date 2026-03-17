@@ -26,7 +26,7 @@
                 },
                 "back": {
                     "text": "רכבים ספציפיים אשר נפוצים בצה”ל (נרחיב עליהם בהמשך).",
-                    "image": "media/flip-card-1-1.png"
+                    "image": "media/how-i-drive-sticker-2.jpeg"
                 }
             },
             {
@@ -36,7 +36,7 @@
                 },
                 "back": {
                     "text": "נוהל 6 - מדבקת “איך אני נוהג?” מתחת ללוחית הרישוי.",
-                    "image": "media/flip-card-1-2.png"
+                    "image": "media/how-i-drive-sticker-1.jpeg"
                 }
             },
             {
@@ -46,7 +46,7 @@
                 },
                 "back": {
                     "text": "מדבקת לחץ אוויר בצידו התחתון והשמאלי של השמשה הקדמית.",
-                    "image": "media/flip-card-1-3.png"
+                    "image": "media/air-pressure-sticker.jpeg"
                 }
             },
             {
@@ -56,7 +56,7 @@
                 },
                 "back": {
                     "text": "מדבקת אישור בדיקת חורף בצידו התחתון והשמאלי של השמשה הקדמית.",
-                    "image": "media/flip-card-1-4.png"
+                    "image": "media/winter-sticker-1.jpeg"
                 }
             }
         ]
@@ -70,27 +70,27 @@
         "vehicles": [
             {
                 "title": "קיה ריו",
-                "image": "media/pic.png"
+                "image": "media/kaya-rio.jpeg"
             },
             {
                 "title": "יונדאי i20",
-                "image": "media/pic.png"
+                "image": "media/undai-i20.jpeg"
             },
             {
                 "title": "סיאט איביזה",
-                "image": "media/pic.png"
+                "image": "media/siat-ibiza.jpeg"
             },
             {
                 "title": "סקודה קאמיק",
-                "image": "media/pic.png"
+                "image": "media/skoda-kamik.jpeg"
             },
             {
                 "title": "סקודה סקאלה",
-                "image": "media/pic.png"
+                "image": "media/skoda-skala.jpeg"
             },
             {
                 "title": "סקודה פאביה",
-                "image": "media/pic.png"
+                "image": "media/skoda-pabia.jpeg"
             }
         ]
     },
@@ -103,12 +103,12 @@
         "vehicles": [
             {
                 "title": "צ'רי (סאל בעל 3 ילדים ומעלה)",
-                "image": "media/pic.png",
+                "image": "media/cherry.jpeg",
                 "extraImage": "media/baby.svg"
             },
             {
                 "title": "קיה נירו",
-                "image": "media/pic.png"
+                "image": "media/kia-niro.jpeg"
             }
         ]
     },
@@ -121,17 +121,17 @@
         "vehicles": [
             {
                 "title": "יונדאי אלנטרה - אלוף משנה",
-                "image": "media/pic.png",
+                "image": "media/undai-alnetra.jpeg",
                 "badge": "media/alufMishne.svg"
             },
             {
                 "title": "סקודה סופרב - תת אלוף",
-                "image": "media/pic.png",
+                "image": "media/skoda-suparv.jpeg",
                 "badge": "media/TtAluf.svg"
             },
             {
                 "title": "טויוטה לנד קרוזר - אלוף",
-                "image": "media/pic.png",
+                "image": "media/toyota-land-kruzer.jpeg",
                 "badge": "media/Aluf.svg"
             }
         ]
@@ -145,15 +145,15 @@
         "vehicles": [
             {
                 "title": "אופל קומבו",
-                "image": "media/pic.png"
+                "image": "media/opel-combo.jpeg"
             },
             {
                 "title": "רנו קנגו",
-                "image": "media/pic.png"
+                "image": "media/reno-kango.jpeg"
             },
             {
                 "title": "סיטוראן ברלינגו",
-                "image": "media/pic.png"
+                "image": "media/sitruan-brlingo.jpeg"
             }
         ]
     },
@@ -170,10 +170,11 @@
                 "popup": {
                     "type": "images",
                     "title": "ניידות גלויות",
+                    "text": "לחצו על התמונות כדי להגדיל",
                     "image": [
-                        "media/pic.png",
-                        "media/pic.png",
-                        "media/pic.png"
+                        "media/police-car-galui-2.jpeg",
+                        "media/police-car-galui-3.jpeg",
+                        "media/police-car-galui-4.jpeg"
                     ]
                 }
             },
@@ -184,6 +185,7 @@
                 "popup": {
                     "type": "images",
                     "title": "ניידות סמויות",
+                    "text": "לחצו על התמונות כדי להגדיל",
                     "image": [
                         "media/pic.png",
                         "media/pic.png",
@@ -202,15 +204,27 @@
         "vehicles": [
             {
                 "title": "",
-                "image": "media/pic.png"
+                "image": "media/brown-car-1.jpeg"
             },
             {
                 "title": "",
-                "image": "media/pic.png"
+                "image": "media/brown-car-2.jpeg"
             },
             {
                 "title": "",
-                "image": "media/pic.png"
+                "image": "media/brown-car-3.jpeg"
+            },
+            {
+                "title": "",
+                "image": "media/brown-car-4.jpeg"
+            },
+            {
+                "title": "",
+                "image": "media/brown-car-5.jpeg"
+            },
+            {
+                "title": "",
+                "image": "media/brown-car-6.jpeg"
             }
         ]
     },

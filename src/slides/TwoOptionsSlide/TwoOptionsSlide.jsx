@@ -85,6 +85,7 @@ function TwoOptionsSlide({ data, unlock }) {
 
     const [popup, setPopup] = useState(null);
     const [opened, setOpened] = useState([]);
+    const [zoomImg, setZoomImg] = useState(null);
 
     const handleClick = (opt, index) => {
 
@@ -155,11 +156,12 @@ function TwoOptionsSlide({ data, unlock }) {
                     <div className="popup">
 
                         <div className="slide-title">{popup.title}</div>
+                        <div className="slide-text">{popup.text}</div>
 
                         <div className="popup-images">
 
                             {popup.image.map((img, i) => (
-                                <img key={i} src={img} alt="" />
+                                <img key={i} src={img} alt="" onClick={() => setZoomImg(img)} />
                             ))}
 
                         </div>
@@ -174,6 +176,22 @@ function TwoOptionsSlide({ data, unlock }) {
                     </div>
 
                 </div>
+            )}
+
+            {zoomImg && (
+
+                <div
+                    className="image-zoom-overlay"
+                    onClick={() => setZoomImg(null)}
+                >
+
+                    <img
+                        src={zoomImg}
+                        className="image-zoom"
+                    />
+
+                </div>
+
             )}
 
         </>

@@ -30,13 +30,15 @@
 }
 
 .start-btn-cars {
-    background-color: #CB4B44;
+    /* background-color: #CB4B44; */
+    background-color: #002446;
     font-family: "Agam";
     color: white;
     border: none;
     border-radius: 2vw;
     cursor: pointer;
-    filter: drop-shadow(0 6px 6px rgba(255, 0, 0, 0.25));
+    /* filter: drop-shadow(0 6px 6px rgba(255, 0, 0, 0.25)); */
+    filter: drop-shadow(0 6px 6px rgba(0, 8, 152, 0.25));
     font-size: clamp(1.2rem, 1vw + 0.8rem, 2rem);
     padding: clamp(0.1rem, 0.2vw, 0.3rem) clamp(1.5rem, 2vw, 2.5rem);
 

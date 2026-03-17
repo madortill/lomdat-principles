@@ -132,7 +132,7 @@
 
     object-fit: contain;
 
-    cursor: pointer;
+    cursor: zoom-in;
 
     transition: transform .2s;
 
@@ -181,7 +181,7 @@
 
     z-index: 9999;
 
-    cursor: pointer;
+    cursor: zoom-out;
 
 }
 
