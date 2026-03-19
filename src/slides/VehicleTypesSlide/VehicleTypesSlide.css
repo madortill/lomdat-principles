@@ -6,7 +6,8 @@
     flex-direction: column;
     align-items: center;
 
-    gap: 2vh;
+    /* gap: 2vh; */
+    gap: 1vh;
 }
 
 /* אזור הגריד */
@@ -44,30 +45,39 @@
 /* הגריד */
 
 .vehicles-grid {
-
     display: grid;
 
-    gap: clamp(8px, 1.2vh, 18px);
+    /* gap: clamp(8px, 1.2vh, 18px); */
+    gap: clamp(6px, 1vh, 14px);
 
     width: 100%;
     max-width: 520px;
-
+    
     justify-items: center;
-
+    
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 
 /* פריסות שונות לפי כמות */
 
 .vehicles-1 {
     grid-template-columns: 1fr;
+    /* height: clamp(120px, 20vh, 260px); */
 }
 
 .vehicles-2 {
     grid-template-columns: repeat(2, 1fr);
+    /* height: clamp(100px, 20vh, 250px); */
+
+    /* .vehicle-image-box-img {
+        object-fit: contain;
+        height: 100%;
+    } */
 }
 
 .vehicles-3 {
     grid-template-columns: repeat(3, 1fr);
+    /* height: clamp(90px, 16vh, 180px); */
 }
 
 .vehicles-4 {
@@ -79,6 +89,25 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
+.vehicles-1,
+.vehicles-2,
+.vehicles-3{
+    max-width: 700px;
+}
+
+.vehicles-1 { grid-template-columns: 1fr; }
+.vehicles-2 { grid-template-columns: repeat(2, 1fr); }
+.vehicles-3 { grid-template-columns: repeat(3, 1fr); }
+.vehicles-4 { grid-template-columns: repeat(2, 1fr); }
+.vehicles-5,
+.vehicles-6 { grid-template-columns: repeat(3, 1fr); }
+
+/* .vehicle-card:nth-child(1) .vehicle-image-box-img,
+.vehicle-card:nth-child(2) .vehicle-image-box-img{
+    object-position: top;
+    transform: scale(1.2);
+} */
+ 
 /* כרטיס */
 
 .vehicle-card {
@@ -89,6 +118,15 @@
     flex-direction: column;
     align-items: center;
 
+    gap: 0.5vh;
+}
+
+/* .vehicle-card{
+    max-width: 220px;
+} */
+
+.vehicle-card{
+    width: 100%;
 }
 
 /* כותרת */
@@ -105,21 +143,38 @@
     align-items: center;
     justify-content: center;
 
+    min-height: 2em;
+    margin: 0;
 }
 
 /* קופסת התמונה */
 
 .vehicle-image-box {
+    /* width: 100%;
+    aspect-ratio: 1 / 1; */
 
     width: 100%;
-
-    aspect-ratio: 1 / 1;
+    /* height: clamp(60px, 10vh, 140px); */
+    aspect-ratio: 4 / 3;
+    /* aspect-ratio: 16 / 9; */
+    /* overflow: hidden;  */
 
     position: relative;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    border-radius: 10px;
+}
+
+.image-inner {
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    border-radius: 10px;
 
 }
 
@@ -130,12 +185,14 @@
     width: 100%;
     height: 100%;
 
-    object-fit: contain;
+    /* object-fit: contain; */
+    object-fit: cover;
+
+    object-position: center;
 
     cursor: zoom-in;
 
     transition: transform .2s;
-
 }
 
 .vehicle-image-box-img:hover {
@@ -145,27 +202,23 @@
 /* badge קטן בפינה */
 
 .vehicle-badge {
-
     position: absolute;
-
-    bottom: -1%;
-    right: -10%;
-
-    width: 40%;
+    /* bottom: -1%; */
+    bottom: -5%;
+    /* right: -10%; */
+    right: -5%;
+    /* width: 40%; */
+    width: 30%;
 }
 
 /* תמונה נוספת */
 
 .vehicle-extra {
-
     position: absolute;
-
-    bottom: 2%;
-    /* left:50%; */
-
-    /* transform:translateX(-50%); */
-
-    width: 80%;
+    /* bottom: 2%; */
+    bottom: -8%;
+    /* width: 80%; */
+    width: 60%;
 }
 
 /* זום */
@@ -181,11 +234,12 @@
 
     z-index: 9999;
 
+    /* background: rgba(0,0,0,0.6); */
+    
     cursor: zoom-out;
-
 }
 
-.image-zoom {
+/* .image-zoom {
 
     max-width: 95vw;
     max-height: 95vh;
@@ -195,7 +249,19 @@
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 
     animation: zoomIn .3s ease;
+} */
 
+.image-zoom {
+    width: min(80vw, 800px);
+    height: min(70vh, 600px);
+
+    object-fit: contain;
+
+    /* border-radius: 14px; */
+
+    /* box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); */
+
+    animation: zoomIn .3s ease;
 }
 
 @keyframes zoomIn {
@@ -212,6 +278,6 @@
 
 }
 
-.vehicle-image-box {
+/* .vehicle-image-box {
     max-width: 160px;
-}
+} */

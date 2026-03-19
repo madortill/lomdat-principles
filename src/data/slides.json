@@ -65,7 +65,7 @@
         "id": 4,
         "type": "vehicleTypes",
         "header": "זיהוי רכב צבאי - רכבים צמודים",
-        "text": "רכבי מפקדי פלוגה",
+        "text": "רכבי מ''פ (מפקדי פלוגה)",
         "image": "media/mp.svg",
         "vehicles": [
             {
@@ -98,11 +98,11 @@
         "id": 5,
         "type": "vehicleTypes",
         "header": "זיהוי רכב צבאי - רכבים צמודים",
-        "text": "רכבי סאל (סגן אלוף)",
+        "text": "רכבי סא''ל (סגן אלוף)",
         "image": "media/saal.svg",
         "vehicles": [
             {
-                "title": "צ'רי (סאל בעל 3 ילדים ומעלה)",
+                "title": "צ'רי (סא''ל בעל 3 ילדים ומעלה)",
                 "image": "media/cherry.jpeg",
                 "extraImage": "media/baby.svg"
             },
@@ -116,7 +116,7 @@
         "id": 6,
         "type": "vehicleTypes",
         "header": "זיהוי רכב צבאי - רכבים צמודים",
-        "text": null,
+        "text": "סוגי רכבים לפי דרגות",
         "image": null,
         "vehicles": [
             {
@@ -187,9 +187,8 @@
                     "title": "ניידות סמויות",
                     "text": "לחצו על התמונות כדי להגדיל",
                     "image": [
-                        "media/pic.png",
-                        "media/pic.png",
-                        "media/pic.png"
+                        "media/police-car-samui-1.jpeg",
+                        "media/police-car-samui-2.jpeg"
                     ]
                 }
             }
@@ -268,7 +267,7 @@
         "question": "מהו נוהל 6?",
         "answers": [
             {
-                "text": "תשובה לא נכונה",
+                "text": "נוהל שמופיע 6 פעמיםי",
                 "correct": false
             },
             {
@@ -276,11 +275,11 @@
                 "correct": true
             },
             {
-                "text": "תשובה לא נכונה",
+                "text": "נוהל שעושים לפניי כל נסיעה צבאית",
                 "correct": false
             },
             {
-                "text": "תשובה לא נכונה",
+                "text": "מדבקה של 01",
                 "correct": false
             }
         ]
@@ -292,11 +291,11 @@
         "question": "מנה 3 דוגמאות לזיהוי רכבים צבאיים",
         "answers": [
             {
-                "text": "תשובה לא נכונה",
+                "text": "צבע חום, מדבקת רישיון, מדבקת לחץ אוויר",
                 "correct": false
             },
             {
-                "text": "תשובה לא נכונה",
+                "text": "להתקשר למספר שרשום ולבדוק אם זה רכב צבאי, אישור בדיקת חורף, מדבקת טסט",
                 "correct": false
             },
             {
@@ -304,7 +303,7 @@
                 "correct": true
             },
             {
-                "text": "תשובה לא נכונה",
+                "text": "מדבקת טסט, מדבקת רישיון, צבע לבן",
                 "correct": false
             }
         ]
@@ -318,7 +317,7 @@
             {
                 "front": {
                     "text": "רכב אישי",
-                    "image": "media/pic.png"
+                    "image": "media/personal-car.svg"
                 },
                 "back": {
                     "text": "כלי רכב שהוקצה לשימוש עצמי ופרטי (צמוד-לבן). ניתן לראות זאת בכרטיס העבודה.",
@@ -328,7 +327,7 @@
             {
                 "front": {
                     "text": "רכב יחידה",
-                    "image": "media/pic.png"
+                    "image": "media/yehida-car.svg"
                 },
                 "back": {
                     "text": "כלי רכב שהוקצה ליחידה לשימוש צרכיה ואינו משמש כרכב אישי (חום).",
@@ -338,7 +337,7 @@
             {
                 "front": {
                     "text": "רכב פינוי",
-                    "image": "media/pic.png"
+                    "image": "media/pinui-car.svg"
                 },
                 "back": {
                     "text": "רכב המאפשר כניסה לשטח הפעילות עד לקרבת הנפגע ופינויו (חום).",
@@ -348,7 +347,7 @@
             {
                 "front": {
                     "text": "רכב ביטחון",
-                    "image": "media/pic.png"
+                    "image": "media/ambulans.svg"
                 },
                 "back": {
                     "text": "אמבולנס, מכבי אש וכו’ (חום).",
@@ -361,62 +360,14 @@
         "id": 14,
         "type": "question",
         "header": "שאלת ביניים",
-        "question": "מהו רכב אישי?",
-        "answers": [
-            {
-                "text": "תשובה לא נכונה",
-                "correct": false
-            },
-            {
-                "text": "תשובה לא נכונה",
-                "correct": false
-            },
-            {
-                "text": "תשובה לא נכונה",
-                "correct": false
-            },
-            {
-                "text": "כלי רכב שהוקצה לשימוש עצמי",
-                "correct": true
-            }
-        ]
-    },
-    {
-        "id": 15,
-        "type": "question",
-        "header": "שאלת ביניים",
-        "question": "מהו רכב פינוי?",
-        "answers": [
-            {
-                "text": "רכב המאפשר כניסה לשטח הפעילות עד לקרבת הנפגע ופינויו",
-                "correct": true
-            },
-            {
-                "text": "תשובה לא נכונה",
-                "correct": false
-            },
-            {
-                "text": "תשובה לא נכונה",
-                "correct": false
-            },
-            {
-                "text": "תשובה לא נכונה",
-                "correct": false
-            }
-        ]
-    },
-    {
-        "id": 16,
-        "type": "question",
-        "header": "שאלת ביניים",
         "question": "הבא 2 דוגמאות לרכב הביטחון",
         "answers": [
             {
-                "text": "תשובה לא נכונה",
+                "text": "רכב צמוד, רכב יחידה",
                 "correct": false
             },
             {
-                "text": "תשובה לא נכונה",
+                "text": "רכב של מפקד היחידה, אמבולנס",
                 "correct": false
             },
             {
@@ -424,13 +375,13 @@
                 "correct": true
             },
             {
-                "text": "תשובה לא נכונה",
+                "text": "רכב שהצבע שלו הוא חום, מכבי אש",
                 "correct": false
             }
         ]
     },
     {
-        "id": 17,
+        "id": 15,
         "type": "driveTypes",
         "header": "סוגי נסיעות",
         "text": "לחצו על המכוניות כדי לקרוא!",
@@ -458,7 +409,7 @@
         ]
     },
     {
-        "id": 18,
+        "id": 16,
         "type": "roadSign",
         "header": "שעות פעילות - רכב ייעודי",
         "text1": "בימים א' עד ה', משעה 06:00 עד שעה 22:00.",
@@ -469,7 +420,7 @@
         "image": "media/LightingPole.svg"
     },
     {
-        "id": 19,
+        "id": 17,
         "type": "question",
         "header": "שאלת ביניים",
         "question": "מה הן ארבעת סוגי הנסיעות?",
@@ -479,45 +430,45 @@
                 "correct": true
             },
             {
-                "text": "תשובה לא נכונה",
+                "text": "מנהלתית, אישית, במהלך אימון, מעשית",
                 "correct": false
             },
             {
-                "text": "תשובה לא נכונה",
+                "text": "מבצעית, פינוי, אישית, יחידתית",
                 "correct": false
             },
             {
-                "text": "תשובה לא נכונה",
+                "text": "במהלך אימון, מבצעית, מנהלתית, פרטית",
                 "correct": false
             }
         ]
     },
     {
-        "id": 20,
+        "id": 18,
         "type": "question",
         "header": "שאלת ביניים",
         "question": "מה שעות הפעילות של רכב חום?",
         "answers": [
             {
-                "text": "תשובה לא נכונה",
+                "text": "בימים א'-ד' בשעות 06:00-22:00",
                 "correct": false
             },
             {
-                "text": "תשובה לא נכונה",
+                "text": "בימים א'-ה' בשעות 05:30-23:00",
                 "correct": false
             },
             {
-                "text": "תשובה לא נכונה",
+                "text": "כל ימות השבוע",
                 "correct": false
             },
             {
-                "text": "בימים א'-ה' משעה 06:00 עד שעה 22:00",
+                "text": "בימים א'-ה' בשעות 06:00-22:00",
                 "correct": true
             }
         ]
     },
     {
-        "id": 21,
+        "id": 19,
         "type": "billBoard",
         "header": "הוראות לרכב חום",
         "text": "לחצו על המכוניות כדי ללמוד!",
@@ -551,7 +502,7 @@
         ]
     },
     {
-        "id": 22,
+        "id": 20,
         "type": "twoOptions",
         "header": "הוראות לרכב  אישי",
         "text": "ברכב אישי יכולים להיות שני מצבים - לחצו על הגלגלים כדי ללמוד!",
@@ -584,49 +535,9 @@
         ]
     },
     {
-        "id": 23,
+        "id": 21,
         "type": "question",
-        "header": "שאלות סיכום",
-        "question": "האם מי שמוגדר 'נהג עצמאי' מחויב במכווין אחורי בזמן נסיעה לאחור?",
-        "answers": [
-            {
-                "text": "לא",
-                "correct": true
-            },
-            {
-                "text": "כן",
-                "correct": false
-            }
-        ]
-    },
-    {
-        "id": 24,
-        "type": "question",
-        "header": "שאלות סיכום",
-        "question": "איזו דוגמה היא נסיעה מנהלתית?",
-        "answers": [
-            {
-                "text": "תשובה לא נכונה",
-                "correct": false
-            },
-            {
-                "text": "תשובה לא נכונה",
-                "correct": false
-            },
-            {
-                "text": "להביא דגלים מהקרייה",
-                "correct": true
-            },
-            {
-                "text": "תשובה לא נכונה",
-                "correct": false
-            }
-        ]
-    },
-    {
-        "id": 25,
-        "type": "question",
-        "header": "שאלות סיכום",
+        "header": "שאלת סיכום",
         "question": "האם חייב להיות בכל רכב צבאי 'נוהל 6'?",
         "answers": [
             {
@@ -640,7 +551,7 @@
         ]
     },
     {
-        "id": 26,
+        "id": 22,
         "type": "normal",
         "header": "סיום הנושא",
         "text": "כל הכבוד! עכשיו אתם מומחים בנושא זיהוי רכבים וסוגי נסיעות. בואו נמשיך ללמוד את הנושא הבא!!",

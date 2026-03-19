@@ -1,93 +1,79 @@
 import { useState } from "react";
 import "./VehicleTypesSlide.css";
 
-function VehicleTypesSlide({ data }) {
+function VehicleTypesSlide({ data, setIsOverlayOpen }) {
+  const [zoomImg, setZoomImg] = useState(null);
 
-    const [zoomImg, setZoomImg] = useState(null);
+  const openZoom = (img) => {
+    setZoomImg(img);
+    setIsOverlayOpen(true);
+  };
 
-    return (
-        <>
-            <div className="vehicle-slide">
+  const closeZoom = () => {
+    setZoomImg(null);
+    setIsOverlayOpen(false);
+  };
 
-                <div className="slide-title">{data.header}</div>
+  return (
+    <>
+      <div className="vehicle-slide">
+        <div className="slide-title">{data.header}</div>
 
-                {data.text && (
-                    <div className="vehicle-text">{data.text}</div>
-                )}
+        {data.text && <div className="vehicle-text">{data.text}</div>}
 
-                {data.image && (
+        {data.image && (
+          <img
+            src={data.image}
+            className="rank-image"
+            alt=""
+          />
+        )}
+
+        <div className="vehicles-area">
+          <div className={`vehicles-grid vehicles-${data.vehicles.length}`}>
+            {data.vehicles.map((vehicle, index) => (
+              <div className="vehicle-card" key={index}>
+                <p>{vehicle.title}</p>
+                
+                <div className="vehicle-image-box">
+                  <div className="image-inner">
                     <img
-                        src={data.image}
-                        className="rank-image"
-                        alt=""
-                    // onClick={() => setZoomImg(data.image)}
+                      src={vehicle.image}
+                      alt=""
+                      className="vehicle-image-box-img"
+                      onClick={() => openZoom(vehicle.image)}
                     />
-                )}
+                  </div>
 
-                <div className="vehicles-area">
-                    <div className={`vehicles-grid vehicles-${data.vehicles.length}`}>
+                  {vehicle.badge && (
+                    <img
+                      src={vehicle.badge}
+                      className="vehicle-badge"
+                      onClick={() => openZoom(vehicle.image)}
+                    />
+                  )}
 
-                        {data.vehicles.map((vehicle, index) => (
-
-                            <div className="vehicle-card" key={index}>
-
-                                <p>{vehicle.title}</p>
-
-                                <div className="vehicle-image-box">
-
-                                    <img
-                                        src={vehicle.image}
-                                        alt=""
-                                        className="vehicle-image-box-img"
-                                        onClick={() => setZoomImg(vehicle.image)}
-                                    />
-
-                                    {vehicle.badge && (
-                                        <img
-                                            src={vehicle.badge}
-                                            className="vehicle-badge"
-                                            onClick={() => setZoomImg(vehicle.image)}
-                                        />
-                                    )}
-
-                                    {vehicle.extraImage && (
-                                        <img
-                                            src={vehicle.extraImage}
-                                            className="vehicle-extra"
-                                            onClick={() => setZoomImg(vehicle.image)}
-                                        />
-                                    )}
-
-                                </div>
-
-                            </div>
-
-                        ))}
-                    </div>
-
+                  {vehicle.extraImage && (
+                    <img
+                      src={vehicle.extraImage}
+                      className="vehicle-extra"
+                      onClick={() => openZoom(vehicle.image)}
+                    />
+                  )}
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
-                {zoomImg && (
-
-                    <div
-                        className="image-zoom-overlay"
-                        onClick={() => setZoomImg(null)}
-                    >
-
-                        <img
-                            src={zoomImg}
-                            className="image-zoom"
-                        />
-
-                    </div>
-
-                )}
-
-            </div>
-        </>
-
-    );
-
+        {zoomImg && (
+          <div className="image-zoom-overlay" onClick={closeZoom}>
+            <img src={zoomImg} className="image-zoom" />
+          </div>
+        )}
+      </div>
+    </>
+  );
 }
 
 export default VehicleTypesSlide;

@@ -126,7 +126,7 @@
 import { useState } from "react";
 import "./FlipCards.css";
 
-function FlipCardsSlide({ data, unlock }) {
+function FlipCardsSlide({ data, unlock, setIsOverlayOpen }) {
 
     const [zoomImg, setZoomImg] = useState(null);
     const [flipped, setFlipped] = useState(null);
@@ -184,7 +184,8 @@ function FlipCardsSlide({ data, unlock }) {
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             setZoomImg(card.back.image);
-                                        }}
+                                            setIsOverlayOpen(true);
+                                          }}
                                     />
                                 }
 
@@ -199,7 +200,13 @@ function FlipCardsSlide({ data, unlock }) {
             </div>
 
             {zoomImg && (
-                <div className="image-zoom-overlay" onClick={() => setZoomImg(null)}>
+                <div
+                className="image-zoom-overlay"
+                onClick={() => {
+                  setZoomImg(null);
+                  setIsOverlayOpen(false);
+                }}
+              >
                     <img src={zoomImg} className="image-zoom" />
                 </div>
             )}
