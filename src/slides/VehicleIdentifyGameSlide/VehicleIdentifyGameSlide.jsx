@@ -53,7 +53,7 @@ function VehicleGameSlide({ data, unlock, goBack }) {
                             className="back-to-learning"
                             onClick={goBack}
                         >
-                            חזרה
+                            הקודם
                         </button>
 
                         <button

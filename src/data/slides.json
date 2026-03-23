@@ -553,8 +553,10 @@
     {
         "id": 22,
         "type": "normal",
-        "header": "סיום הנושא",
-        "text": "כל הכבוד! עכשיו אתם מומחים בנושא זיהוי רכבים וסוגי נסיעות. בואו נמשיך ללמוד את הנושא הבא!!",
-        "image": "media/car-plate-topic-1.svg"
+        "header": "כל הכבוד!",
+        "header2": "עכשיו אתם מומחים בנושא זיהוי רכבים וסוגי נסיעות",
+        "header3": "בואו נמשיך לנושא הבא!",
+        "image": "media/car-plate-topic-1-end3.svg",
+        "image2": "media/car-plate-topic-2.svg"
     }
 ]

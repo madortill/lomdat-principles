@@ -28,8 +28,22 @@ max-width:90%;
     text-align: center;
 }
 
+.normal-slide-header {
+    font-size: clamp(1.3rem, 1.8vw + 0.8vh, 2.2rem);
+    font-family: "Agam";
+    text-align: center;
+}
+
 .normal-slide p {
     font-size: clamp(0.95rem, 0.8vw + 0.6vh, 1.3rem);
     max-width: 90%;
     text-align: center;
+}
+
+.imgs-normal-slide {
+    display: flex;
+    gap: 2vh;
+    justify-content: center;
+    align-items: flex-end;
+    /* align-content: center; */
 }
