@@ -1,0 +1,49 @@
+.mobile-blocker {
+
+    position: fixed;
+    inset: 0;
+
+    background: #90caf9;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99999;
+
+}
+
+.mobile-box {
+
+    background: white;
+
+    padding: 4vh 5vw;
+    margin: 5vw;
+
+    border-radius: 16px;
+    border: solid 1px #95193cd0;
+
+    text-align: center;
+
+    max-width: 90%;
+
+    box-shadow: 0 10px 60px rgba(179, 54, 81, 0.658);
+
+}
+
+.mobile-box h2 {
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    margin-bottom: 1vh;
+    color: #023864;
+}
+
+.mobile-box h3 {
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    /* margin-bottom: 1vh; */
+    color: #95193D;
+}
+
+.mobile-box p {
+    font-size: clamp(1rem, 1.2vw, 1.3rem);
+    color: #023864;
+}

@@ -38,8 +38,8 @@
 .rank-image {
     width: clamp(50px, 7vw, 110px);
     position: absolute;
-    top: 10%;
-    left: 10%;
+    top: 5%;
+    left: 5%;
 }
 
 /* הגריד */

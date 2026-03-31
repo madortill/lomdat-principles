@@ -26,77 +26,6 @@
 }
 
 /* .cards-container {
-    display: grid;
-
-    justify-content: center;
-
-    gap: clamp(12px, 2vw, 26px);
-
-    width: 100%;
-    max-width: 600px;
-    grid-template-columns:repeat(4,1fr);
-} */
-
-/* .cards-container {
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(110px,1fr));
-
-justify-content:center;
-
-gap:clamp(12px,1.8vw,24px);
-
-width:100%;
-max-width:650px;
-} */
-
-/* .cards-container {
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(90px,1fr));
-
-gap: clamp(10px,1.5vw,20px);
-
-width:100%;
-max-width:520px;
-
-justify-items:center;
-} */
-
-/* .cards-container {
-
-display:grid;
-
-grid-template-columns:repeat(4,1fr);
-
-gap:clamp(12px,2vw,24px);
-
-width:100%;
-max-width:520px;
-
-justify-items:center;
-} */
-
-/* .cards-container {
-
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: clamp(14px, 2vw, 28px);
-
-    width: 100%;
-    max-width: 640px;
-
-    justify-items: center;
-
-    padding-top: 2%;
-} */
-
-.cards-container {
 
     display: grid;
 
@@ -110,58 +39,23 @@ justify-items:center;
 
     justify-items: center;
 
-}
+} */
 
-/* .flip-card {
+.cards-container {
+
+    display: grid;
+
+    /* grid-template-columns: repeat(4, minmax(90px, 1fr)); */
+    grid-template-columns: repeat(4, 1fr);
+
+    justify-content: center;   /* זה הקריטי */
+
+    gap: clamp(10px, 2vw, 24px);
+
     width: 100%;
-    max-width: 150px;
-
-    aspect-ratio: 1/1;
-
-    perspective: 1200px;
-
-    cursor: pointer;
-} */
-
-/* .flip-card {
-width:100%;
-max-width:140px;
-
-aspect-ratio:1/1;
-
-perspective:1200px;
-
-cursor:pointer;
-} */
-
-/* .flip-card {
-
-width:100%;
-max-width:110px;
-
-aspect-ratio:1/1;
-
-perspective:1200px;
-cursor:pointer;
-} */
-
-/* .flip-card{
-
-width:100%;
-max-width:120px;
-
-aspect-ratio:1/1;
-
-perspective:1200px;
-cursor:pointer;
-} */
-
-/* .flip-card {
-    width: clamp(110px, 8vw, 170px);
-    aspect-ratio: 1/1;
-    perspective: 1200px;
-    cursor: pointer;
-} */
+    max-width: 650px;
+    place-items: center;
+}
 
 .flip-card {
 
@@ -173,6 +67,9 @@ cursor:pointer;
     perspective: 1200px;
 
     cursor: pointer;
+
+    max-width: 140px;
+
 
 }
 
@@ -256,6 +153,7 @@ cursor:pointer;
     position: relative;
     transition: transform 0.7s;
     transform-style: preserve-3d;
+    transform-origin: center;
 }
 
 /* מצב flipped */
@@ -267,8 +165,9 @@ cursor:pointer;
 .flip-front,
 .flip-back {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
+    inset: 0;
     backface-visibility: hidden;
 
     display: flex;
