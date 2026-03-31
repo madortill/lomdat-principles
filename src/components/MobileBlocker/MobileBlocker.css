@@ -40,6 +40,7 @@
 .mobile-box h3 {
     font-size: clamp(1.2rem, 2vw, 1.8rem);
     /* margin-bottom: 1vh; */
+    /* color: #95193D; */
     color: #95193D;
 }
 
