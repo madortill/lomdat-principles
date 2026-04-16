@@ -5,6 +5,7 @@
     width: 100%;
     height: 40vh;
     z-index: 20;
+    gap: 15%;
 
     display: flex;
     justify-content: center;
@@ -12,29 +13,64 @@
 }
 
 /* רכב */
-.car-overlay-img {
+/* .car-overlay-img {
     position: absolute;
     bottom: 10px;
     width: 120px;
     transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 10;
+} */
+.car-overlay-img {
+    position: absolute;
+    bottom: 17%;
+    width: 20%;
+    /* הגדלנו */
+    transform: translateX(-50%);
+    /* מרכז על הנקודה */
+    transition: left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 21;
+}
+
+.car-overlay-img {
+
+    transition: left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* wrapper קריטי */
+/* .step-wrapper-overlay {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+
 .step-wrapper-overlay {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 9.3%;
+}
+
+/* עמוד */
+.step-wrapper-overlay::after {
+    content: "";
+    width: 0.5vw;
+    height: 10vh;
+    background: #322F2E;
+    /* margin-top: 5px; */
 }
 
 /* שלט */
 .step {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: #4da6ff;
+    width: 4vw;
+    height: 7vh;
+    border-radius: 10%;
+    border: solid 1px #322F2E;
+    background: #95193D;
     color: white;
+    font-size: 2vw;
+    font-weight: 500;
 
     display: flex;
     align-items: center;
@@ -53,16 +89,18 @@
 /* done */
 .step.done {
     opacity: 1;
-    background: #4CAF50;
+    background: #143aa1;
 }
 
 /* glow */
 @keyframes glow {
     from {
+        box-shadow: 0 10px 40px rgba(179, 54, 81, 0.658);
         transform: scale(1);
     }
 
     to {
+        box-shadow: 0 10px 60px rgb(167, 40, 68);
         transform: scale(1.2);
     }
 }
@@ -70,14 +108,21 @@
 /* כרטיס */
 .card-popup {
     position: absolute;
-    bottom: 90px;
+    bottom: 136%;
     left: 50%;
     transform: translateX(-50%);
-    width: 160px;
+    width: 8.5vw;
+    height: 30vh;
 
     background: white;
     border-radius: 12px;
-    padding: 10px;
+    padding: 10%;
+
+    font-family: "Agam";
+    font-size: clamp(1rem, 1.1vw + 0.3vh, 2.2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     animation: cardIn 0.35s ease;
 }

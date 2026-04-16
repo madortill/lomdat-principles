@@ -260,9 +260,15 @@ function CarStopSlide({ data, unlock }) {
 
   const steps = data?.steps ?? [];
 
-  // 🚗 מיקום הרכב (אחוזים במקום DOM)
-  const stepWidth = 100 / (steps.length - 1 || 1);
-  const carX = currentStep * stepWidth;
+// רוחב המסלול (כמו ה-steps-track שלך)
+const trackWidth = 80; 
+const offset = 10;
+
+// מרחק בין שלטים
+const stepWidth = trackWidth / (steps.length - 1 || 1);
+
+// מיקום הרכב (מימין לשמאל)
+const carX = offset + (trackWidth - currentStep * stepWidth);
 
   function handleClick(i) {
     if (i !== currentStep) return;
@@ -280,39 +286,44 @@ function CarStopSlide({ data, unlock }) {
   }, [currentStep, steps.length]);
 
   return (
-    <div className="car-overlay">
-      <img
-        src={car}
-        className="car-overlay-img"
-        style={{
-          transform: `translateX(${carX}%)`,
-        }}
-      />
+    <div>
+      <h2 className="slide-title">{data.header}</h2>
+      <div className="vehicle-text">{data.text1}</div>
+      <div className="vehicle-text">{data.text2}</div>
+      <div className="car-overlay">
+        <img
+          src={car}
+          className="car-overlay-img"
+          style={{
+            left: `${carX}%`,
+          }}
+        />
 
-      {steps.map((step, i) => {
-        const isActive = i === currentStep;
-        const isDone = i < currentStep;
+        {steps.map((step, i) => {
+          const isActive = i === currentStep;
+          const isDone = i < currentStep;
 
-        return (
-          <div key={i} className="step-wrapper-overlay">
-            <div
-              className={`step ${isActive ? "active" : ""} ${
-                isDone ? "done" : ""
-              }`}
-              onClick={() => handleClick(i)}
-            >
-              {i + 1}
-            </div>
-
-            {openedSteps.includes(i) && (
-              <div className="card-popup">
-                <img src={step.img} />
-                <p>{step.text}</p>
+          return (
+            <div key={i} className="step-wrapper-overlay">
+              <div
+                className={`step ${isActive ? "active" : ""} ${
+                  isDone ? "done" : ""
+                }`}
+                onClick={() => handleClick(i)}
+              >
+                {i + 1}
               </div>
-            )}
-          </div>
-        );
-      })}
+
+              {openedSteps.includes(i) && (
+                <div className="card-popup">
+                  <img src={step.img} />
+                  <div>{step.text}</div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

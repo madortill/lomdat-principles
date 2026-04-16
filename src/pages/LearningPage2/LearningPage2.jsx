@@ -139,7 +139,7 @@ function LearningPage2() {
         <div className="road-wrapper-2">
           <img src={road} className="road-opening-page" />
 
-          <CarStopSlide data={slide} unlock={setCanProceed} />
+          {/* <CarStopSlide data={slide} unlock={setCanProceed} /> */}
         </div>
 
         <img src={bushLeft} className="bush-left-open" />
