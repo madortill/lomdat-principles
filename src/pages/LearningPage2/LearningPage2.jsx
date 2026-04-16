@@ -1,30 +1,27 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import slides from "../../data/slides.json";
-import "./LearningPage.css";
+import slides from "../../data/slides-chapter2.json";
+import "./LearningPage2.css";
 
 import BigCloud from "../../assets/cloud-big.svg";
 import SmallCloud from "../../assets/cloud-small.svg";
 import logo from "../../assets/logo.png";
-import tillWhiteLogo from "../../assets/till_whitelogo.svg";
-import carFront from "../../assets/car-front.svg";
-import nextBtn from "../../assets/next-btn.svg";
-import backBtn from "../../assets/back-btn.svg";
-import sign from "../../assets/sign-photos.svg";
+import nextBtn from "../../assets/next-btn-2.svg";
+import backBtn from "../../assets/back-btn-2.svg";
 import garageSVG from "../../assets/Shutter.svg";
 
+import road from "../../assets/road.svg";
+import car from "../../assets/car-on-the-side.svg";
+import tillBlackLogo from "../../assets/till_blacklogo.svg";
+import bushLeft from "../../assets/bush-left.svg";
+import bushRight from "../../assets/bush-right.svg";
+
 import NormalSlide from "../../slides/NormalSlide/NormalSlide";
-import FlipCardsSlide from "../../slides/FlipCards/FlipCards";
-import VehicleTypesSlide from "../../slides/VehicleTypesSlide/VehicleTypesSlide";
-import TwoOptionsSlide from "../../slides/TwoOptionsSlide/TwoOptionsSlide";
 import QuestionSlide from "../../components/QuestionOverlay/QuestionOverlay";
-import DriveTypesSlide from "../../slides/DriveTypesSlide/DriveTypesSlide";
-import RoadSign from "../../slides/RoadSign/RoadSign";
-import BillboardCarsSlide from "../../slides/BillboardCarsSlide/BillboardCarsSlide";
-import VehicleGameSlide from "../../slides/VehicleIdentifyGameSlide/VehicleIdentifyGameSlide";
+import CarStopSlide from "../../slides/CarStopSlide/CarStopSlide";
 import NavbarLearning from "../../components/NavbarLearning/NavbarLearning";
 
-function LearningPage() {
+function LearningPage2() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showGarage, setShowGarage] = useState(false);
   const [firstLoad, setFirstLoad] = useState(true);
@@ -49,7 +46,7 @@ function LearningPage() {
     const isLastSlide = currentSlide === slides.length - 1;
 
     if (isLastSlide) {
-      navigate("/learning2");
+      navigate("/end");
       return;
     }
 
@@ -112,26 +109,6 @@ function LearningPage() {
     switch (slide.type) {
       case "normal":
         return <NormalSlide data={slide} />;
-      case "flipCards":
-        return (
-          <FlipCardsSlide
-            data={slide}
-            unlock={() => setCanProceed(true)}
-            setIsOverlayOpen={setIsOverlayOpen}
-          />
-        );
-      case "vehicleTypes":
-        return (
-          <VehicleTypesSlide data={slide} setIsOverlayOpen={setIsOverlayOpen} />
-        );
-      case "twoOptions":
-        return (
-          <TwoOptionsSlide
-            data={slide}
-            unlock={() => setCanProceed(true)}
-            setIsOverlayOpen={setIsOverlayOpen}
-          />
-        );
       case "question":
         return (
           <QuestionSlide
@@ -141,36 +118,15 @@ function LearningPage() {
             isLastQuestion={currentSlide === slides.length - 1}
           />
         );
-      case "driveTypes":
-        return (
-          <DriveTypesSlide data={slide} unlock={() => setCanProceed(true)} />
-        );
-      case "roadSign":
-        return <RoadSign data={slide} />;
-      case "billBoard":
-        return (
-          <BillboardCarsSlide data={slide} unlock={() => setCanProceed(true)} />
-        );
-      case "vehicleGame":
-        return (
-          <VehicleGameSlide
-            data={slide}
-            unlock={nextSlide}
-            goBack={prevSlide}
-          />
-        );
+      case "carStop":
+        return <CarStopSlide data={slide} unlock={() => setCanProceed(true)} />;
       default:
         return null;
     }
   };
 
   useEffect(() => {
-    if (
-      slide.type === "flipCards" ||
-      slide.type === "twoOptions" ||
-      slide.type === "driveTypes" ||
-      slide.type === "billBoard"
-    ) {
+    if (slide.type === "driveTypes" || slide.type === "carStop") {
       setCanProceed(false);
     } else {
       setCanProceed(true);
@@ -178,13 +134,31 @@ function LearningPage() {
   }, [slide]);
 
   return (
-    <div className="learning-page">
+    <div className="learning-page2">
+      <div className="ground-area">
+        <div className="road-wrapper-2">
+          <img src={road} className="road-opening-page" />
+
+          <CarStopSlide data={slide} unlock={setCanProceed} />
+        </div>
+
+        <img src={bushLeft} className="bush-left-open" />
+        <img src={bushRight} className="bush-right-open" />
+
+        {/* <img src={car} className={`car-opening-page`} /> */}
+      </div>
+
       {/* עננים ולוגו */}
       <img src={logo} className="logo-bahad13-learning-pages" />
       <img src={BigCloud} className="big-cloud-learning-page-left" />
       <img src={BigCloud} className="big-cloud-learning-page-right" />
       <img src={SmallCloud} className="small-cloud-opening-page-left" />
       <img src={SmallCloud} className="small-cloud-opening-page-right" />
+      <img
+        src={tillBlackLogo}
+        alt="till logo"
+        className="till-logo-black-end-page"
+      />
 
       <NavbarLearning
         sectionsLearning1={sectionsLearning1}
@@ -193,10 +167,6 @@ function LearningPage() {
         maxVisitedSlide={maxVisitedSlide}
       />
 
-      {(slide.id == "3" || slide.type === "vehicleTypes") && (
-        <img src={sign} alt="" className="sign-photo" />
-      )}
-
       {/* רקע הגראז' עם אנימציה לירידה/עלייה */}
       <div
         className={`garage-wrapper ${showGarage ? "slide-down" : "slide-up"}`}
@@ -204,35 +174,26 @@ function LearningPage() {
         <img src={garageSVG} className="garage-bg" alt="garage" />
       </div>
 
-      {/* הרכב */}
-      {slide.type !== "vehicleGame" && (
-        <div className="car-wrapper">
-          <img src={carFront} className="car-img" alt="car" />
-        </div>
-      )}
-
       {/* סלייד רגיל */}
-      {slide.type !== "question" && slide.type !== "vehicleGame" && (
-        <div className="slide-wrapper">
-          <div className="safe-area">{renderSlide()}</div>
-        </div>
+      {slide.type !== "question" && (
+        // <div className="slide-wrapper-2">
+        <div className="">{renderSlide()}</div>
+        // </div>
       )}
 
       {/* כפתורי ניווט לסליידים רגילים */}
-      {!isOverlayOpen &&
-        slide.type !== "question" &&
-        slide.type !== "vehicleGame" && (
-          <div className="nav-buttons-container">
-            <img
-              src={nextBtn}
-              onClick={canProceed ? nextSlide : null}
-              className={`btn-nav ${!canProceed ? "disabled" : ""}`}
-            />
-            {currentSlide > 0 && slide.type !== "question" && (
-              <img src={backBtn} onClick={prevSlide} className="btn-nav" />
-            )}
-          </div>
-        )}
+      {!isOverlayOpen && slide.type !== "question" && (
+        <div className="nav-buttons-2-container">
+          <img
+            src={nextBtn}
+            onClick={canProceed ? nextSlide : null}
+            className={`btn-nav ${!canProceed ? "disabled" : ""}`}
+          />
+          {currentSlide > 0 && slide.type !== "question" && (
+            <img src={backBtn} onClick={prevSlide} className="btn-nav" />
+          )}
+        </div>
+      )}
 
       {/* Overlay לשאלות */}
       {slide.type === "question" && (
@@ -243,15 +204,8 @@ function LearningPage() {
           {renderSlide()}
         </div>
       )}
-
-      {/* שאלות זיהוי רכבים */}
-      {slide.type === "vehicleGame" && (
-        <div className="vehicle-game-overlay">{renderSlide()}</div>
-      )}
-
-      <img src={tillWhiteLogo} className="till-logo-white-learning-pages" />
     </div>
   );
 }
 
-export default LearningPage;
+export default LearningPage2;

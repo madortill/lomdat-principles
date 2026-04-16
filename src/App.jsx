@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import MobileBlocker from "./components/MobileBlocker/MobileBlocker";
 import OpeningPage from "./pages/OpeningPage/OpeningPage";
 import LearningPage from "./pages/LearningPage/LearningPage";
+import LearningPage2 from "./pages/LearningPage2/LearningPage2";
 import EndPage from "./pages/EndPage/EndPage";
 import "./App.css";
 
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<OpeningPage />} />
           <Route path="/learning" element={<LearningPage />} />
+          <Route path="/learning2" element={<LearningPage2 />} />
           <Route path="/end" element={<EndPage />} />
         </Routes>
       </BrowserRouter>
