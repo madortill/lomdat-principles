@@ -1,3 +1,11 @@
+/* .learning-page2 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+} */
+
 .nav-buttons-2-container {
     position: absolute;
     bottom: 2%;
@@ -14,25 +22,36 @@
     width: clamp(60px, 8vw, 150px);
 }
 
-/* .slide-wrapper-2 {
+  .road-wrapper-2 {
     position: absolute;
-
-    inset: 0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 20;
-
-    bottom: 28%;
-} */
-
-.road-wrapper-2 {
-    position: relative;
+    bottom: 0;
+    right: 0;
     width: 100%;
     height: 40vh;
+
     display: flex;
     justify-content: center;
     align-items: flex-end;
-  }
+
+    position: absolute;
+}
+
+.road-wrapper-2 {
+    position: relative; /* 🔥 זה הכי חשוב */
+}
+
+.bush-left-2 {
+    position: absolute;
+    bottom: 35%; /* 🔥 יושב על הכביש */
+    left: 0;
+    width: 14%;
+    z-index: 7;
+}
+
+.bush-right-2 {
+    position: absolute;
+    bottom: 35%;
+    right: 0;
+    width: 14%;
+    z-index: 7;
+}

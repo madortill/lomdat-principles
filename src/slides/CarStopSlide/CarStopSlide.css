@@ -20,14 +20,23 @@
     transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 10;
 } */
+/* .car-overlay-img {
+    position: absolute;
+    bottom: 17%;
+    width: 20%;
+    transform: translateX(-50%);
+    transition: left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 21;
+} */
 .car-overlay-img {
     position: absolute;
     bottom: 17%;
     width: 20%;
-    /* הגדלנו */
     transform: translateX(-50%);
-    /* מרכז על הנקודה */
-    transition: left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    transition: left 1s cubic-bezier(0.22, 1, 0.36, 1);
+    /* ✨ easing יותר טבעי של "נסיעה" */
+    
     z-index: 21;
 }
 
@@ -137,4 +146,36 @@
         opacity: 1;
         transform: translateX(-50%) translateY(0) scale(1);
     }
+}
+
+.learning-content-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 3%;
+    width: 70%;
+    z-index: 30;
+    transform: translateX(-50%);
+    left: 50%;
+}
+
+.special-text {
+    color: #95193D;
+    margin-top: 1vh;
+}
+
+.slide-title2 {
+    font-size: clamp(1.3rem, 1.5vw + 0.9vh, 2.5rem);
+    text-align: center;
+    font-family: "Agam";
+    font-weight: 800;
+    padding-bottom: 0.2vh;
+    color: #95193D;
+}
+
+.slide-text2 {
+    font-size: clamp(0.95rem, 0.8vw + 0.6vh, 1.3rem);
+    text-align: center;
 }

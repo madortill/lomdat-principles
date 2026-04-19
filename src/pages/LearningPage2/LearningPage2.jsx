@@ -140,12 +140,11 @@ function LearningPage2() {
           <img src={road} className="road-opening-page" />
 
           {/* <CarStopSlide data={slide} unlock={setCanProceed} /> */}
+          <img src={bushLeft} className="bush-left-2" />
+          <img src={bushRight} className="bush-right-2" />
+
+          {/* <img src={car} className={`car-opening-page`} /> */}
         </div>
-
-        <img src={bushLeft} className="bush-left-open" />
-        <img src={bushRight} className="bush-right-open" />
-
-        {/* <img src={car} className={`car-opening-page`} /> */}
       </div>
 
       {/* עננים ולוגו */}
