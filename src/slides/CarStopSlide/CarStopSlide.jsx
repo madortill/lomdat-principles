@@ -40,7 +40,10 @@ function CarStopSlide({ data, unlock }) {
       <div className="learning-content-2">
         <h2 className="slide-title2">{data.header}</h2>
         <div className="slide-text2">{data.text1}</div>
-        <div className="slide-text2 special-text">{data.text2}</div>
+        <div
+          className="slide-text2 special-text"
+          dangerouslySetInnerHTML={{ __html: data.text2 }}
+        />
       </div>
 
       <div className="car-overlay">

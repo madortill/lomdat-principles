@@ -20,6 +20,8 @@ import NormalSlide from "../../slides/NormalSlide/NormalSlide";
 import QuestionSlide from "../../components/QuestionOverlay/QuestionOverlay";
 import CarStopSlide from "../../slides/CarStopSlide/CarStopSlide";
 import NavbarLearning from "../../components/NavbarLearning/NavbarLearning";
+import Tabs from "../../slides/Tabs/Tabs";
+
 
 function LearningPage2() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -120,6 +122,8 @@ function LearningPage2() {
         );
       case "carStop":
         return <CarStopSlide data={slide} unlock={() => setCanProceed(true)} />;
+      case "tabs":
+        return <Tabs data={slide} unlock={() => setCanProceed(true)} />;
       default:
         return null;
     }
