@@ -138,6 +138,7 @@ body {
     right: 2%;
     width: 7%;
     height: auto;
+    z-index: 30;
 }
 
 .car-opening-page {

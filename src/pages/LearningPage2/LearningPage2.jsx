@@ -22,7 +22,6 @@
 // import NavbarLearning from "../../components/NavbarLearning/NavbarLearning";
 // import Tabs from "../../slides/Tabs/Tabs";
 
-
 // function LearningPage2() {
 //   const [currentSlide, setCurrentSlide] = useState(0);
 //   const [showGarage, setShowGarage] = useState(false);
@@ -213,13 +212,6 @@
 
 // export default LearningPage2;
 
-
-
-
-
-
-
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import slides from "../../data/slides-chapter2.json";
@@ -242,6 +234,7 @@ import QuestionSlide from "../../components/QuestionOverlay/QuestionOverlay";
 import CarStopSlide from "../../slides/CarStopSlide/CarStopSlide";
 import Tabs from "../../slides/Tabs/Tabs";
 import Popup from "../../components/Popup/Popup";
+import DriveSimulationSlide from "../../slides/DriveSimulationSlide/DriveSimulationSlide";
 import NavbarLearning from "../../components/NavbarLearning/NavbarLearning";
 
 function LearningPage2() {
@@ -304,7 +297,12 @@ function LearningPage2() {
 
   // שליטה בכפתור "הבא"
   useEffect(() => {
-    if (slide.type === "driveTypes" || slide.type === "carStop" || slide.type === "tabs") {
+    if (
+      slide.type === "driveTypes" ||
+      slide.type === "carStop" ||
+      slide.type === "tabs" ||
+      slide.type === "driveSimulation"
+    ) {
       setCanProceed(false);
     } else {
       setCanProceed(true);
@@ -328,13 +326,29 @@ function LearningPage2() {
         );
 
       case "carStop":
-        return <CarStopSlide data={customSlide} unlock={() => setCanProceed(true)} />;
+        return (
+          <CarStopSlide data={customSlide} unlock={() => setCanProceed(true)} />
+        );
 
       case "tabs":
         return <Tabs data={customSlide} unlock={() => setCanProceed(true)} />;
 
       case "popup":
         return null; // 👈 חשוב
+
+      case "driveSimulation":
+        return (
+          <DriveSimulationSlide
+            data={customSlide}
+            unlock={(action) => {
+              if (action === "back") {
+                prevSlideHandler();
+              } else {
+                setCanProceed(true);
+              }
+            }}
+          />
+        );
 
       default:
         return null;
@@ -356,23 +370,28 @@ function LearningPage2() {
 
   return (
     <div className="learning-page2">
-
       {/* קרקע + כביש */}
-      <div className="ground-area">
-        <div className="road-wrapper-2">
-          <img src={road} className="road-opening-page" />
-          <img src={bushLeft} className="bush-left-2" />
-          <img src={bushRight} className="bush-right-2" />
+      {slide.type !== "driveSimulation" && (
+        <div className="ground-area">
+          <div className="road-wrapper-2">
+            <img src={road} className="road-opening-page" />
+            <img src={bushLeft} className="bush-left-2" />
+            <img src={bushRight} className="bush-right-2" />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* רקע UI */}
       <img src={logo} className="logo-bahad13-learning-pages" />
-      <img src={BigCloud} className="big-cloud-learning-page-left" />
-      <img src={BigCloud} className="big-cloud-learning-page-right" />
-      <img src={SmallCloud} className="small-cloud-opening-page-left" />
-      <img src={SmallCloud} className="small-cloud-opening-page-right" />
       <img src={tillBlackLogo} className="till-logo-black-end-page" />
+      {slide.type !== "driveSimulation" && (
+        <div>
+          <img src={BigCloud} className="big-cloud-learning-page-left" />
+          <img src={BigCloud} className="big-cloud-learning-page-right" />
+          <img src={SmallCloud} className="small-cloud-opening-page-left" />
+          <img src={SmallCloud} className="small-cloud-opening-page-right" />
+        </div>
+      )}
 
       {/* ניווט */}
       <NavbarLearning
@@ -383,15 +402,15 @@ function LearningPage2() {
       />
 
       {/* גראז' */}
-      <div className={`garage-wrapper ${showGarage ? "slide-down" : "slide-up"}`}>
+      <div
+        className={`garage-wrapper ${showGarage ? "slide-down" : "slide-up"}`}
+      >
         <img src={garageSVG} className="garage-bg" />
       </div>
 
       {/* ❓ שאלות */}
       {slide.type === "question" && (
-        <div className="question-overlay-container">
-          {renderSlide()}
-        </div>
+        <div className="question-overlay-container">{renderSlide()}</div>
       )}
 
       {/* 🎯 סלייד רגיל */}
@@ -410,12 +429,13 @@ function LearningPage2() {
       {/* כפתורים */}
       {!isOverlayOpen &&
         slide.type !== "question" &&
-        slide.type !== "popup" && (
+        slide.type !== "popup" &&
+        slide.type !== "driveSimulation" && (
           <div className="nav-buttons-2-container">
             <img
               src={nextBtn}
-              onClick={canProceed ? nextSlide : null}
               className={`btn-nav ${!canProceed ? "disabled" : ""}`}
+              onClick={canProceed ? nextSlide : null}
             />
             {currentSlide > 0 && (
               <img

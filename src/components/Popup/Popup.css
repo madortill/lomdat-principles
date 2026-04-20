@@ -43,7 +43,8 @@
     width: min(500px, 90%);
     text-align: center;
 
-    z-index: 10000; /* ליתר ביטחון */
+    z-index: 10000;
+    /* ליתר ביטחון */
 }
 
 .circles {
@@ -78,6 +79,7 @@
 .circle-blue {
     background-color: #2F46B7;
 }
+
 /* .popup-overlay {
     backdrop-filter: blur(6px);
 } */
@@ -101,4 +103,34 @@
 
 .popup-title-2 {
     margin: 1%;
+}
+
+.popup-box-2-drive {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 30rem;
+    text-align: center;
+
+    animation: popIn 0.3s ease;
+
+    border: 2px solid #ffea4763;
+    box-shadow: 0px 0px 60px #FFEA47;
+}
+
+.img-popup-2-drive {
+    width: 10vh;
+}
+
+.popup-drive-2-content {
+    display: flex;
+
+}
+
+.popup-title-2-drive {
+    color: #CB4B44;
+}
+
+.popup-drive-2-content-text {
+    text-align: right;
 }
