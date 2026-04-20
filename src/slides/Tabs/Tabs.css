@@ -26,7 +26,9 @@
 }
 
 .tab {
-    padding: 0.4rem 3.9rem;
+    /* padding: 0.4rem 3.9rem; */
+    padding: 0.4rem 0;
+    width: 41%;
     /* border-radius: 0 30px 0 0; */
     /* background: #e5e5e5; */
     color: #95193D;
@@ -69,7 +71,7 @@
     width: 80%;
     background-color: #95193D;
     padding: 1.4vh;
-    border-radius: 0  0 30px 30px;
+    border-radius: 0 0 30px 30px;
     animation: fadeIn 0.4s ease;
 }
 
@@ -85,3 +87,8 @@
         transform: translateY(0);
     }
 }
+
+/* .tab-container-tab-content {
+    background-color: red;
+    width: 80%;
+} */

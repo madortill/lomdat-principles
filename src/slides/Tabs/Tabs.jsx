@@ -30,27 +30,29 @@ function Tabs({ data, unlock }) {
         <div className="slide-text2">{data.text2}</div>
         <div className="slide-text2 special-text">{data.info}</div>
 
-      {/* טאבים */}
-      <div className="tabs">
-      <div className="tabs-container">
-        {tabs.map((tab, i) => (
-            <div
-            key={i}
-            className={`tab ${i === activeTab ? "active" : ""}`}
-            onClick={() => handleTabClick(i)}
-          >
-            {tab.tab}
-          </div>
-        ))}
-      </div>
+        {/* טאבים */}
+        <div className="tabs">
+          {/* <div className="tab-container-tab-content"> */}
+            <div className="tabs-container">
+              {tabs.map((tab, i) => (
+                <div
+                  key={i}
+                  className={`tab ${i === activeTab ? "active" : ""}`}
+                  onClick={() => handleTabClick(i)}
+                >
+                  {tab.tab}
+                </div>
+              ))}
+            </div>
 
-      {/* תוכן */}
-      <div className="tab-content">
-        <img src={tabs[activeTab]?.img} alt="" />
-      </div>
-    </div>
-    </div>
+            {/* תוכן */}
+            <div className="tab-content">
+              <img src={tabs[activeTab]?.img} alt="" />
+            </div>
+          </div>
         </div>
+      {/* </div> */}
+    </div>
   );
 }
 

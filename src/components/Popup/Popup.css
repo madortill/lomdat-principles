@@ -1,0 +1,104 @@
+/* .popup-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+    transform: translateX(-50%);
+    left: 50%;
+} */
+
+.popup-overlay-2 {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.popup-box-2 {
+    background: white;
+    padding: 2rem 4rem;
+    border-radius: 20px;
+    /* width: min(500px, 90%); */
+    width: 40rem;
+    text-align: center;
+
+    animation: popIn 0.3s ease;
+}
+
+.popup-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    width: min(500px, 90%);
+    text-align: center;
+
+    z-index: 10000; /* ליתר ביטחון */
+}
+
+.circles {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1.8rem 0;
+}
+
+.circle {
+    width: 10rem;
+    height: 9rem;
+    border-radius: 50%;
+    /* background: #26547E; */
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* font-size: 0.9rem; */
+    padding: 1vh;
+    font-family: "Agam";
+
+    font-size: clamp(0.95rem, 0.9vw + 0.8vh, 1.7rem);
+}
+
+.circle-red {
+    background-color: #A80000;
+}
+
+.circle-blue {
+    background-color: #2F46B7;
+}
+/* .popup-overlay {
+    backdrop-filter: blur(6px);
+} */
+
+.popup-overlay {
+    pointer-events: all;
+}
+
+.learning-page2 {
+    pointer-events: auto;
+}
+
+.popup-overlay-2 {
+    backdrop-filter: blur(6px);
+}
+
+.info {
+    color: #CB4B44;
+    font-weight: 500;
+}
+
+.popup-title-2 {
+    margin: 1%;
+}
