@@ -111,7 +111,7 @@
     width: 4px;
     height: 200%;
     background: repeating-linear-gradient(to bottom, white 0px, white 40px, transparent 40px, transparent 80px);
-    animation: roadMove 1s linear infinite;
+    /* animation: roadMove 1s linear infinite; */
 }
 
 @keyframes roadMove {
@@ -179,4 +179,313 @@
     z-index: 999;
     /* זה מוודא שהוא תמיד מעל הכל */
     cursor: pointer;
+}
+
+
+
+
+
+/* ================================================= */
+/* מבנה ראשי */
+.drive-slide-2 {
+    position: absolute;
+    inset: 0;
+    background: #E9E09D;
+    overflow: hidden;
+}
+
+.drive-title-2 {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+/* רכבים */
+.car-2 {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+    opacity: 0;
+}
+
+.normal {
+    width: 15vh;
+}
+
+.police {
+    width: 30vh;
+}
+
+.stage-1,
+.stage-2,
+.stage-3,
+.stage-4,
+.stage-5 {
+    opacity: 1;
+}
+
+/* מיקומים */
+.stage-1.normal,
+.stage-2.normal {
+    transform: translate(50%, -38vh);
+}
+
+.stage-1.police,
+.stage-2.police {
+    transform: translate(0%, -8vh);
+}
+
+.stage-3.normal,
+.stage-4.normal,
+.stage-5.normal {
+    transform: translate(210%, -55vh);
+}
+
+.stage-3.police,
+.stage-4.police,
+.stage-5.police {
+    transform: translate(79%, -25vh);
+}
+
+/* כביש */
+.drive-road-2 {
+    position: absolute;
+    inset: 0;
+    background: #3a3a3a;
+    width: 45vw;
+    transform: translateX(-60%);
+}
+
+.drive-road-2::before,
+.drive-road-2::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 20%;
+    height: 100%;
+    background: #3a3a3a;
+}
+
+.drive-road-2::before {
+    left: 0;
+    border-right: #D99C30 solid 7px;
+}
+
+.drive-road-2::after {
+    right: 0;
+    border-left: #D99C30 solid 7px;
+}
+
+/* .road-lines {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 200%;
+    background: repeating-linear-gradient(to bottom, white 0px, white 40px, transparent 40px, transparent 80px);
+
+    animation: roadMove 1s linear 2 forwards;
+    animation-play-state: paused;
+} */
+
+.road-lines {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 200%;
+    background: repeating-linear-gradient(
+        to bottom,
+        white 0px,
+        white 40px,
+        transparent 40px,
+        transparent 80px
+    );
+
+    /* חשוב */
+    animation: none;
+}
+
+/* הפעלת כביש רק בשלבים 1 ו-3 */
+/* .drive-slide-2.stage-1 .road-lines,
+.drive-slide-2.stage-3 .road-lines {
+    animation-play-state: running;
+} */
+
+.drive-slide-2.stage-1 .road-lines,
+.drive-slide-2.stage-3 .road-lines {
+    animation: roadMove 0.46s linear 2;
+}
+
+@keyframes roadMove {
+    from {
+        transform: translate(-50%, 0);
+    }
+
+    to {
+        transform: translate(-50%, 80px);
+    }
+}
+
+/* טקסטים וכפתורים */
+.slide-text2-drive {
+    font-size: clamp(0.95rem, 0.8vw + 0.6vh, 1.1rem);
+    text-align: center;
+    z-index: 30;
+    color: white;
+    width: 18%;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.text-box-2 {
+    background-color: #F6A286;
+    padding: 0.8rem;
+    border-radius: 25px;
+    font-size: clamp(0.95rem, 0.8vw + 0.6vh, 1.1rem);
+    text-align: center;
+    z-index: 30;
+    color: black;
+    width: 10%;
+    position: absolute;
+    top: 40%;
+    right: 12%;
+}
+
+.text-box-2-1 {
+    top: 60%;
+    right: 23%;
+}
+
+.text-box-2-2 {
+    top: 50%;
+}
+
+/* החץ לבועה */
+.text-box-2::after {
+    content: '';
+    position: absolute;
+    left: -6%;
+    /* החץ עכשיו בצד שמאל */
+    top: 50%;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 15px solid #F6A286;
+    /* החץ פונה שמאלה */
+    border-left: none;
+}
+
+.next-btn-inner-2 {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.back-btn-inner-2 {
+    position: absolute;
+    bottom: 5%;
+    left: 40%;
+    z-index: 999;
+    cursor: pointer;
+}
+
+/* סירנה - ממוקמת לפי הסטייג של ההורה */
+.siren-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 30vh;
+    height: 10px;
+    z-index: 10;
+    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0;
+}
+
+.stage-0.siren-container {
+    transform: translateY(43vh);
+}
+
+.drive-slide-2.stage-1 .siren-container,
+.drive-slide-2.stage-2 .siren-container {
+    opacity: 1;
+    transform: translate(2%, -20vh);
+}
+
+.drive-slide-2.stage-3 .siren-container,
+.drive-slide-2.stage-4 .siren-container,
+.drive-slide-2.stage-5 .siren-container {
+    opacity: 1;
+    transform: translate(81%, -37vh);
+}
+
+.siren-light {
+    width: 3vw;
+    height: 1.5vh;
+    margin: 0 auto;
+    border-radius: 6px;
+
+    background: linear-gradient(
+        90deg,
+        #2a5bff 0%,
+        #2a5bff 50%,
+        #ff2a2a 50%,
+        #ff2a2a 100%
+    );
+
+    box-shadow:
+    0 0 14px rgba(0, 0, 255, 0.8),
+    0 0 8px rgba(255, 0, 0, 0.8);
+
+    animation: sirenFlash 0.35s ease-in-out infinite;
+}
+
+@keyframes sirenFlash {
+    0% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.8);
+    }
+    100% {
+        filter: brightness(1);
+    }
+}
+
+/* ביטלתי את ה-border-radius שהיה שם קודם */
+@keyframes rotateSiren {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+/* אנימציה להופעת הטקסט */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* החלת האנימציה על הטקסטים עם עיכוב של 3 שניות */
+.slide-text2-drive,
+.text-box-2 {
+    animation: fadeIn 0.4s ease-in 1s forwards;
+    opacity: 0;
+    /* מתחילים שקוף עד שהאנימציה מפעילה את הופעת הטקסט */
 }

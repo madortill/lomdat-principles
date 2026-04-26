@@ -61,7 +61,7 @@ function DriveSimulationSlide({ data, unlock }) {
   };
 
   return (
-    <div className="drive-slide-2">
+    <div className={`drive-slide-2 stage-${stage}`}>
       <h2 className="drive-title-2 drive-title">{data.header}</h2>
 
       {/* הכביש נשאר בדיוק כפי שהיה */}
@@ -76,6 +76,10 @@ function DriveSimulationSlide({ data, unlock }) {
         className={`car-2 police stage-${stage}`}
         alt="Police"
       />
+
+      <div className={`siren-container stage-${stage}`}>
+        <div className="siren-light"></div>
+      </div>
 
       {/* טקסטים */}
       {stage === STAGES.INTRO && (

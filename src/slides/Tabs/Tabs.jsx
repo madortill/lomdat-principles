@@ -3,7 +3,7 @@ import "./Tabs.css";
 
 function Tabs({ data, unlock }) {
   const [activeTab, setActiveTab] = useState(0);
-  const [visitedTabs, setVisitedTabs] = useState([]);
+  const [visitedTabs, setVisitedTabs] = useState([0]);
 
   const tabs = data?.tabs ?? [];
 

@@ -268,7 +268,7 @@ function LearningPage2() {
   const prevSlideHandler = () => {
     let prevIndex = currentSlide - 1;
 
-    while (prevIndex >= 0 && slides[prevIndex].type === "question") {
+    while (prevIndex >= 0 && slides[prevIndex].type === "question" || slides[prevIndex].type === "popup") {
       prevIndex--;
     }
 
