@@ -134,6 +134,10 @@
     top: 20%;
     left: 50%;
     transform: translate(-50%);
+    
+    background: #ffffff21;
+    padding: 0.8rem;
+    border-radius: 20px;
 }
 
 .text-box-2 {

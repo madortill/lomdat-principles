@@ -235,6 +235,7 @@ import CarStopSlide from "../../slides/CarStopSlide/CarStopSlide";
 import Tabs from "../../slides/Tabs/Tabs";
 import Popup from "../../components/Popup/Popup";
 import DriveSimulationSlide from "../../slides/DriveSimulationSlide/DriveSimulationSlide";
+import AfterStopSimulation from "../../slides/AfterStopSimulation/AfterStopSimulation";
 import NavbarLearning from "../../components/NavbarLearning/NavbarLearning";
 
 function LearningPage2() {
@@ -265,10 +266,29 @@ function LearningPage2() {
   };
 
   // מעבר אחורה (מדלג על שאלות)
+  // const prevSlideHandler = () => {
+  //   let prevIndex = currentSlide - 1;
+
+  //   while (
+  //     (prevIndex >= 0 && slides[prevIndex].type === "question") ||
+  //     slides[prevIndex].type === "popup"
+  //   ) {
+  //     prevIndex--;
+  //   }
+
+  //   if (prevIndex >= 0) {
+  //     setCurrentSlide(prevIndex);
+  //   }
+  // };
+
   const prevSlideHandler = () => {
     let prevIndex = currentSlide - 1;
 
-    while (prevIndex >= 0 && slides[prevIndex].type === "question" || slides[prevIndex].type === "popup") {
+    // הגדרה ברורה של סוגים שרוצים לדלג עליהם
+    const skipTypes = ["question", "popup"];
+
+    // כל עוד אנחנו בטווח והסוג נמצא ברשימת הדילוגים
+    while (prevIndex >= 0 && skipTypes.includes(slides[prevIndex].type)) {
       prevIndex--;
     }
 
@@ -296,17 +316,29 @@ function LearningPage2() {
   }, [slide]);
 
   // שליטה בכפתור "הבא"
+  // useEffect(() => {
+  //   if (
+  //     slide.type === "driveTypes" ||
+  //     slide.type === "carStop" ||
+  //     slide.type === "tabs" ||
+  //     slide.type === "driveSimulation" ||
+  //     slide.type === "afterStopCarSimulation"
+  //   ) {
+  //     setCanProceed(false);
+  //   } else {
+  //     setCanProceed(true);
+  //   }
+  // }, [slide]);
   useEffect(() => {
-    if (
-      slide.type === "driveTypes" ||
-      slide.type === "carStop" ||
-      slide.type === "tabs" ||
-      slide.type === "driveSimulation"
-    ) {
-      setCanProceed(false);
-    } else {
-      setCanProceed(true);
-    }
+    const lockedSlides = [
+      "driveTypes",
+      "carStop",
+      "tabs",
+      "driveSimulation",
+      "afterStopCarSimulation",
+    ];
+
+    setCanProceed(!lockedSlides.includes(slide.type));
   }, [slide]);
 
   // 🎯 פונקציה גמישה לרינדור סליידים
@@ -334,7 +366,7 @@ function LearningPage2() {
         return <Tabs data={customSlide} unlock={() => setCanProceed(true)} />;
 
       case "popup":
-        return null; // 👈 חשוב
+        return null;
 
       case "driveSimulation":
         return (
@@ -343,8 +375,24 @@ function LearningPage2() {
             unlock={(action) => {
               if (action === "back") {
                 prevSlideHandler();
+              } else if (action === "finish") {
+                nextSlide();
               } else {
                 setCanProceed(true);
+              }
+            }}
+          />
+        );
+
+      case "afterStopCarSimulation":
+        return (
+          <AfterStopSimulation
+            data={customSlide}
+            unlock={(action) => {
+              if (action === "back") {
+                prevSlideHandler();
+              } else {
+                nextSlide(); // 👈 זה החלק החשוב
               }
             }}
           />
@@ -371,15 +419,16 @@ function LearningPage2() {
   return (
     <div className="learning-page2">
       {/* קרקע + כביש */}
-      {slide.type !== "driveSimulation" && (
-        <div className="ground-area">
-          <div className="road-wrapper-2">
-            <img src={road} className="road-opening-page" />
-            <img src={bushLeft} className="bush-left-2" />
-            <img src={bushRight} className="bush-right-2" />
+      {slide.type !== "driveSimulation" &&
+        slide.type !== "afterStopCarSimulation" && (
+          <div className="ground-area">
+            <div className="road-wrapper-2">
+              <img src={road} className="road-opening-page" />
+              <img src={bushLeft} className="bush-left-2" />
+              <img src={bushRight} className="bush-right-2" />
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
       {/* רקע UI */}
       <img src={logo} className="logo-bahad13-learning-pages" />
@@ -430,7 +479,8 @@ function LearningPage2() {
       {!isOverlayOpen &&
         slide.type !== "question" &&
         slide.type !== "popup" &&
-        slide.type !== "driveSimulation" && (
+        slide.type !== "driveSimulation" &&
+        slide.type !== "afterStopCarSimulation" && (
           <div className="nav-buttons-2-container">
             <img
               src={nextBtn}

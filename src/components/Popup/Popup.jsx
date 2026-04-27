@@ -32,18 +32,44 @@ function Popup({ data, onClose }) {
 
       {data.who === "drive" && (
         <div className="popup-box-2-drive">
-          <h2 className="slide-title2 popup-title-2 popup-title-2-drive">{data.header}</h2>
+          <h2 className="slide-title2 popup-title-2 popup-title-2-drive">
+            {data.header}
+          </h2>
 
-          <div className={(`popup-drive-2-content ${data.img ? "popup-drive-2-content-text" : ""}`)}>
+          <div
+            className={`popup-drive-2-content ${
+              data.img ? "popup-drive-2-content-text" : ""
+            }`}
+          >
             {data.img && (
               <img src={data.img} alt="img" className="img-popup-2-drive" />
             )}
             <p className="slide-text2">{data.text1}</p>
           </div>
 
-            <button onClick={onClose} className="close-btn">
-              {data.btn}
-            </button>
+          <button onClick={onClose} className="close-btn">
+            {data.btn}
+          </button>
+        </div>
+      )}
+
+      {data.who === "dont" && (
+        <div className="popup-box-2-dont">
+          <div className="slide-title2 popup-title-2 popup-title-2-drive popup-title-2-dont" dangerouslySetInnerHTML={{ __html: data.header }}></div>
+
+          <div className="donts">
+            {data.donts.map((d, i) => (
+              <div key={i} className="dont">
+                <div className="slide-text-popup-dont slide-text-popup-dont-header">{d.header}</div>
+                <img src={d.img} className="donts-img"/>
+                <div className="slide-text-popup-dont">{d.text}</div>
+              </div>
+            ))}
+          </div>
+
+          <button onClick={onClose} className="close-btn">
+            {data.btn}
+          </button>
         </div>
       )}
     </div>

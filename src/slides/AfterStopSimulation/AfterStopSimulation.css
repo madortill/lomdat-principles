@@ -1,0 +1,185 @@
+.afterStopSim {
+    position: absolute;
+    inset: 0;
+    background: #E9E09D;
+    overflow: hidden;
+}
+
+/* כותרת */
+.afterStopSim__title {
+    /* position: absolute; */
+    margin-top: 8vh;
+    /* width: 100%; */
+    text-align: center;
+    /* color: white; */
+
+    font-size: clamp(1.3rem, 1.5vw + 0.9vh, 2.5rem);
+    text-align: center;
+    font-family: "Agam";
+    font-weight: 800;
+    padding-bottom: 0.2vh;
+}
+
+/* כביש */
+/* .afterStopSim__road {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 25vh;
+    background: #3a3a3a;
+} */
+
+.afterStopSim__road {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    /* height: 25vh; */
+    /* background: #3a3a3a; */
+}
+
+/* רכבים */
+.afterStopSim__car {
+    margin: 2%;
+}
+
+.afterStopSim_car-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    bottom: 4vh;
+    /* padding: 2%; */
+}
+
+.afterStopSim__car--front {
+    right: 15%;
+    /* width: 75vh; */
+    width: 38vw;
+}
+
+.afterStopSim__car--police {
+    right: 35%;
+    width: 38vw;
+    /* z-index: 23; */
+}
+
+/* שוטר */
+.afterStopSim__officer {
+    position: absolute;
+    bottom: 7vh;
+    left: 27%;
+    width: 5vw;
+    transition: transform 1.2s ease;
+    /* z-index: 22; */
+}
+
+/* תזוזות לפי סטייגים */
+.afterStopSim.stage-0 .afterStopSim__officer {
+    transform: translateX(0);
+    opacity: 0;
+}
+
+.afterStopSim.stage-1 .afterStopSim__officer {
+    transform: translateX(20vw);
+    opacity: 1;
+}
+
+.afterStopSim.stage-2 .afterStopSim__officer {
+    transform: translateX(40vw);
+}
+
+.afterStopSim.stage-3 .afterStopSim.stage-4 .afterStopSim__officer {
+    transform: translateX(10vw);
+}
+
+.afterStopSim__officer--writing {
+    transform: translateX(0);
+    width: 6.8vw;
+}
+
+/* טקסט */
+.afterStopSim__text {
+    position: relative;
+    /* top: 25%; */
+    /* left: 50%; */
+    transform: translateX(-110%);
+    width: 30%;
+    text-align: center;
+    /* font-size: 1.2rem; */
+    font-size: clamp(0.95rem, 0.8vw + 0.6vh, 1.3rem);
+
+    background: #ffffff93;
+    padding: 1rem;
+    border-radius: 20px;
+
+    animation: afterStopSimFadeIn 0.4s ease 0.6s forwards;
+    opacity: 0;
+}
+
+.text-box-2-after-stop {
+    position: absolute;
+    width: 10%;
+
+    background-color: #F6A286;
+    padding: 0.8rem;
+    border-radius: 25px;
+    font-size: clamp(0.95rem, 0.8vw + 0.6vh, 1.1rem);
+    text-align: center;
+    z-index: 30;
+}
+
+/* החץ למטה */
+.text-box-2-after-stop::after {
+    content: "";
+    position: absolute;
+
+    left: 20%;
+    bottom: -15px;
+
+    width: 0;
+    height: 0;
+
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 15px solid #F6A286;
+
+}
+
+.text-box-2-after-stop {
+    animation: fadeIn 0.4s ease-in 1s forwards;
+    opacity: 0;
+}
+
+.text-box-2-stop-1 {
+    bottom: 22vw;
+    right: 42vw;
+}
+
+.text-box-2-stop-2 {
+    bottom: 22vw;
+    right: 22vw;
+}
+
+.text-box-2-stop-3 {
+    bottom: 22vw;
+    left: 27vw;
+}
+
+.text-box-2-stop-4 {
+    bottom: 19.5vw;
+    right: 22vw;
+    animation: fadeIn ease-in 0.4s forwards;
+}
+
+/* אנימציה */
+@keyframes afterStopSimFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

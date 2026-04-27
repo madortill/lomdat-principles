@@ -26,14 +26,6 @@ function DriveSimulationSlide({ data, unlock }) {
     else if (stage === STAGES.END) unlock?.();
   };
 
-  //   const handleBack = () => {
-  //     if (stage === STAGES.INTRO) unlock?.("back");
-  //     else if (stage === STAGES.POPUP1) setStage(STAGES.DRIVE);
-  //     else if (stage === STAGES.POPUP2) setStage(STAGES.SIDE);
-  //     else if (stage === STAGES.SIDE) setStage(STAGES.DRIVE);
-  //     else setStage((prev) => Math.max(prev - 1, 0));
-  //   };
-
   const handleBack = () => {
     switch (stage) {
       case STAGES.INTRO:
@@ -89,15 +81,28 @@ function DriveSimulationSlide({ data, unlock }) {
         <div className="text-box-2 text-box-2-1">{data.afterStopText}</div>
       )}
       {stage === STAGES.SIDE && (
-        <div className="text-box-2 text-box-2-2" dangerouslySetInnerHTML={{ __html: data.afterSideText }}></div>
+        <div
+          className="text-box-2 text-box-2-2"
+          dangerouslySetInnerHTML={{ __html: data.afterSideText }}
+        ></div>
       )}
+
+      {/* פופאפים */}
+      {/* {stage === STAGES.POPUP1 && (
+        <Popup data={data.popup1} onClose={() => setStage(STAGES.SIDE)} />
+      )}
+      {stage === STAGES.POPUP2 && (
+        <Popup data={data.popup2} onClose={() => setStage(STAGES.END)} />
+      )} */}
 
       {/* פופאפים */}
       {stage === STAGES.POPUP1 && (
         <Popup data={data.popup1} onClose={() => setStage(STAGES.SIDE)} />
       )}
+
+      {/* כאן השינוי - אנחנו קוראים ל-unlock עם "finish" */}
       {stage === STAGES.POPUP2 && (
-        <Popup data={data.popup2} onClose={() => setStage(STAGES.END)} />
+        <Popup data={data.popup2} onClose={() => unlock?.("finish")} />
       )}
 
       {/* כפתורים */}
