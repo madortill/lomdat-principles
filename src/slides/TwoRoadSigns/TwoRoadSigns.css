@@ -1,0 +1,88 @@
+.signs-on-road {
+    display: flex;
+    position: absolute;
+    bottom: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.sign-on-road-2 {
+    position: relative;
+
+    width: clamp(190px, 25vw, 380px);
+    
+    color: white;
+    padding: 1vh;
+    margin: 1.5vw;
+    border-radius: 6px;
+    
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    text-align: center;
+}
+
+.sign-on-road-2-blue {
+    background: #40569D;
+}
+
+.sign-on-road-2-green {
+    background: #009484;
+}
+
+.content-border-2 {
+    border: 0.22vh solid white;
+    border-radius: 12px;
+    padding: 2vh;
+
+    
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.sign-legs-2 {
+    position: absolute;
+    bottom: -6vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 8vh;
+}
+
+.sign-legs-2::before,
+.sign-legs-2::after {
+    content: "";
+    position: absolute;
+    bottom: -300%;
+    width: 1.2vh;
+    height: 30vh;
+    background: #8c8c8c;
+    /* border-radius:4px; */
+}
+
+.sign-legs-2::before {
+    left: 20%;
+}
+
+.sign-legs-2::after {
+    right: 20%;
+}
+
+.police-car-2 {
+    position: absolute;
+    bottom: 10%;
+    right: 5vw;
+    width: 30vw;
+    z-index: 24;
+}
+
+.slide-text-signs-number {
+    border: white solid 2px;
+    border-radius: 50%;
+    font-size: 3vh;
+    width: 10%;
+    /* position: fixed; */
+    /* left: 50%;
+    transform: translateX(-50%); */
+}

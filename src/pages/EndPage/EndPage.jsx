@@ -117,7 +117,7 @@ function EndPage() {
                 <img src={logo} className="logo-bahad13-end-page" />
 
                 <div className="end-page-header">
-                    כל הכבוד!! סיימתם את הלומדה :)
+                    כל הכבוד, סיימתם את הלומדה :)
                 </div>
 
                 <div className="end-opening-page-header">עכשיו אתם מומחים בנושאים:</div>

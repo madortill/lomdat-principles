@@ -236,6 +236,7 @@ import Tabs from "../../slides/Tabs/Tabs";
 import Popup from "../../components/Popup/Popup";
 import DriveSimulationSlide from "../../slides/DriveSimulationSlide/DriveSimulationSlide";
 import AfterStopSimulation from "../../slides/AfterStopSimulation/AfterStopSimulation";
+import TwoRoadSigns from "../../slides/TwoRoadSigns/TwoRoadSigns";
 import NavbarLearning from "../../components/NavbarLearning/NavbarLearning";
 
 function LearningPage2() {
@@ -397,6 +398,9 @@ function LearningPage2() {
             }}
           />
         );
+
+      case "twoRoadSigns":
+        return <TwoRoadSigns data={customSlide} />;
 
       default:
         return null;
