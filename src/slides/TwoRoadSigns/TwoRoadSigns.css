@@ -10,12 +10,12 @@
     position: relative;
 
     width: clamp(190px, 25vw, 380px);
-    
+
     color: white;
     padding: 1vh;
     margin: 1.5vw;
     border-radius: 6px;
-    
+
     display: flex;
     /* align-items: center; */
     /* justify-content: center; */
@@ -35,7 +35,7 @@
     border-radius: 12px;
     padding: 2vh;
 
-    
+
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -78,11 +78,23 @@
 }
 
 .slide-text-signs-number {
-    border: white solid 2px;
+    /* border: white solid 2px;
     border-radius: 50%;
     font-size: 3vh;
-    width: 10%;
+    width: 10%; */
     /* position: fixed; */
     /* left: 50%;
     transform: translateX(-50%); */
+    border: white solid 2px;
+    border-radius: 50%;
+    font-size: 3vh;
+
+    width: 4vh;
+    height: 4vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto;
 }

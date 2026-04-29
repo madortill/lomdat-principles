@@ -1,0 +1,58 @@
+
+  /* @keyframes glow {
+    from {
+      filter: drop-shadow(0 0 5px #fff);
+    }
+    to {
+      filter: drop-shadow(0 0 20px #00e0ff);
+    }
+  } */
+
+  .sign-img {
+    width: 18vw;
+    margin: 1vw;
+    opacity: 0.3;
+    pointer-events: none;
+    transition: 0.3s;
+  }
+  
+  .sign-img.available {
+    opacity: 0.7;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  
+  .sign-img.active {
+    opacity: 1;
+    pointer-events: auto;
+    cursor: pointer;
+    animation: glow-fill 0.8s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow-fill {
+    from {
+        filter: drop-shadow(0 0 5px rgba(179, 54, 81, 0.5));
+        transform: scale(1);
+    }
+    to {
+        filter: drop-shadow(0 0 20px rgba(167, 40, 68, 0.9));
+        transform: scale(1.05);
+    }
+}
+
+
+.sign-wrapper {
+    position: relative;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: green;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 14px;
+    z-index: 2;
+  }

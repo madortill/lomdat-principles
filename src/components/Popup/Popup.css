@@ -183,3 +183,48 @@
     color: #CB4B44;
     font-weight: 520;
 }
+
+.popup-box-2-opendown {
+    background: white;
+    padding: 2rem 4rem;
+    border-radius: 20px;
+    /* width: min(500px, 90%); */
+    width: 50vw;
+    height: 70vh;
+    text-align: center;
+
+    animation: popIn 0.3s ease;
+    /* display: flex;
+    flex-direction: column;
+     */
+}
+
+.accordion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: first baseline;
+    padding: 2%;
+}
+
+.accordion-item {
+    color: white;
+    margin: 2%;
+    padding: 2%;
+    border-radius: 20px;
+    width: 10vw;
+    /* height: 5vh; */
+    cursor: pointer;
+    /* transition: left 0.8s cubic-bezier(0.25, 1, 0.5, 1); */
+    transition: transform 0.25s ease
+}
+
+.accordion-title {
+    font-weight: 600;
+    font-size: clamp(0.95rem, 0.7vw + 0.6vh, 1.2rem);
+}
+
+.accordion-content {
+    padding-top: 1.5vh;
+    font-size: clamp(0.90rem, 0.7vw + 0.6vh, 1.2rem);
+}
