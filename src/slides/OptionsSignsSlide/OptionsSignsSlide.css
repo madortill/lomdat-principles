@@ -8,12 +8,22 @@
     }
   } */
 
-  .sign-img {
+  .signs-on-road-imgs {
+    position: absolute;
+    bottom: 0%;
+    display: flex;
+    width: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    justify-content: space-between;
+}
+.sign-img {
     width: 18vw;
     margin: 1vw;
     opacity: 0.3;
     pointer-events: none;
     transition: 0.3s;
+    width: 15vw;
   }
   
   .sign-img.available {
@@ -35,8 +45,8 @@
         transform: scale(1);
     }
     to {
-        filter: drop-shadow(0 0 20px rgba(167, 40, 68, 0.9));
-        transform: scale(1.05);
+        filter: drop-shadow(0 0 15px rgba(167, 40, 68, 0.9));
+        transform: scale(1.005);
     }
 }
 
@@ -47,12 +57,12 @@
   
   .checkmark {
     position: absolute;
-    top: 0;
+    top: 2%;
     right: 0;
-    background: green;
+    background: #4CAF50;
     color: white;
     border-radius: 50%;
-    padding: 5px;
-    font-size: 14px;
+    padding: 0.5rem;
+    font-size: 2vh;
     z-index: 2;
   }

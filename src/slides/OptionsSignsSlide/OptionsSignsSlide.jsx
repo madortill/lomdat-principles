@@ -38,7 +38,7 @@ function OptionsSignsSlide({ data, unlock }) {
       <h2 className="slide-title2">{data.header}</h2>
       <p className="slide-text2">{data.introText}</p>
 
-      <div className="signs-on-road">
+      <div className="signs-on-road-imgs">
         {data.options.map((option, index) => {
           const isVisited = visited.includes(index);
           const isActive = index === activeIndex;

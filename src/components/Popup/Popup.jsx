@@ -1,21 +1,45 @@
 import { useState } from "react";
 import "./Popup.css";
 
-function AccordionItem({ item }) {
+function AccordionItem({ item, onOpen }) {
   const [open, setOpen] = useState(false);
 
-  return (
-    <div className="accordion-item" style={{ backgroundColor: item.color }}>
-      <div className="accordion-title" onClick={() => setOpen(!open)}>
-        {item.title}
-      </div>
+  const toggle = () => {
+    setOpen(!open);
+    if (!open) onOpen?.(); // רק בפתיחה
+  };
 
-      {open && <div className="accordion-content">{item.text}</div>}
+  return (
+    <div
+      className={`accordion-item ${open ? "open" : ""}`}
+      style={{ backgroundColor: item.color }}
+      onClick={toggle}
+    >
+      {/* <div className="accordion-title">{item.title}</div> */}
+      <div className="accordion-title">
+        {item.title}
+        {/* <div className={`arrow ${open ? "open" : ""}`}>⌄</div> */}
+      </div>
+      <div className={`arrow ${open ? "open" : ""}`}>v</div>
+
+      <div className="accordion-content">{item.text}</div>
     </div>
   );
 }
 
 function Popup({ data, onClose }) {
+  const [openedItems, setOpenedItems] = useState([]);
+
+  const handleToggle = (index) => {
+    setOpenedItems((prev) => (prev.includes(index) ? prev : [...prev, index]));
+  };
+
+  // const allOpened = openedItems.length === data.opens.length;
+  const allOpened =
+    data.who === "openDown" &&
+    data.opens &&
+    openedItems.length === data.opens.length;
+
   return (
     <div className="popup-overlay-2">
       {data.who === "circles" && (
@@ -122,17 +146,27 @@ function Popup({ data, onClose }) {
         <div className="popup-box-2-opendown">
           <h2 className="slide-title2 popup-title-2">{data.title}</h2>
           <p className="slide-text2">{data.text}</p>
-          <p className="slide-text2">{data.text2}</p>
+          <p className="slide-text2 popup-text2-opendown">{data.text2}</p>
 
           <div className="accordion">
             {data.opens.map((item, i) => (
-              <AccordionItem key={i} item={item} />
+              <AccordionItem
+                key={i}
+                item={item}
+                onOpen={() => handleToggle(i)}
+              />
             ))}
           </div>
 
-          {data.image && <img src={data.image} className="img-popup-2-drive" />}
+          {data.image && (
+            <img src={data.image} className="img-popup-2-opendown" />
+          )}
 
-          <button onClick={onClose} className="close-btn">
+          <button
+            onClick={onClose}
+            className="close-btn close-btn-popup"
+            disabled={!allOpened}
+          >
             {data.btn}
           </button>
         </div>
