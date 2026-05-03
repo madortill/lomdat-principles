@@ -7,30 +7,67 @@ function OptionsSignsSlide({ data, unlock }) {
   const [openPopup, setOpenPopup] = useState(null);
   const [visited, setVisited] = useState([]);
 
+  // const handleClick = (index) => {
+  //   const isVisited = visited.includes(index);
+  //   const isActive = index === activeIndex;
+
+  //   if (!isVisited && !isActive) return;
+
+  //   setOpenPopup(data.options[index].popup);
+
+  //   if (!isVisited) {
+  //     setVisited((prev) => [...prev, index]);
+  //   }
+  // };
+
   const handleClick = (index) => {
     const isVisited = visited.includes(index);
     const isActive = index === activeIndex;
 
+    // מאפשר ללחוץ רק אם זה האקטיבי הנוכחי או שכבר ביקרנו בו בעבר
     if (!isVisited && !isActive) return;
 
     setOpenPopup(data.options[index].popup);
 
+    // מוסיפים ל-visited רק אם זה חדש
     if (!isVisited) {
       setVisited((prev) => [...prev, index]);
     }
   };
 
+  // const handleClose = () => {
+  //   setOpenPopup(null);
+
+  //   const nextIndex = activeIndex + 1;
+
+  //   if (nextIndex < data.options.length) {
+  //     setActiveIndex(nextIndex);
+  //   } else {
+  //     setActiveIndex(-1);
+  //     unlock?.();
+  //   }
+  // };
+
   const handleClose = () => {
+    // שומרים את האינדקס שסגרנו לפני שמאפסים את הסטייט
+    const closedIndex = data.options.findIndex(
+      (opt) => opt.popup === openPopup
+    );
+
     setOpenPopup(null);
 
-    const nextIndex = activeIndex + 1;
+    // מקדמים את ה-activeIndex רק אם סגרנו את הסלייד שהיה אקטיבי
+    if (closedIndex === activeIndex) {
+      const nextIndex = activeIndex + 1;
 
-    if (nextIndex < data.options.length) {
-      setActiveIndex(nextIndex);
-    } else {
-      setActiveIndex(-1);
-      unlock?.();
+      if (nextIndex < data.options.length) {
+        setActiveIndex(nextIndex);
+      } else {
+        setActiveIndex(-1); // סיימנו את כולם
+        unlock?.();
+      }
     }
+    // אם לחצנו על משהו שכבר ביקרנו בו (isVisited), ה-activeIndex פשוט לא ישתנה
   };
 
   return (

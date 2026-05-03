@@ -247,11 +247,20 @@ function LearningPage2() {
   const [canProceed, setCanProceed] = useState(false);
   const [maxVisitedSlide, setMaxVisitedSlide] = useState(0);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [completedSlides, setCompletedSlides] = useState({});
 
   const navigate = useNavigate();
 
   const slide = slides[currentSlide];
   const prevSlide = slides[currentSlide - 1] || slide;
+
+  // פונקציה שמסמנת סלייד כהושלם
+  const markSlideAsComplete = (slideId) => {
+    setCompletedSlides((prev) => ({
+      ...prev,
+      [slideId]: true,
+    }));
+  };
 
   // מעבר קדימה
   const nextSlide = () => {
@@ -343,6 +352,21 @@ function LearningPage2() {
 
     setCanProceed(!lockedSlides.includes(slide.type));
   }, [slide]);
+  // useEffect(() => {
+  //   // אם הסלייד הנוכחי כבר נמצא ברשימת המושלמים - אפשר להמשיך מיד
+  //   if (completedSlides[slide.id]) {
+  //     setCanProceed(true);
+  //     return;
+  //   }
+  
+  //   // לוגיקה רגילה לסליידים חדשים
+  //   const interactionTypes = ["flipCards", "twoOptions", "driveTypes", "billBoard"];
+  //   if (interactionTypes.includes(slide.type)) {
+  //     setCanProceed(false);
+  //   } else {
+  //     setCanProceed(true);
+  //   }
+  // }, [slide, completedSlides]);
 
   // 🎯 פונקציה גמישה לרינדור סליידים
   const renderSlide = (customSlide = slide) => {
@@ -406,7 +430,10 @@ function LearningPage2() {
 
       case "optionsSignsSlide":
         return (
-          <OptionsSignsSlide data={customSlide} unlock={() => setCanProceed(true)} />
+          <OptionsSignsSlide
+            data={customSlide}
+            unlock={() => setCanProceed(true)}
+          />
         );
 
       default:

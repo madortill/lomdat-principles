@@ -9,8 +9,9 @@
 
 .signs-on-road-imgs {
   position: absolute;
-  bottom: 0%;
+  bottom: 15%;
   display: flex;
+  align-items:flex-start;
   width: 60%;
   left: 50%;
   transform: translateX(-50%);
@@ -18,7 +19,8 @@
 }
 
 .sign-img {
-  width: 18vw;
+  /* width: 18vw; */
+  height: 45vh;
   margin: 1vw;
   opacity: 0.3;
   pointer-events: none;

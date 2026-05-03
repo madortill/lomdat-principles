@@ -32,6 +32,7 @@ function LearningPage() {
   const navigate = useNavigate();
   const [maxVisitedSlide, setMaxVisitedSlide] = useState(0);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [completedSlides, setCompletedSlides] = useState({});
   // const isLastSlide = currentSlide === slides.length - 1;
 
   // const nextSlide = () => {
@@ -44,6 +45,14 @@ function LearningPage() {
 
   //     setCurrentSlide(prev => prev + 1);
   // };
+
+  // פונקציה שמסמנת סלייד כהושלם
+  const markSlideAsComplete = (slideId) => {
+    setCompletedSlides((prev) => ({
+      ...prev,
+      [slideId]: true,
+    }));
+  };
 
   const nextSlide = () => {
     const isLastSlide = currentSlide === slides.length - 1;
@@ -116,8 +125,12 @@ function LearningPage() {
         return (
           <FlipCardsSlide
             data={slide}
-            unlock={() => setCanProceed(true)}
+            unlock={() => {
+              setCanProceed(true);
+              markSlideAsComplete(slide.id);
+            }}
             setIsOverlayOpen={setIsOverlayOpen}
+            wasCompleted={!!completedSlides[slide.id]}
           />
         );
       case "vehicleTypes":
@@ -128,8 +141,12 @@ function LearningPage() {
         return (
           <TwoOptionsSlide
             data={slide}
-            unlock={() => setCanProceed(true)}
+            unlock={() => {
+              setCanProceed(true);
+              markSlideAsComplete(slide.id);
+            }}
             setIsOverlayOpen={setIsOverlayOpen}
+            wasCompleted={!!completedSlides[slide.id]} // זה חשוב!
           />
         );
       case "question":
@@ -143,13 +160,27 @@ function LearningPage() {
         );
       case "driveTypes":
         return (
-          <DriveTypesSlide data={slide} unlock={() => setCanProceed(true)} />
+          <DriveTypesSlide
+            data={slide}
+            unlock={() => {
+              setCanProceed(true);
+              markSlideAsComplete(slide.id);
+            }}
+            wasCompleted={!!completedSlides[slide.id]}
+          />
         );
       case "roadSign":
         return <RoadSign data={slide} />;
       case "billBoard":
         return (
-          <BillboardCarsSlide data={slide} unlock={() => setCanProceed(true)} />
+          <BillboardCarsSlide
+            data={slide}
+            unlock={() => {
+              setCanProceed(true);
+              markSlideAsComplete(slide.id);
+            }}
+            wasCompleted={!!completedSlides[slide.id]}
+          />
         );
       case "vehicleGame":
         return (
@@ -164,18 +195,39 @@ function LearningPage() {
     }
   };
 
+  // useEffect(() => {
+  //   if (
+  //     slide.type === "flipCards" ||
+  //     slide.type === "twoOptions" ||
+  //     slide.type === "driveTypes" ||
+  //     slide.type === "billBoard"
+  //   ) {
+  //     setCanProceed(false);
+  //   } else {
+  //     setCanProceed(true);
+  //   }
+  // }, [slide]);
+
   useEffect(() => {
-    if (
-      slide.type === "flipCards" ||
-      slide.type === "twoOptions" ||
-      slide.type === "driveTypes" ||
-      slide.type === "billBoard"
-    ) {
+    // אם הסלייד הנוכחי כבר נמצא ברשימת המושלמים - אפשר להמשיך מיד
+    if (completedSlides[slide.id]) {
+      setCanProceed(true);
+      return;
+    }
+
+    // לוגיקה רגילה לסליידים חדשים
+    const interactionTypes = [
+      "flipCards",
+      "twoOptions",
+      "driveTypes",
+      "billBoard",
+    ];
+    if (interactionTypes.includes(slide.type)) {
       setCanProceed(false);
     } else {
       setCanProceed(true);
     }
-  }, [slide]);
+  }, [slide, completedSlides]);
 
   return (
     <div className="learning-page">

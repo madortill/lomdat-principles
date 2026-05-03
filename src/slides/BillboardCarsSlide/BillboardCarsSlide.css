@@ -120,6 +120,7 @@
     align-items: center;
     justify-content: center;
     z-index: 31;
+    color: white;
 }
 
 .billboard-structure {

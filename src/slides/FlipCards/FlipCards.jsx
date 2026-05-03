@@ -126,11 +126,29 @@
 import { useState } from "react";
 import "./FlipCards.css";
 
-function FlipCardsSlide({ data, unlock, setIsOverlayOpen }) {
+function FlipCardsSlide({ data, unlock, setIsOverlayOpen, wasCompleted }) {
 
     const [zoomImg, setZoomImg] = useState(null);
     const [flipped, setFlipped] = useState(null);
-    const [opened, setOpened] = useState([]);
+    // const [opened, setOpened] = useState([]);
+
+    const [opened, setOpened] = useState(
+        wasCompleted ? data.cards.map((_, index) => index) : []
+    );
+
+    const handleCardClick = (index) => {
+        setFlipped(flipped === index ? null : index);
+
+        if (!opened.includes(index)) {
+            const newOpened = [...opened, index];
+            setOpened(newOpened);
+
+            // אם זה הכרטיס האחרון שנפתח, קוראים ל-unlock
+            if (newOpened.length === data.cards.length) {
+                unlock();
+            }
+        }
+    };
 
     return (
         <div className="flipcards-slide">
