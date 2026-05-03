@@ -2,11 +2,21 @@ import { useEffect, useState } from "react";
 import "./CarStopSlide.css";
 import car from "../../assets/car-on-the-side.svg";
 
-function CarStopSlide({ data, unlock }) {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [openedSteps, setOpenedSteps] = useState([]);
+function CarStopSlide({ data, unlock, wasCompleted }) {
+  // const [currentStep, setCurrentStep] = useState(0);
+  // const [openedSteps, setOpenedSteps] = useState([]);
 
   const steps = data?.steps ?? [];
+
+  // 2. איתחול הצעד הנוכחי: אם הושלם, אנחנו בצעד האחרון (אורך המערך)
+  const [currentStep, setCurrentStep] = useState(
+    wasCompleted ? steps.length : 0
+  );
+
+  // 3. איתחול הכרטיסים הפתוחים: אם הושלם, כולם פתוחים
+  const [openedSteps, setOpenedSteps] = useState(
+    wasCompleted ? steps.map((_, i) => i) : []
+  );
 
   // שליטה על מיקום הרכב (אחוזים)
   const carPositions = [
@@ -17,8 +27,8 @@ function CarStopSlide({ data, unlock }) {
     20, // השלט הכי שמאלי (4)
   ];
 
-  const carX =
-    carPositions[currentStep] ?? carPositions[carPositions.length - 1];
+  // אם סיימנו, המיקום יהיה האחרון ברשימה
+  const carX = carPositions[currentStep] ?? carPositions[carPositions.length - 1];
 
   function handleClick(i) {
     if (i !== currentStep) return;
@@ -32,8 +42,11 @@ function CarStopSlide({ data, unlock }) {
 
   useEffect(() => {
     if (!steps.length) return;
-    if (currentStep === steps.length) unlock?.();
-  }, [currentStep, steps.length]);
+    // רק אם זו הפעם הראשונה שמסיימים (לא היה completed לפני)
+    if (currentStep === steps.length && !wasCompleted) {
+      unlock?.();
+    }
+  }, [currentStep, steps.length, wasCompleted]);
 
   return (
     <div>
@@ -52,12 +65,14 @@ function CarStopSlide({ data, unlock }) {
           className="car-overlay-img"
           style={{
             left: `${carX}%`,
+            transition: wasCompleted ? "none" : "left 0.6s ease-out" // ביטול אנימציה בכניסה חוזרת
           }}
         />
 
         {steps.map((step, i) => {
+          // אם סיימנו בעבר, כולם נחשבים done
           const isActive = i === currentStep;
-          const isDone = i < currentStep;
+          const isDone = wasCompleted || i < currentStep;
 
           return (
             <div key={i} className="step-wrapper-overlay">
@@ -72,7 +87,7 @@ function CarStopSlide({ data, unlock }) {
 
               {openedSteps.includes(i) && (
                 <div className="card-popup">
-                  <img src={step.img} />
+                  <img src={step.img} alt="" />
                   <div>{step.text}</div>
                 </div>
               )}

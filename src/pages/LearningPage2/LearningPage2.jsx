@@ -239,6 +239,7 @@ import AfterStopSimulation from "../../slides/AfterStopSimulation/AfterStopSimul
 import TwoRoadSigns from "../../slides/TwoRoadSigns/TwoRoadSigns";
 import OptionsSignsSlide from "../../slides/OptionsSignsSlide/OptionsSignsSlide";
 import NavbarLearning from "../../components/NavbarLearning/NavbarLearning";
+import ConfettiSlide from "../../components/ConfettiSlide/ConfettiSlide";
 
 function LearningPage2() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -260,6 +261,11 @@ function LearningPage2() {
       ...prev,
       [slideId]: true,
     }));
+  };
+
+  const closePopupAndMoveOn = () => {
+    markSlideAsComplete(slide.id); // מסמן את הפופאפ הספציפי כהושלם
+    nextSlide(); // עובר לסלייד הבא
   };
 
   // מעבר קדימה
@@ -340,8 +346,29 @@ function LearningPage2() {
   //     setCanProceed(true);
   //   }
   // }, [slide]);
+
+  // useEffect(() => {
+  //   const lockedSlides = [
+  //     "driveTypes",
+  //     "carStop",
+  //     "tabs",
+  //     "driveSimulation",
+  //     "afterStopCarSimulation",
+  //     "optionsSignsSlide",
+  //   ];
+
+  //   setCanProceed(!lockedSlides.includes(slide.type));
+  // }, [slide]);
+
   useEffect(() => {
-    const lockedSlides = [
+    // 1. אם הסלייד כבר הושלם - שחררי את הכפתור מיד
+    if (completedSlides[slide.id]) {
+      setCanProceed(true);
+      return;
+    }
+
+    // 2. רשימת סליידים שדורשים אינטראקציה בפרק 2
+    const interactionTypes = [
       "driveTypes",
       "carStop",
       "tabs",
@@ -350,15 +377,19 @@ function LearningPage2() {
       "optionsSignsSlide",
     ];
 
-    setCanProceed(!lockedSlides.includes(slide.type));
-  }, [slide]);
+    if (interactionTypes.includes(slide.type)) {
+      setCanProceed(false);
+    } else {
+      setCanProceed(true);
+    }
+  }, [slide, completedSlides]);
   // useEffect(() => {
   //   // אם הסלייד הנוכחי כבר נמצא ברשימת המושלמים - אפשר להמשיך מיד
   //   if (completedSlides[slide.id]) {
   //     setCanProceed(true);
   //     return;
   //   }
-  
+
   //   // לוגיקה רגילה לסליידים חדשים
   //   const interactionTypes = ["flipCards", "twoOptions", "driveTypes", "billBoard"];
   //   if (interactionTypes.includes(slide.type)) {
@@ -386,11 +417,27 @@ function LearningPage2() {
 
       case "carStop":
         return (
-          <CarStopSlide data={customSlide} unlock={() => setCanProceed(true)} />
+          <CarStopSlide
+            data={customSlide}
+            unlock={() => {
+              setCanProceed(true);
+              markSlideAsComplete(customSlide.id);
+            }}
+            wasCompleted={!!completedSlides[customSlide.id]} // שליחת הזיכרון
+          />
         );
 
       case "tabs":
-        return <Tabs data={customSlide} unlock={() => setCanProceed(true)} />;
+        return (
+          <Tabs
+            data={customSlide}
+            unlock={() => {
+              setCanProceed(true);
+              markSlideAsComplete(customSlide.id);
+            }}
+            wasCompleted={!!completedSlides[customSlide.id]}
+          />
+        );
 
       case "popup":
         return null;
@@ -432,7 +479,19 @@ function LearningPage2() {
         return (
           <OptionsSignsSlide
             data={customSlide}
-            unlock={() => setCanProceed(true)}
+            unlock={() => {
+              setCanProceed(true);
+              markSlideAsComplete(customSlide.id);
+            }}
+            wasCompleted={!!completedSlides[customSlide.id]} // מוסיפים את הזיכרון
+          />
+        );
+
+      case "confetti":
+        return (
+          <ConfettiSlide
+            data={customSlide}
+            onComplete={nextSlide} // כשנגמר הזמן, הוא קורא ל-nextSlide
           />
         );
 
@@ -506,10 +565,20 @@ function LearningPage2() {
       )}
 
       {/* 🎯 פופאפ */}
-      {slide.type === "popup" && (
+      {/* {slide.type === "popup" && (
         <>
           <div>{renderSlide(prevSlide)}</div>
           <Popup data={slide} onClose={nextSlide} />
+        </>
+      )} */}
+      {slide.type === "popup" && (
+        <>
+          <div>{renderSlide(prevSlide)}</div>
+          <Popup
+            data={slide}
+            onClose={closePopupAndMoveOn} // משתמשים בפונקציה החדשה
+            wasCompleted={!!completedSlides[slide.id]}
+          />
         </>
       )}
 
@@ -518,7 +587,8 @@ function LearningPage2() {
         slide.type !== "question" &&
         slide.type !== "popup" &&
         slide.type !== "driveSimulation" &&
-        slide.type !== "afterStopCarSimulation" && (
+        slide.type !== "afterStopCarSimulation" && 
+        slide.type !== "confetti" && (
           <div className="nav-buttons-2-container">
             <img
               src={nextBtn}

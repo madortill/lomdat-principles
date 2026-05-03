@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Popup.css";
 
-function AccordionItem({ item, onOpen }) {
+function AccordionItem({ item, onOpen, isRead }) {
+  // הוספנו isRead
   const [open, setOpen] = useState(false);
 
   const toggle = () => {
     setOpen(!open);
-    if (!open) onOpen?.(); // רק בפתיחה
+    if (!open) onOpen?.();
   };
 
   return (
@@ -15,30 +16,38 @@ function AccordionItem({ item, onOpen }) {
       style={{ backgroundColor: item.color }}
       onClick={toggle}
     >
-      {/* <div className="accordion-title">{item.title}</div> */}
       <div className="accordion-title">
+        {/* מציג וי אם הפריט נקרא */}
+        {isRead && <span className="read-v">✔ </span>}
         {item.title}
-        {/* <div className={`arrow ${open ? "open" : ""}`}>⌄</div> */}
       </div>
       <div className={`arrow ${open ? "open" : ""}`}>v</div>
-
       <div className="accordion-content">{item.text}</div>
     </div>
   );
 }
 
-function Popup({ data, onClose }) {
+function Popup({ data, onClose, wasCompleted }) {
   const [openedItems, setOpenedItems] = useState([]);
+
+  useEffect(() => {
+    if (wasCompleted && data.opens) {
+      setOpenedItems(data.opens.map((_, i) => i));
+    } else {
+      setOpenedItems([]);
+    }
+  }, [wasCompleted, data]);
 
   const handleToggle = (index) => {
     setOpenedItems((prev) => (prev.includes(index) ? prev : [...prev, index]));
   };
 
-  // const allOpened = openedItems.length === data.opens.length;
   const allOpened =
-    data.who === "openDown" &&
-    data.opens &&
-    openedItems.length === data.opens.length;
+    wasCompleted ||
+    (data.who === "openDown" &&
+      data.opens &&
+      openedItems.length === data.opens.length) ||
+    data.who !== "openDown"; // אם זה לא אקורדיון, הכפתור תמיד זמין
 
   return (
     <div className="popup-overlay-2">
@@ -146,7 +155,6 @@ function Popup({ data, onClose }) {
         <div className="popup-box-2-opendown">
           <h2 className="slide-title2 popup-title-2">{data.title}</h2>
           <p className="slide-text2">{data.text}</p>
-          <p className="slide-text2 popup-text2-opendown">{data.text2}</p>
 
           <div className="accordion">
             {data.opens.map((item, i) => (
@@ -154,13 +162,10 @@ function Popup({ data, onClose }) {
                 key={i}
                 item={item}
                 onOpen={() => handleToggle(i)}
+                isRead={openedItems.includes(i)} // מעבירים את המצב לילד
               />
             ))}
           </div>
-
-          {data.image && (
-            <img src={data.image} className="img-popup-2-opendown" />
-          )}
 
           <button
             onClick={onClose}
