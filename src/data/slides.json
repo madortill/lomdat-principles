@@ -77,8 +77,8 @@
                 "image": "media/undai-i20.jpeg"
             },
             {
-                "title": "סיאט איביזה",
-                "image": "media/siat-ibiza.jpeg"
+                "title": "קיה סטוניק",
+                "image": "media/kia-stonik.jpg"
             },
             {
                 "title": "סקודה קאמיק",
@@ -102,8 +102,8 @@
         "image": "media/saal.svg",
         "vehicles": [
             {
-                "title": "צ'רי (סא''ל בעל 3 ילדים ומעלה)",
-                "image": "media/cherry.jpeg",
+                "title": "אווטלנדר (סא''ל בעל 3 ילדים ומעלה)",
+                "image": "media/outlander.jpeg",
                 "extraImage": "media/baby.svg"
             },
             {
@@ -161,7 +161,7 @@
         "id": 8,
         "type": "twoOptions",
         "header": "זיהוי רכב צבאי - ניידות מצ",
-        "text": "ניידות מחולקות ל2 קבוצות - סמויות וגלויות. לחצו על הצקלקות כדי לזהות!",
+        "text": "ניידות מחולקות ל2 קבוצות - סמויות וגלויות. לחצו על הצ'קלקות כדי לזהות!",
         "options": [
             {
                 "type": "images",
@@ -172,9 +172,9 @@
                     "title": "ניידות גלויות",
                     "text": "לחצו על התמונות כדי להגדיל",
                     "image": [
-                        "media/police-car-galui-2.jpeg",
-                        "media/police-car-galui-3.jpeg",
-                        "media/police-car-galui-4.jpeg"
+                        "media/police-car-galui-5.jpeg",
+                        "media/police-car-galui-6.jpeg",
+                        "media/police-car-galui-7.jpeg"
                     ]
                 }
             },
@@ -203,27 +203,15 @@
         "vehicles": [
             {
                 "title": "",
-                "image": "media/brown-car-1.jpeg"
+                "image": "media/brown-car-7.jpeg"
             },
             {
                 "title": "",
-                "image": "media/brown-car-2.jpeg"
+                "image": "media/brown-car-8.jpeg"
             },
             {
                 "title": "",
-                "image": "media/brown-car-3.jpeg"
-            },
-            {
-                "title": "",
-                "image": "media/brown-car-4.jpeg"
-            },
-            {
-                "title": "",
-                "image": "media/brown-car-5.jpeg"
-            },
-            {
-                "title": "",
-                "image": "media/brown-car-6.jpeg"
+                "image": "media/brown-car-9.jpeg"
             }
         ]
     },
@@ -299,7 +287,7 @@
                 "correct": false
             },
             {
-                "text": "מדבקת לחץ אוויר, מדבקת דלקן, אישור בדיקת חורף",
+                "text": "מדבקת לחץ אוויר, מדבקת דלקן, נוהל 6",
                 "correct": true
             },
             {
@@ -477,7 +465,7 @@
                 "title": "הדלקת אורות",
                 "text": [
                     "בכל ימות השנה ייסעו כל נהגי כלי הרכב הצבאיים החומים באורות דולקים במהלך כל שעות היממה.",
-                    "רכב לבן מחויב בהדלקת אורות בשעות הערב בלבד. סייג לכך היא עונת החורף שבה מחויה להדליק אורות בכל שעות היום, בדיוק כמו פקודות התעבורה על רכבים שאינם צה”ליים."
+                    "רכב לבן מחויב בהדלקת אורות בשעות הערב בלבד. סייג לכך היא עונת החורף שבה מחויב להדליק אורות בכל שעות היום, בדיוק כמו פקודות התעבורה על רכבים שאינם צה”ליים."
                 ],
                 "img": "media/brown-car-instr-1.svg"
             },
