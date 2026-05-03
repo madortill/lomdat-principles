@@ -119,6 +119,7 @@
     align-items: center;
 
     gap: 0.5vh;
+    font-weight: 600;
 }
 
 /* .vehicle-card{
@@ -208,7 +209,9 @@
     /* right: -10%; */
     right: -5%;
     /* width: 40%; */
-    width: 30%;
+    width: 35%;
+    /* box-shadow: 0 0rem 3rem rgba(0, 0, 0, 0.3); */
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.20));
 }
 
 /* תמונה נוספת */

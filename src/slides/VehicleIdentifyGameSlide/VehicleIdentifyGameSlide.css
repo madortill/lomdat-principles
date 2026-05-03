@@ -29,6 +29,10 @@
     font-size: clamp(1rem, 1vw + .4vh, 1.3rem);
 }
 
+.title-game {
+    color: #002446;
+}
+
 .start-btn-cars {
     background-color: #CB4B44;
     background-color: #002446;

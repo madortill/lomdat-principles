@@ -1,5 +1,4 @@
-
-  /* @keyframes glow {
+/* @keyframes glow {
     from {
       filter: drop-shadow(0 0 5px #fff);
     }
@@ -8,61 +7,63 @@
     }
   } */
 
-  .signs-on-road-imgs {
-    position: absolute;
-    bottom: 0%;
-    display: flex;
-    width: 60%;
-    left: 50%;
-    transform: translateX(-50%);
-    justify-content: space-between;
+.signs-on-road-imgs {
+  position: absolute;
+  bottom: 0%;
+  display: flex;
+  width: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: space-between;
 }
+
 .sign-img {
-    width: 18vw;
-    margin: 1vw;
-    opacity: 0.3;
-    pointer-events: none;
-    transition: 0.3s;
-    width: 15vw;
-  }
-  
-  .sign-img.available {
-    opacity: 0.7;
-    pointer-events: auto;
-    cursor: pointer;
-  }
-  
-  .sign-img.active {
-    opacity: 1;
-    pointer-events: auto;
-    cursor: pointer;
-    animation: glow-fill 0.8s ease-in-out infinite alternate;
+  width: 18vw;
+  margin: 1vw;
+  opacity: 0.3;
+  pointer-events: none;
+  transition: 0.3s;
+  width: 15vw;
+}
+
+.sign-img.available {
+  opacity: 0.7;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.sign-img.active {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
+  animation: glow-fill 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes glow-fill {
+  from {
+    filter: drop-shadow(0 0 5px rgba(179, 54, 81, 0.5));
+    transform: scale(1);
   }
 
-  @keyframes glow-fill {
-    from {
-        filter: drop-shadow(0 0 5px rgba(179, 54, 81, 0.5));
-        transform: scale(1);
-    }
-    to {
-        filter: drop-shadow(0 0 15px rgba(167, 40, 68, 0.9));
-        transform: scale(1.005);
-    }
+  to {
+    filter: drop-shadow(0 0 15px rgba(167, 40, 68, 0.9));
+    transform: scale(1.005);
+  }
 }
 
 
 .sign-wrapper {
-    position: relative;
-  }
-  
-  .checkmark {
-    position: absolute;
-    top: 2%;
-    right: 0;
-    background: #4CAF50;
-    color: white;
-    border-radius: 50%;
-    padding: 0.5rem;
-    font-size: 2vh;
-    z-index: 2;
-  }
+  position: relative;
+}
+
+.checkmark {
+  position: absolute;
+  top: 2%;
+  right: 0;
+  background: #4CAF50;
+  color: white;
+  border-radius: 50%;
+  padding: 0.5rem;
+  font-size: 2vh;
+  z-index: 2;
+}

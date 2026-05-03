@@ -26,6 +26,7 @@ max-width:90%;
     font-size: clamp(1.3rem, 1.8vw + 0.8vh, 2.2rem);
     font-family: "Agam";
     text-align: center;
+    color: #95193D;
 }
 
 .normal-slide-header {
