@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import "./Popup.css";
 
 function AccordionItem({ item, onOpen, isRead }) {
-  // הוספנו isRead
   const [open, setOpen] = useState(false);
-
   const toggle = () => {
     setOpen(!open);
     if (!open) onOpen?.();
@@ -13,33 +11,33 @@ function AccordionItem({ item, onOpen, isRead }) {
   return (
     <div
       className={`accordion-item ${open ? "open" : ""}`}
-      style={{ backgroundColor: item.color }}
+      style={{ backgroundColor: item.color, position: "relative" }} // הוספנו relative כדי שהוי יתמקם נכון
       onClick={toggle}
     >
-      <div className="accordion-title">
-        {/* מציג וי אם הפריט נקרא */}
-        {isRead && <span className="read-v">✔ </span>}
-        {item.title}
-      </div>
+      {/* כאן השינוי - הוי העיצובי */}
+      {isRead && <div className="card-check">✔</div>}
+
+      <div className="accordion-title">{item.title}</div>
       <div className={`arrow ${open ? "open" : ""}`}>v</div>
       <div className="accordion-content">{item.text}</div>
     </div>
   );
 }
 
-function Popup({ data, onClose, wasCompleted }) {
-  const [openedItems, setOpenedItems] = useState([]);
+function Popup({ data, onClose, wasCompleted, initialOpenedItems = [] }) {
+  // מאתחלים את הסטייט עם מה שקיבלנו מהאבא (או מערך ריק כברירת מחדל)
+  const [openedItems, setOpenedItems] = useState(initialOpenedItems);
 
   useEffect(() => {
     if (wasCompleted && data.opens) {
       setOpenedItems(data.opens.map((_, i) => i));
-    } else {
-      setOpenedItems([]);
     }
   }, [wasCompleted, data]);
 
   const handleToggle = (index) => {
-    setOpenedItems((prev) => (prev.includes(index) ? prev : [...prev, index]));
+    if (!openedItems.includes(index)) {
+      setOpenedItems((prev) => [...prev, index]);
+    }
   };
 
   const allOpened =
@@ -47,15 +45,15 @@ function Popup({ data, onClose, wasCompleted }) {
     (data.who === "openDown" &&
       data.opens &&
       openedItems.length === data.opens.length) ||
-    data.who !== "openDown"; // אם זה לא אקורדיון, הכפתור תמיד זמין
+    data.who !== "openDown";
 
   return (
     <div className="popup-overlay-2">
+      {/* סוג: circles */}
       {data.who === "circles" && (
         <div className="popup-box-2">
           <h2 className="slide-title2 popup-title-2">{data.header}</h2>
           <p className="slide-text2">{data.text1}</p>
-
           <div className="circles">
             {data.circles.map((c, i) => (
               <div
@@ -68,21 +66,20 @@ function Popup({ data, onClose, wasCompleted }) {
               </div>
             ))}
           </div>
-
           <p className="info slide-text2 special-text">{data.info}</p>
-
-          <button onClick={onClose} className="close-btn">
+          {/* עדכון: שולחים את openedItems בסגירה */}
+          <button onClick={() => onClose(openedItems)} className="close-btn">
             {data.btn}
           </button>
         </div>
       )}
 
+      {/* סוג: drive */}
       {data.who === "drive" && (
         <div className="popup-box-2-drive">
           <h2 className="slide-title2 popup-title-2 popup-title-2-drive">
             {data.header}
           </h2>
-
           <div
             className={`popup-drive-2-content ${
               data.img ? "popup-drive-2-content-text" : ""
@@ -93,27 +90,26 @@ function Popup({ data, onClose, wasCompleted }) {
             )}
             <p className="slide-text2">{data.text1}</p>
           </div>
-
-          <button onClick={onClose} className="close-btn">
+          <button onClick={() => onClose(openedItems)} className="close-btn">
             {data.btn}
           </button>
         </div>
       )}
 
+      {/* סוג: dont */}
       {data.who === "dont" && (
         <div className="popup-box-2-dont">
           <div
             className="slide-title2 popup-title-2 popup-title-2-drive popup-title-2-dont"
             dangerouslySetInnerHTML={{ __html: data.header }}
           ></div>
-
           <div className="donts">
             {data.donts.map((d, i) => (
               <div key={i} className="dont">
                 <div className="slide-text-popup-dont slide-text-popup-dont-header">
                   {d.header}
                 </div>
-                <img src={d.img} className="donts-img" />
+                <img src={d.img} className="donts-img" alt="" />
                 <div
                   className="slide-text-popup-dont"
                   dangerouslySetInnerHTML={{ __html: d.text }}
@@ -121,19 +117,18 @@ function Popup({ data, onClose, wasCompleted }) {
               </div>
             ))}
           </div>
-
-          <button onClick={onClose} className="close-btn">
+          <button onClick={() => onClose(openedItems)} className="close-btn">
             {data.btn}
           </button>
         </div>
       )}
 
+      {/* סוג: regular */}
       {data.who === "regular" && (
         <div className="popup-box-2">
           <h2 className="slide-title2 popup-title-2 popup-title-2-drive">
             {data.title}
           </h2>
-
           <div
             className={`popup-drive-2-content ${
               data.image ? "popup-drive-2-content-text" : ""
@@ -144,31 +139,29 @@ function Popup({ data, onClose, wasCompleted }) {
             )}
             <p className="slide-text2">{data.text}</p>
           </div>
-
-          <button onClick={onClose} className="close-btn">
+          <button onClick={() => onClose(openedItems)} className="close-btn">
             {data.btn}
           </button>
         </div>
       )}
 
+      {/* סוג: openDown (אקורדיון) */}
       {data.who === "openDown" && (
         <div className="popup-box-2-opendown">
           <h2 className="slide-title2 popup-title-2">{data.title}</h2>
           <p className="slide-text2">{data.text}</p>
-
           <div className="accordion">
             {data.opens.map((item, i) => (
               <AccordionItem
                 key={i}
                 item={item}
                 onOpen={() => handleToggle(i)}
-                isRead={openedItems.includes(i)} // מעבירים את המצב לילד
+                isRead={openedItems.includes(i)}
               />
             ))}
           </div>
-
           <button
-            onClick={onClose}
+            onClick={() => onClose(openedItems)} // שולחים את הרשימה המלאה בסיום
             className="close-btn close-btn-popup"
             disabled={!allOpened}
           >
@@ -176,6 +169,8 @@ function Popup({ data, onClose, wasCompleted }) {
           </button>
         </div>
       )}
+
+      {/* הוסר הכפתור הכללי שהיה כאן וגרם לכפל כפתורים */}
     </div>
   );
 }

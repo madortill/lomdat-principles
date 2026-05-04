@@ -3,42 +3,45 @@ import "./OptionsSignsSlide.css";
 import Popup from "../../components/Popup/Popup";
 
 function OptionsSignsSlide({ data, unlock, wasCompleted }) {
-  // אם הושלם - ה-activeIndex הוא -1 (הכל פתוח), אם לא - מתחילים מ-0
   const [activeIndex, setActiveIndex] = useState(wasCompleted ? -1 : 0);
   const [openPopup, setOpenPopup] = useState(null);
-
-  // אם הושלם - מערך ה-visited מלא בכל התמרורים
   const [visited, setVisited] = useState(
     wasCompleted ? data.options.map((_, i) => i) : []
   );
+  const [popupMemory, setPopupMemory] = useState({});
 
   const handleClick = (index) => {
     const isVisited = visited.includes(index);
     const isActive = index === activeIndex;
-
     if (!isVisited && !isActive) return;
 
-    setOpenPopup(data.options[index].popup);
+    // שומרים רק את הנתונים הנחוצים
+    setOpenPopup({ ...data.options[index].popup, optionIndex: index });
 
     if (!isVisited) {
       setVisited((prev) => [...prev, index]);
     }
   };
 
-  const handleClose = () => {
-    const closedIndex = data.options.findIndex(
-      (opt) => opt.popup === openPopup
-    );
+  // הפונקציה הזו מקבלת את האינדקס ואת הסטייט של הפופאפ שנסגר
+  const handleClose = (optionIndex, openedItemsFromPopup) => {
+    if (optionIndex !== undefined) {
+      setPopupMemory((prev) => ({
+        ...prev,
+        [optionIndex]: openedItemsFromPopup,
+      }));
+    }
+
     setOpenPopup(null);
 
-    if (closedIndex === activeIndex) {
+    // בדיקה אם סיימנו את הסלייד הנוכחי כדי לפתוח את הבא
+    if (optionIndex === activeIndex) {
       const nextIndex = activeIndex + 1;
-
       if (nextIndex < data.options.length) {
         setActiveIndex(nextIndex);
       } else {
         setActiveIndex(-1);
-        if (!wasCompleted) unlock?.(); // משחרר רק בפעם הראשונה
+        if (!wasCompleted) unlock?.();
       }
     }
   };
@@ -52,15 +55,22 @@ function OptionsSignsSlide({ data, unlock, wasCompleted }) {
           const isVisited = visited.includes(index);
           const isActive = index === activeIndex;
 
+          // בתוך ה-map של ה-options:
           return (
-            <div key={index} className="sign-wrapper">
-              {isVisited && <div className="checkmark">✔</div>}
+            <div
+              key={index}
+              className="sign-wrapper"
+              style={{ position: "relative" }}
+            >
+              {/* כאן השינוי - החלפת ה-div של ה-checkmark */}
+              {isVisited && <div className="card-check">✔</div>}
+
               <img
                 src={option.image}
                 className={`sign-img 
-                    ${isVisited ? "available" : ""}
-                    ${isActive && !isVisited ? "active" : ""}
-                  `}
+          ${isVisited ? "available" : ""}
+          ${isActive && !isVisited ? "active" : ""}
+        `}
                 onClick={() => handleClick(index)}
               />
             </div>
@@ -68,11 +78,22 @@ function OptionsSignsSlide({ data, unlock, wasCompleted }) {
         })}
       </div>
 
-      {openPopup && (
+      {/* {openPopup && (
         <Popup
           data={openPopup}
           onClose={handleClose}
           // חשוב: אם הסלייד כולו הושלם, גם הפופאפים שלו נחשבים מושלמים
+          wasCompleted={wasCompleted}
+        />
+      )} */}
+      {openPopup && (
+        <Popup
+          data={openPopup}
+          // כאן התיקון: הפופאפ עצמו ישלח לנו את ה-items כשהוא קורא ל-onClose
+          onClose={(itemsFromPopup) =>
+            handleClose(openPopup.optionIndex, itemsFromPopup)
+          }
+          initialOpenedItems={popupMemory[openPopup.optionIndex] || []}
           wasCompleted={wasCompleted}
         />
       )}

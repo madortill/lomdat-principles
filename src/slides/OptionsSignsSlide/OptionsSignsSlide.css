@@ -11,7 +11,7 @@
   position: absolute;
   bottom: 15%;
   display: flex;
-  align-items:flex-start;
+  align-items: flex-start;
   width: 60%;
   left: 50%;
   transform: translateX(-50%);
@@ -68,4 +68,23 @@
   padding: 0.5rem;
   font-size: 2vh;
   z-index: 2;
+}
+
+.card-check {
+  position: absolute;
+  z-index: 20;
+  top: -8px;
+  right: -8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #4CAF50;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  font-size: 14px;
+  /* גודל הוי עצמו */
 }
