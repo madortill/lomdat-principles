@@ -89,7 +89,7 @@ function QuestionSlide({ data, onCorrect, isLastQuestion }) {
         </div>
 
         <button
-          className={`continue-btn ${!isCorrect ? "disabled" : ""}`}
+          className={`continue-btn-ques ${!isCorrect ? "disabled" : ""}`}
           onClick={isCorrect ? onCorrect : null}
         >
           המשך

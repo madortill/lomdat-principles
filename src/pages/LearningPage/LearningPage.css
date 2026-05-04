@@ -28,28 +28,28 @@ body,
     width: 16%;
     left: 8%;
     top: 4%;
-    animation: cloudMove 15s linear infinite alternate;
+    animation: cloudMove 12s linear infinite alternate;
 }
 
 .big-cloud-learning-page-right {
     width: 16%;
     right: 8%;
     top: 4%;
-    animation: cloudMove 13s linear infinite alternate;
+    animation: cloudMove 10s linear infinite alternate;
 }
 
 .small-cloud-learning-page-left {
     width: 12%;
     left: 2%;
     top: 35%;
-    animation: cloudMove 20s linear infinite alternate;
+    animation: cloudMove 17s linear infinite alternate;
 }
 
 .small-cloud-learning-page-right {
     width: 12%;
     right: 2%;
     top: 35%;
-    animation: cloudMove 18s linear infinite alternate;
+    animation: cloudMove 15s linear infinite alternate;
 }
 
 @keyframes cloudMove {

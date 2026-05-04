@@ -8,6 +8,7 @@ import SmallCloud from "../../assets/cloud-small.svg";
 import logo from "../../assets/logo.png";
 import tillWhiteLogo from "../../assets/till_whitelogo.svg";
 import carFront from "../../assets/car-front.svg";
+import chapterNextBtn from "../../assets/chapter-next-btn.svg";
 import nextBtn from "../../assets/next-btn.svg";
 import backBtn from "../../assets/back-btn.svg";
 import sign from "../../assets/sign-photos.svg";
@@ -34,6 +35,8 @@ function LearningPage({ progress, setProgress }) {
   const [firstLoad, setFirstLoad] = useState(true);
   const [canProceed, setCanProceed] = useState(false);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+
+  const isLastSlide = currentSlide === slides.length - 1;
 
   // const [currentSlide, setCurrentSlide] = useState(0);
   // const [maxVisitedSlide, setMaxVisitedSlide] = useState(0);
@@ -126,7 +129,7 @@ function LearningPage({ progress, setProgress }) {
     { title: "סוגי נסיעות", slideIndex: 14 },
     { title: "הוראות לרכב חום", slideIndex: 18 },
     { title: "הוראות לרכב אישי", slideIndex: 19 },
-    { title: "סיכום", slideIndex: 21 },
+    { title: "מעבר לפרק הבא", slideIndex: 21 },
   ];
 
   const renderSlide = () => {
@@ -289,7 +292,7 @@ function LearningPage({ progress, setProgress }) {
         slide.type !== "vehicleGame" && (
           <div className="nav-buttons-container">
             <img
-              src={nextBtn}
+              src={isLastSlide ? chapterNextBtn : nextBtn}
               onClick={canProceed ? nextSlide : null}
               className={`btn-nav ${!canProceed ? "disabled" : ""}`}
             />

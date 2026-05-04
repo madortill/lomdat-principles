@@ -118,8 +118,8 @@
     position: fixed;
     top: -70%;
  
-    width: 110vw;
-    height: 130vh;
+    width: 101vw;
+    height: 125vh;
 
     background: rgba(0, 0, 0, 0.5);
 
@@ -131,8 +131,12 @@
     pointer-events: all;
     backdrop-filter: blur(6px);
 
-    left: 50%;
-    transform: translateX(-50%);
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+
+    /* width: 105vw;
+    height: 105vh; */
+
 }
 
 

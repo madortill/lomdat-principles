@@ -88,7 +88,7 @@ function Popup({ data, onClose, wasCompleted, initialOpenedItems = [] }) {
             {data.img && (
               <img src={data.img} alt="img" className="img-popup-2-drive" />
             )}
-            <p className="slide-text2">{data.text1}</p>
+            <p className={`slide-text2 ${data.side ? "slide-text2-on-right" : ""}`}>{data.text1}</p>
           </div>
           <button onClick={() => onClose(openedItems)} className="close-btn">
             {data.btn}
@@ -137,7 +137,7 @@ function Popup({ data, onClose, wasCompleted, initialOpenedItems = [] }) {
             {data.image && (
               <img src={data.image} alt="img" className="img-popup-2-drive" />
             )}
-            <p className="slide-text2">{data.text}</p>
+            <p className={`slide-text2 ${data.side && "slide-text2-on-right"}`}>{data.text}</p>
           </div>
           <button onClick={() => onClose(openedItems)} className="close-btn">
             {data.btn}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./DriveSimulationSlide.css";
 import Popup from "../../components/Popup/Popup";
 
@@ -9,6 +9,7 @@ import backBtn from "../../assets/back-btn-2.svg";
 
 function DriveSimulationSlide({ data, unlock }) {
   const [stage, setStage] = useState(0);
+  const [canClickNext, setCanClickNext] = useState(true);
 
   const STAGES = {
     INTRO: 0,
@@ -51,6 +52,21 @@ function DriveSimulationSlide({ data, unlock }) {
         break;
     }
   };
+
+  useEffect(() => {
+    if (stage === STAGES.INTRO) {
+      setCanClickNext(true);
+      return;
+    }
+
+    setCanClickNext(false);
+
+    const timer = setTimeout(() => {
+      setCanClickNext(true);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [stage]);
 
   return (
     <div className={`drive-slide-2 stage-${stage}`}>
@@ -111,7 +127,11 @@ function DriveSimulationSlide({ data, unlock }) {
           stage === STAGES.DRIVE ||
           stage === STAGES.SIDE ||
           stage === STAGES.END) && (
-          <img src={nextBtn} className="btn-nav" onClick={handleNext} />
+          <img
+            src={nextBtn}
+            className={`btn-nav ${!canClickNext ? "disabled" : ""}`}
+            onClick={canClickNext ? handleNext : null}
+          />
         )}
         <img src={backBtn} className="btn-nav" onClick={handleBack} />
       </div>

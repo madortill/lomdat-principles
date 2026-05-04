@@ -241,6 +241,7 @@
                 "image": "media2/stop-sign.svg",
                 "popup": {
                     "who": "regular",
+                    "side": true,
                     "title": "עצירת כלי רכב",
                     "text": "עצירה של רכב במקום שאינו מסכן את משתמשי הדרך או את התנועה, העצירה תתקיים על מנת לבצע אכיפה בצורה זהירה ומקצועית.",
                     "image": "media2/stop-sign.svg",

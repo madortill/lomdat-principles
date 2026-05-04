@@ -140,6 +140,7 @@ import backBtn from "../../assets/back-btn-2.svg";
 function AfterStopCarSimulation({ data, unlock }) {
   const [stage, setStage] = useState(0);
   const [isWriting, setIsWriting] = useState(false);
+  const [canClickNext, setCanClickNext] = useState(true);
 
   const STAGES = {
     INTRO: 0,
@@ -161,6 +162,21 @@ function AfterStopCarSimulation({ data, unlock }) {
     } else {
       setIsWriting(false);
     }
+  }, [stage]);
+
+  useEffect(() => {
+    if (stage === STAGES.INTRO) {
+      setCanClickNext(true); // בפתיחה מאופשר
+      return;
+    }
+
+    setCanClickNext(false);
+
+    const timer = setTimeout(() => {
+      setCanClickNext(true);
+    }, 1500);
+
+    return () => clearTimeout(timer);
   }, [stage]);
 
   const getOfficerImage = () => {
@@ -268,7 +284,11 @@ function AfterStopCarSimulation({ data, unlock }) {
 
       {/* כפתורים */}
       <div className="nav-buttons-2-container">
-        <img src={nextBtn} className="btn-nav" onClick={handleNext} />
+        <img
+          src={nextBtn}
+          className={`btn-nav ${!canClickNext ? "disabled" : ""}`}
+          onClick={canClickNext ? handleNext : null}
+        />
         <img src={backBtn} className="btn-nav" onClick={handleBack} />
       </div>
     </div>

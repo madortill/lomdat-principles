@@ -349,3 +349,12 @@
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
     font-size: 14px; /* גודל הוי עצמו */
 }
+
+.slide-text2-on-right {
+    text-align: right;
+}
+
+.slide-text2-on-right {
+    text-align: right;
+    margin-right: 2vw;
+  }

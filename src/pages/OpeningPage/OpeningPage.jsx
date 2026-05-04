@@ -103,7 +103,7 @@ function OpeningPage() {
                         <div className="about-section">
                             <strong>מומחי תוכן:</strong>
                             <span>סגן עדן רוקח</span>
-                            <span>סמל שיר אשר לוי</span>
+                            <span>סמל שירה אשר לוי</span>
                         </div>
 
                         <div className="about-section">
@@ -113,7 +113,7 @@ function OpeningPage() {
 
                         <div className="about-section">
                             <strong>גרסה:</strong>
-                            <span>מרץ 2026</span>
+                            <span>מאי 2026</span>
                         </div>
 
                     </div>
