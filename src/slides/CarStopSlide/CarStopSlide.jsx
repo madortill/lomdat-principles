@@ -3,20 +3,18 @@ import "./CarStopSlide.css";
 import car from "../../assets/car-on-the-side.svg";
 
 function CarStopSlide({ data, unlock, wasCompleted }) {
-  // const [currentStep, setCurrentStep] = useState(0);
-  // const [openedSteps, setOpenedSteps] = useState([]);
-
   const steps = data?.steps ?? [];
 
-  // 2. איתחול הצעד הנוכחי: אם הושלם, אנחנו בצעד האחרון (אורך המערך)
+  // איתחול הצעד והכרטיסים
   const [currentStep, setCurrentStep] = useState(
     wasCompleted ? steps.length : 0
   );
-
-  // 3. איתחול הכרטיסים הפתוחים: אם הושלם, כולם פתוחים
   const [openedSteps, setOpenedSteps] = useState(
     wasCompleted ? steps.map((_, i) => i) : []
   );
+
+  // חדש: משתנה שעוזר לנו לדעת אם אנחנו "רק נכנסנו" לסלייד
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   // שליטה על מיקום הרכב (אחוזים)
   const carPositions = [
@@ -28,11 +26,14 @@ function CarStopSlide({ data, unlock, wasCompleted }) {
   ];
 
   // אם סיימנו, המיקום יהיה האחרון ברשימה
-  const carX = carPositions[currentStep] ?? carPositions[carPositions.length - 1];
+  const carX =
+    carPositions[currentStep] ?? carPositions[carPositions.length - 1];
 
   function handleClick(i) {
     if (i !== currentStep) return;
 
+    // ברגע שיש לחיצה, אנחנו כבר לא בטעינה ראשונית, האנימציה צריכה לעבוד
+    setIsInitialLoad(false);
     setCurrentStep((p) => p + 1);
 
     setTimeout(() => {
@@ -42,11 +43,17 @@ function CarStopSlide({ data, unlock, wasCompleted }) {
 
   useEffect(() => {
     if (!steps.length) return;
-    // רק אם זו הפעם הראשונה שמסיימים (לא היה completed לפני)
     if (currentStep === steps.length && !wasCompleted) {
       unlock?.();
     }
   }, [currentStep, steps.length, wasCompleted]);
+
+  // אפקט קטן כדי "לשחרר" את מצב הטעינה אחרי שנייה,
+  // כדי שאם המשתמש חוזר אחורה וקדימה זה יתאפס נכון
+  useEffect(() => {
+    const timer = setTimeout(() => setIsInitialLoad(false), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div>
@@ -65,12 +72,16 @@ function CarStopSlide({ data, unlock, wasCompleted }) {
           className="car-overlay-img"
           style={{
             left: `${carX}%`,
-            transition: wasCompleted ? "none" : "left 0.6s ease-out" // ביטול אנימציה בכניסה חוזרת
+            /* השינוי כאן: האנימציה תבוטל רק אם אנחנו בטעינה ראשונה 
+                 וגם השאלה כבר הושלמה בעבר. 
+                 ברגע שמתחילים ללחוץ, isInitialLoad הופך ל-false והאנימציה חוזרת.
+              */
+            transition:
+              isInitialLoad && wasCompleted ? "none" : "left 0.6s ease-out",
           }}
         />
 
         {steps.map((step, i) => {
-          // אם סיימנו בעבר, כולם נחשבים done
           const isActive = i === currentStep;
           const isDone = wasCompleted || i < currentStep;
 

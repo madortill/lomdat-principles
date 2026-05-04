@@ -169,8 +169,12 @@ function LearningPage({ progress, setProgress }) {
           <QuestionSlide
             key={slide.id}
             data={slide}
-            onCorrect={nextSlide}
+            onCorrect={() => {
+              markSlideAsComplete(slide.id); // 1. סימון השאלה כהושלמה בסטייט הכללי
+              nextSlide(); // 2. מעבר לסלייד הבא
+            }}
             isLastQuestion={currentSlide === slides.length - 1}
+            wasCompleted={!!completed[slide.id]} // 3. בדיקה אם השאלה כבר נפתרה בעבר
           />
         );
       case "driveTypes":

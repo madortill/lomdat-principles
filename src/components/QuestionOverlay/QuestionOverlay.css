@@ -206,3 +206,14 @@
     max-height: 25vh;
     object-fit: contain;
 }
+
+.answer.locked {
+    cursor: default;
+    pointer-events: none; /* מונע לחיצות נוספות */
+}
+
+.continue-btn-ques.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
