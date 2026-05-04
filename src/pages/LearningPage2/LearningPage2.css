@@ -59,3 +59,16 @@
 .till-logo-black-end-page {
     z-index: 20;
 }
+
+/* .quick-back-btn {
+    border-radius: 12px;
+    font-family: "Agam";
+    background-color: #E8A7A7;
+    color: black;
+    border: none;
+    border-radius: 2vw;
+    cursor: pointer;
+    font-size: clamp(1.2rem, 0.8vw + 0.7rem, 1.6rem);
+    padding: clamp(0.1rem, 0.1vw, 0.3rem) clamp(1.5rem, 1.8vw, 2.5rem);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+} */

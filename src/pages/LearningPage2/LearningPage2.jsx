@@ -1,234 +1,22 @@
-// import { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// import slides from "../../data/slides-chapter2.json";
-// import "./LearningPage2.css";
-
-// import BigCloud from "../../assets/cloud-big.svg";
-// import SmallCloud from "../../assets/cloud-small.svg";
-// import logo from "../../assets/logo.png";
-// import nextBtn from "../../assets/next-btn-2.svg";
-// import backBtn from "../../assets/back-btn-2.svg";
-// import garageSVG from "../../assets/Shutter.svg";
-
-// import road from "../../assets/road.svg";
-// import car from "../../assets/car-on-the-side.svg";
-// import tillBlackLogo from "../../assets/till_blacklogo.svg";
-// import bushLeft from "../../assets/bush-left.svg";
-// import bushRight from "../../assets/bush-right.svg";
-
-// import NormalSlide from "../../slides/NormalSlide/NormalSlide";
-// import QuestionSlide from "../../components/QuestionOverlay/QuestionOverlay";
-// import CarStopSlide from "../../slides/CarStopSlide/CarStopSlide";
-// import NavbarLearning from "../../components/NavbarLearning/NavbarLearning";
-// import Tabs from "../../slides/Tabs/Tabs";
-
-// function LearningPage2() {
-//   const [currentSlide, setCurrentSlide] = useState(0);
-//   const [showGarage, setShowGarage] = useState(false);
-//   const [firstLoad, setFirstLoad] = useState(true);
-//   const [canProceed, setCanProceed] = useState(false);
-//   const navigate = useNavigate();
-//   const [maxVisitedSlide, setMaxVisitedSlide] = useState(0);
-//   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-//   // const isLastSlide = currentSlide === slides.length - 1;
-
-//   // const nextSlide = () => {
-//   //     const isLastSlide = currentSlide === slides.length - 1;
-
-//   //     if (isLastSlide) {
-//   //         navigate("/end");
-//   //         return;
-//   //     }
-
-//   //     setCurrentSlide(prev => prev + 1);
-//   // };
-
-//   const nextSlide = () => {
-//     const isLastSlide = currentSlide === slides.length - 1;
-
-//     if (isLastSlide) {
-//       navigate("/end");
-//       return;
-//     }
-
-//     const next = currentSlide + 1;
-
-//     setCurrentSlide(next);
-//     setMaxVisitedSlide((prev) => Math.max(prev, next));
-//   };
-
-//   // const prevSlide = () => {
-//   //     if (currentSlide > 0) setCurrentSlide(currentSlide - 1);
-//   // };
-
-//   const prevSlide = () => {
-//     let prevIndex = currentSlide - 1;
-
-//     while (prevIndex >= 0 && slides[prevIndex].type === "question") {
-//       prevIndex--;
-//     }
-
-//     if (prevIndex >= 0) {
-//       setCurrentSlide(prevIndex);
-//     }
-//   };
-
-//   useEffect(() => {
-//     if (!slides || slides.length === 0) {
-//       navigate("/end");
-//     }
-//   }, []);
-
-//   const slide = slides[currentSlide];
-
-//   if (!slide) return null;
-
-//   // בדיקה אם הגראז' צריך להופיע או להיעלם
-//   useEffect(() => {
-//     if (!slide) return;
-
-//     if (!firstLoad) {
-//       setShowGarage(slide.type === "question");
-//     } else {
-//       if (slide.type === "question") setShowGarage(true);
-//       setFirstLoad(false);
-//     }
-//   }, [slide]);
-
-//   const sectionsLearning1 = [
-//     { title: "רכב חום", slideIndex: 0 },
-//     { title: "רכב לבן", slideIndex: 1 },
-//     { title: "זיהוי רכב צבאי", slideIndex: 2 },
-//     { title: "סוגי רכבים", slideIndex: 12 },
-//     { title: "סוגי נסיעות", slideIndex: 16 },
-//     { title: "הוראות לרכב חום", slideIndex: 20 },
-//     { title: "הוראות לרכב אישי", slideIndex: 21 },
-//     { title: "סיכום", slideIndex: 22 },
-//   ];
-
-//   const renderSlide = () => {
-//     switch (slide.type) {
-//       case "normal":
-//         return <NormalSlide data={slide} />;
-//       case "question":
-//         return (
-//           <QuestionSlide
-//             key={slide.id}
-//             data={slide}
-//             onCorrect={nextSlide}
-//             isLastQuestion={currentSlide === slides.length - 1}
-//           />
-//         );
-//       case "carStop":
-//         return <CarStopSlide data={slide} unlock={() => setCanProceed(true)} />;
-//       case "tabs":
-//         return <Tabs data={slide} unlock={() => setCanProceed(true)} />;
-//       default:
-//         return null;
-//     }
-//   };
-
-//   useEffect(() => {
-//     if (slide.type === "driveTypes" || slide.type === "carStop") {
-//       setCanProceed(false);
-//     } else {
-//       setCanProceed(true);
-//     }
-//   }, [slide]);
-
-//   return (
-//     <div className="learning-page2">
-//       <div className="ground-area">
-//         <div className="road-wrapper-2">
-//           <img src={road} className="road-opening-page" />
-
-//           {/* <CarStopSlide data={slide} unlock={setCanProceed} /> */}
-//           <img src={bushLeft} className="bush-left-2" />
-//           <img src={bushRight} className="bush-right-2" />
-
-//           {/* <img src={car} className={`car-opening-page`} /> */}
-//         </div>
-//       </div>
-
-//       {/* עננים ולוגו */}
-//       <img src={logo} className="logo-bahad13-learning-pages" />
-//       <img src={BigCloud} className="big-cloud-learning-page-left" />
-//       <img src={BigCloud} className="big-cloud-learning-page-right" />
-//       <img src={SmallCloud} className="small-cloud-opening-page-left" />
-//       <img src={SmallCloud} className="small-cloud-opening-page-right" />
-//       <img
-//         src={tillBlackLogo}
-//         alt="till logo"
-//         className="till-logo-black-end-page"
-//       />
-
-//       <NavbarLearning
-//         sectionsLearning1={sectionsLearning1}
-//         currentSlide={currentSlide}
-//         setCurrentSlide={setCurrentSlide}
-//         maxVisitedSlide={maxVisitedSlide}
-//       />
-
-//       {/* רקע הגראז' עם אנימציה לירידה/עלייה */}
-//       <div
-//         className={`garage-wrapper ${showGarage ? "slide-down" : "slide-up"}`}
-//       >
-//         <img src={garageSVG} className="garage-bg" alt="garage" />
-//       </div>
-
-//       {/* סלייד רגיל */}
-//       {slide.type !== "question" && (
-//         // <div className="slide-wrapper-2">
-//         <div className="">{renderSlide()}</div>
-//         // </div>
-//       )}
-
-//       {/* כפתורי ניווט לסליידים רגילים */}
-//       {!isOverlayOpen && slide.type !== "question" && (
-//         <div className="nav-buttons-2-container">
-//           <img
-//             src={nextBtn}
-//             onClick={canProceed ? nextSlide : null}
-//             className={`btn-nav ${!canProceed ? "disabled" : ""}`}
-//           />
-//           {currentSlide > 0 && slide.type !== "question" && (
-//             <img src={backBtn} onClick={prevSlide} className="btn-nav" />
-//           )}
-//         </div>
-//       )}
-
-//       {/* Overlay לשאלות */}
-//       {slide.type === "question" && (
-//         <div className="question-overlay-container">
-//           {/* <div className="garage-wrapper">
-//                         <img src={garageSVG} className="garage-bg" alt="garage" />
-//                     </div> */}
-//           {renderSlide()}
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default LearningPage2;
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import slides from "../../data/slides-chapter2.json";
 import "./LearningPage2.css";
 
+// Assets
 import BigCloud from "../../assets/cloud-big.svg";
 import SmallCloud from "../../assets/cloud-small.svg";
 import logo from "../../assets/logo.png";
 import nextBtn from "../../assets/next-btn-2.svg";
 import backBtn from "../../assets/back-btn-2.svg";
+import chapterBackBtn from "../../assets/chapter-back-btn.svg";
 import garageSVG from "../../assets/Shutter.svg";
-
 import road from "../../assets/road.svg";
 import tillBlackLogo from "../../assets/till_blacklogo.svg";
 import bushLeft from "../../assets/bush-left.svg";
 import bushRight from "../../assets/bush-right.svg";
 
+// Slides & Components
 import NormalSlide from "../../slides/NormalSlide/NormalSlide";
 import QuestionSlide from "../../components/QuestionOverlay/QuestionOverlay";
 import CarStopSlide from "../../slides/CarStopSlide/CarStopSlide";
@@ -241,133 +29,71 @@ import OptionsSignsSlide from "../../slides/OptionsSignsSlide/OptionsSignsSlide"
 import NavbarLearning from "../../components/NavbarLearning/NavbarLearning";
 import ConfettiSlide from "../../components/ConfettiSlide/ConfettiSlide";
 
-function LearningPage2() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+function LearningPage2({ progress, setProgress, ch1Max }) {
+  const navigate = useNavigate();
+
+  // שימוש בנתונים מה-App
+  const { currentSlide, maxVisited, completed } = progress;
+
   const [showGarage, setShowGarage] = useState(false);
   const [firstLoad, setFirstLoad] = useState(true);
   const [canProceed, setCanProceed] = useState(false);
-  const [maxVisitedSlide, setMaxVisitedSlide] = useState(0);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-  const [completedSlides, setCompletedSlides] = useState({});
-
-  const navigate = useNavigate();
 
   const slide = slides[currentSlide];
-  const prevSlide = slides[currentSlide - 1] || slide;
+  const prevSlideData = slides[currentSlide - 1] || slide;
 
-  // פונקציה שמסמנת סלייד כהושלם
+  // פונקציות עדכון גלובליות
+  const updateProgress = (newData) => {
+    setProgress((prev) => ({ ...prev, ...newData }));
+  };
+
   const markSlideAsComplete = (slideId) => {
-    setCompletedSlides((prev) => ({
-      ...prev,
-      [slideId]: true,
-    }));
+    updateProgress({
+      completed: { ...completed, [slideId]: true },
+    });
   };
 
-  const closePopupAndMoveOn = () => {
-    markSlideAsComplete(slide.id); // מסמן את הפופאפ הספציפי כהושלם
-    nextSlide(); // עובר לסלייד הבא
-  };
-
-  // מעבר קדימה
   const nextSlide = () => {
-    const isLastSlide = currentSlide === slides.length - 1;
-
-    if (isLastSlide) {
+    if (currentSlide === slides.length - 1) {
       navigate("/end");
       return;
     }
-
     const next = currentSlide + 1;
-    setCurrentSlide(next);
-    setMaxVisitedSlide((prev) => Math.max(prev, next));
+    updateProgress({
+      currentSlide: next,
+      maxVisited: Math.max(maxVisited, next),
+    });
   };
-
-  // מעבר אחורה (מדלג על שאלות)
-  // const prevSlideHandler = () => {
-  //   let prevIndex = currentSlide - 1;
-
-  //   while (
-  //     (prevIndex >= 0 && slides[prevIndex].type === "question") ||
-  //     slides[prevIndex].type === "popup"
-  //   ) {
-  //     prevIndex--;
-  //   }
-
-  //   if (prevIndex >= 0) {
-  //     setCurrentSlide(prevIndex);
-  //   }
-  // };
 
   const prevSlideHandler = () => {
     let prevIndex = currentSlide - 1;
-
-    // הגדרה ברורה של סוגים שרוצים לדלג עליהם
     const skipTypes = ["question", "popup"];
-
-    // כל עוד אנחנו בטווח והסוג נמצא ברשימת הדילוגים
     while (prevIndex >= 0 && skipTypes.includes(slides[prevIndex].type)) {
       prevIndex--;
     }
-
     if (prevIndex >= 0) {
-      setCurrentSlide(prevIndex);
+      updateProgress({ currentSlide: prevIndex });
     }
   };
 
+  // פונקציות עזר לפופאפים וניווט
+  const closePopupAndMoveOn = () => {
+    markSlideAsComplete(slide.id);
+    nextSlide();
+  };
+
+  const setCurrentSlideFromNav = (index) => {
+    updateProgress({ currentSlide: index });
+  };
+
+  // ניהול נעילת כפתור "הבא"
   useEffect(() => {
-    if (!slides || slides.length === 0) {
-      navigate("/end");
-    }
-  }, []);
-
-  // שליטה בגראז'
-  useEffect(() => {
-    if (!slide) return;
-
-    if (!firstLoad) {
-      setShowGarage(slide.type === "question");
-    } else {
-      if (slide.type === "question") setShowGarage(true);
-      setFirstLoad(false);
-    }
-  }, [slide]);
-
-  // שליטה בכפתור "הבא"
-  // useEffect(() => {
-  //   if (
-  //     slide.type === "driveTypes" ||
-  //     slide.type === "carStop" ||
-  //     slide.type === "tabs" ||
-  //     slide.type === "driveSimulation" ||
-  //     slide.type === "afterStopCarSimulation"
-  //   ) {
-  //     setCanProceed(false);
-  //   } else {
-  //     setCanProceed(true);
-  //   }
-  // }, [slide]);
-
-  // useEffect(() => {
-  //   const lockedSlides = [
-  //     "driveTypes",
-  //     "carStop",
-  //     "tabs",
-  //     "driveSimulation",
-  //     "afterStopCarSimulation",
-  //     "optionsSignsSlide",
-  //   ];
-
-  //   setCanProceed(!lockedSlides.includes(slide.type));
-  // }, [slide]);
-
-  useEffect(() => {
-    // 1. אם הסלייד כבר הושלם - שחררי את הכפתור מיד
-    if (completedSlides[slide.id]) {
+    if (completed[slide.id]) {
       setCanProceed(true);
       return;
     }
 
-    // 2. רשימת סליידים שדורשים אינטראקציה בפרק 2
     const interactionTypes = [
       "driveTypes",
       "carStop",
@@ -377,34 +103,34 @@ function LearningPage2() {
       "optionsSignsSlide",
     ];
 
-    if (interactionTypes.includes(slide.type)) {
-      setCanProceed(false);
+    setCanProceed(!interactionTypes.includes(slide.type));
+  }, [slide, completed]);
+
+  // שליטה באנימציית הגראז'
+  useEffect(() => {
+    if (!slide) return;
+    if (!firstLoad) {
+      setShowGarage(slide.type === "question");
     } else {
-      setCanProceed(true);
+      if (slide.type === "question") setShowGarage(true);
+      setFirstLoad(false);
     }
-  }, [slide, completedSlides]);
-  // useEffect(() => {
-  //   // אם הסלייד הנוכחי כבר נמצא ברשימת המושלמים - אפשר להמשיך מיד
-  //   if (completedSlides[slide.id]) {
-  //     setCanProceed(true);
-  //     return;
-  //   }
+  }, [slide]);
 
-  //   // לוגיקה רגילה לסליידים חדשים
-  //   const interactionTypes = ["flipCards", "twoOptions", "driveTypes", "billBoard"];
-  //   if (interactionTypes.includes(slide.type)) {
-  //     setCanProceed(false);
-  //   } else {
-  //     setCanProceed(true);
-  //   }
-  // }, [slide, completedSlides]);
+  // הגדרת הסקשנים הספציפיים לפרק 2
+  const sectionsLearning2 = [
+    { title: "הכללים לעצירת כלי רכב", slideIndex: 0 },
+    { title: "אופן העצירה במצב סטטי", slideIndex: 3 },
+    { title: "אופן העצירה במצב נסיעה", slideIndex: 6 },
+    { title: "פעולות השוטר הצבאי לאחר עצירת הרכב", slideIndex: 7 },
+    { title: "שימוש בסירנה", slideIndex: 9 },
+    { title: "עצירת כלי רכב והכוונות תנועה", slideIndex: 12 },
+  ];
 
-  // 🎯 פונקציה גמישה לרינדור סליידים
   const renderSlide = (customSlide = slide) => {
     switch (customSlide.type) {
       case "normal":
         return <NormalSlide data={customSlide} />;
-
       case "question":
         return (
           <QuestionSlide
@@ -414,7 +140,6 @@ function LearningPage2() {
             isLastQuestion={currentSlide === slides.length - 1}
           />
         );
-
       case "carStop":
         return (
           <CarStopSlide
@@ -423,10 +148,9 @@ function LearningPage2() {
               setCanProceed(true);
               markSlideAsComplete(customSlide.id);
             }}
-            wasCompleted={!!completedSlides[customSlide.id]} // שליחת הזיכרון
+            wasCompleted={!!completed[customSlide.id]}
           />
         );
-
       case "tabs":
         return (
           <Tabs
@@ -435,46 +159,32 @@ function LearningPage2() {
               setCanProceed(true);
               markSlideAsComplete(customSlide.id);
             }}
-            wasCompleted={!!completedSlides[customSlide.id]}
+            wasCompleted={!!completed[customSlide.id]}
           />
         );
-
-      case "popup":
-        return null;
-
       case "driveSimulation":
         return (
           <DriveSimulationSlide
             data={customSlide}
             unlock={(action) => {
-              if (action === "back") {
-                prevSlideHandler();
-              } else if (action === "finish") {
-                nextSlide();
-              } else {
-                setCanProceed(true);
-              }
+              if (action === "back") prevSlideHandler();
+              else if (action === "finish") nextSlide();
+              else setCanProceed(true);
             }}
           />
         );
-
       case "afterStopCarSimulation":
         return (
           <AfterStopSimulation
             data={customSlide}
             unlock={(action) => {
-              if (action === "back") {
-                prevSlideHandler();
-              } else {
-                nextSlide();
-              }
+              if (action === "back") prevSlideHandler();
+              else nextSlide();
             }}
           />
         );
-
       case "twoRoadSigns":
         return <TwoRoadSigns data={customSlide} />;
-
       case "optionsSignsSlide":
         return (
           <OptionsSignsSlide
@@ -483,124 +193,133 @@ function LearningPage2() {
               setCanProceed(true);
               markSlideAsComplete(customSlide.id);
             }}
-            wasCompleted={!!completedSlides[customSlide.id]} // מוסיפים את הזיכרון
+            wasCompleted={!!completed[customSlide.id]}
           />
         );
-
       case "confetti":
-        return (
-          <ConfettiSlide
-            data={customSlide}
-            onComplete={nextSlide} // כשנגמר הזמן, הוא קורא ל-nextSlide
-          />
-        );
-
+        return <ConfettiSlide data={customSlide} onComplete={nextSlide} />;
       default:
         return null;
     }
   };
 
-  const sectionsLearning1 = [
-    { title: "רכב חום", slideIndex: 0 },
-    { title: "רכב לבן", slideIndex: 1 },
-    { title: "זיהוי רכב צבאי", slideIndex: 2 },
-    { title: "סוגי רכבים", slideIndex: 12 },
-    { title: "סוגי נסיעות", slideIndex: 16 },
-    { title: "הוראות לרכב חום", slideIndex: 20 },
-    { title: "הוראות לרכב אישי", slideIndex: 21 },
-    { title: "סיכום", slideIndex: 22 },
-  ];
-
   if (!slide) return null;
 
   return (
     <div className="learning-page2">
+      {/* כפתור חזרה מהיר שמופיע רק בסלייד הראשון */}
+      {/* {currentSlide === 0 && (
+        <button
+          className="quick-back-btn"
+          onClick={() => navigate("/learning")}
+        >
+          חזור לפרק הקודם
+        </button>
+      )} */}
+
       {/* קרקע + כביש */}
       {slide.type !== "driveSimulation" &&
         slide.type !== "afterStopCarSimulation" && (
           <div className="ground-area">
             <div className="road-wrapper-2">
-              <img src={road} className="road-opening-page" />
-              <img src={bushLeft} className="bush-left-2" />
-              <img src={bushRight} className="bush-right-2" />
+              <img src={road} className="road-opening-page" alt="" />
+              <img src={bushLeft} className="bush-left-2" alt="" />
+              <img src={bushRight} className="bush-right-2" alt="" />
             </div>
           </div>
         )}
 
-      {/* רקע UI */}
-      <img src={logo} className="logo-bahad13-learning-pages" />
-      <img src={tillBlackLogo} className="till-logo-black-end-page" />
+      {/* UI Elements */}
+      <img src={logo} className="logo-bahad13-learning-pages" alt="logo" />
+      <img
+        src={tillBlackLogo}
+        className="till-logo-black-end-page"
+        alt="till"
+      />
+
       {slide.type !== "driveSimulation" && (
-        <div>
-          <img src={BigCloud} className="big-cloud-learning-page-left" />
-          <img src={BigCloud} className="big-cloud-learning-page-right" />
-          <img src={SmallCloud} className="small-cloud-opening-page-left" />
-          <img src={SmallCloud} className="small-cloud-opening-page-right" />
+        <div className="clouds-container">
+          <img src={BigCloud} className="big-cloud-learning-page-left" alt="" />
+          <img
+            src={BigCloud}
+            className="big-cloud-learning-page-right"
+            alt=""
+          />
+          <img
+            src={SmallCloud}
+            className="small-cloud-opening-page-left"
+            alt=""
+          />
+          <img
+            src={SmallCloud}
+            className="small-cloud-opening-page-right"
+            alt=""
+          />
         </div>
       )}
 
-      {/* ניווט */}
       <NavbarLearning
-        sectionsLearning1={sectionsLearning1}
+        title="אופן עצירת רכבים והכוונות תנועה"
+        sections={sectionsLearning2}
         currentSlide={currentSlide}
-        setCurrentSlide={setCurrentSlide}
-        maxVisitedSlide={maxVisitedSlide}
+        setCurrentSlide={setCurrentSlideFromNav}
+        maxVisitedSlide={maxVisited}
+        onBackToPrevChapter={() => navigate("/learning")}
       />
 
-      {/* גראז' */}
       <div
         className={`garage-wrapper ${showGarage ? "slide-down" : "slide-up"}`}
       >
-        <img src={garageSVG} className="garage-bg" />
+        <img src={garageSVG} className="garage-bg" alt="" />
       </div>
 
-      {/* ❓ שאלות */}
-      {slide.type === "question" && (
+      {/* רינדור תוכן הסלייד */}
+      {slide.type === "question" ? (
         <div className="question-overlay-container">{renderSlide()}</div>
-      )}
-
-      {/* 🎯 סלייד רגיל */}
-      {slide.type !== "question" && slide.type !== "popup" && (
-        <div>{renderSlide()}</div>
-      )}
-
-      {/* 🎯 פופאפ */}
-      {/* {slide.type === "popup" && (
+      ) : slide.type === "popup" ? (
         <>
-          <div>{renderSlide(prevSlide)}</div>
-          <Popup data={slide} onClose={nextSlide} />
-        </>
-      )} */}
-      {slide.type === "popup" && (
-        <>
-          <div>{renderSlide(prevSlide)}</div>
+          <div>{renderSlide(prevSlideData)}</div>
           <Popup
             data={slide}
-            onClose={closePopupAndMoveOn} // משתמשים בפונקציה החדשה
-            wasCompleted={!!completedSlides[slide.id]}
+            onClose={closePopupAndMoveOn}
+            wasCompleted={!!completed[slide.id]}
           />
         </>
+      ) : (
+        <div className="content-container">{renderSlide()}</div>
       )}
 
-      {/* כפתורים */}
+      {/* כפתורי ניווט */}
       {!isOverlayOpen &&
-        slide.type !== "question" &&
-        slide.type !== "popup" &&
-        slide.type !== "driveSimulation" &&
-        slide.type !== "afterStopCarSimulation" && 
-        slide.type !== "confetti" && (
+        ![
+          "question",
+          "popup",
+          "driveSimulation",
+          "afterStopCarSimulation",
+          "confetti",
+        ].includes(slide.type) && (
           <div className="nav-buttons-2-container">
             <img
               src={nextBtn}
               className={`btn-nav ${!canProceed ? "disabled" : ""}`}
               onClick={canProceed ? nextSlide : null}
+              alt="Next"
             />
             {currentSlide > 0 && (
               <img
                 src={backBtn}
                 onClick={prevSlideHandler}
                 className="btn-nav"
+                alt="Back"
               />
+            )}
+            {currentSlide === 0 && (
+              <img
+              src={chapterBackBtn}
+              onClick={() => navigate("/learning")}
+              className="btn-nav"
+              alt="Back"
+            />
             )}
           </div>
         )}

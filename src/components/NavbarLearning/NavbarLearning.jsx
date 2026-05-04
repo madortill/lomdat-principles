@@ -35,8 +35,8 @@
 
 //                             <div
 //                                 key={index}
-//                                 className={`navbar-item 
-//                                 ${locked ? "locked" : ""} 
+//                                 className={`navbar-item
+//                                 ${locked ? "locked" : ""}
 //                                 ${currentSlide === section.slideIndex ? "active" : ""}`}
 //                                 onClick={() => handleJump(section.slideIndex)}
 //                             >
@@ -58,17 +58,6 @@
 // }
 
 // export default NavbarLearning;
-
-
-
-
-
-
-
-
-
-
-
 
 // import { useState } from "react";
 // import "./NavbarLearning.css";
@@ -106,8 +95,8 @@
 
 //                             <div
 //                                 key={index}
-//                                 className={`plate 
-//                                 ${locked ? "locked" : ""} 
+//                                 className={`plate
+//                                 ${locked ? "locked" : ""}
 //                                 ${currentSlide === section.slideIndex ? "active" : ""}`}
 //                                 onClick={() => handleJump(section.slideIndex)}
 //                             >
@@ -136,86 +125,78 @@
 
 // export default NavbarLearning;
 
-
-
-
-
-
-
-
-
 import { useState, useRef, useEffect } from "react";
 import "./NavbarLearning.css";
 
-function NavbarLearning({ sectionsLearning1, currentSlide, setCurrentSlide, maxVisitedSlide }) {
+function NavbarLearning({
+  title,
+  sections,
+  currentSlide,
+  setCurrentSlide,
+  maxVisitedSlide,
+  onBackToPrevChapter,
+}) {
+  const [open, setOpen] = useState(false);
+  const activeRef = useRef(null);
 
-    const [open, setOpen] = useState(false);
-    const activeRef = useRef(null);
+  const handleJump = (slideIndex) => {
+    if (slideIndex > maxVisitedSlide) return;
 
-    const handleJump = (slideIndex) => {
-        if (slideIndex > maxVisitedSlide) return;
+    setCurrentSlide(slideIndex);
+    setOpen(false);
+  };
 
-        setCurrentSlide(slideIndex);
-        setOpen(false);
-    };
+  useEffect(() => {
+    if (activeRef.current) {
+      activeRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [currentSlide]);
 
-    useEffect(() => {
-        if (activeRef.current) {
-            activeRef.current.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-        }
-    }, [currentSlide]);
+  return (
+    <div className="learning-navbar">
+      <div className="navbar-toggle" onClick={() => setOpen(!open)}>
+        {title} {/* כותרת דינמית לפי הפרק */}
+      </div>
 
-    return (
-        <div className="learning-navbar">
-
+      {open && (
+        <div className="navbar-dropdown">
+          {/* כפתור חזרה לפרק קודם - יופיע רק אם העברנו את הפונקציה */}
+          {onBackToPrevChapter && (
             <div
-                className="navbar-toggle"
-                onClick={() => setOpen(!open)}
+              className="plate special-back-plate"
+              onClick={onBackToPrevChapter}
             >
-                זיהוי רכבים וסוגי נסיעות
+              <div className="plate-title">חזרה לפרק הקודם</div>
+              <div className="plate-il">IL</div>
             </div>
+          )}
 
-            {open && (
+          {sections.map((section, index) => {
+            const locked = section.slideIndex > maxVisitedSlide;
+            const isActive = currentSlide === section.slideIndex;
 
-                <div className="navbar-dropdown">
-
-                    {sectionsLearning1.map((section, index) => {
-
-                        const locked = section.slideIndex > maxVisitedSlide;
-                        const isActive = currentSlide === section.slideIndex;
-
-                        return (
-
-                            <div
-                                key={index}
-                                ref={isActive ? activeRef : null}
-                                className={`plate 
+            return (
+              <div
+                key={index}
+                ref={isActive ? activeRef : null}
+                className={`plate 
                                 ${locked ? "locked" : ""} 
                                 ${isActive ? "active" : ""}`}
-                                onClick={() => handleJump(section.slideIndex)}
-                            >
+                onClick={() => handleJump(section.slideIndex)}
+              >
+                <div className="plate-title">{section.title}</div>
 
-                                <div className="plate-title">
-                                    {section.title}
-                                </div>
-
-                                <div className="plate-il">IL</div>
-
-                            </div>
-
-                        )
-
-                    })}
-
-                </div>
-
-            )}
-
+                <div className="plate-il">IL</div>
+              </div>
+            );
+          })}
         </div>
-    );
+      )}
+    </div>
+  );
 }
 
 export default NavbarLearning;

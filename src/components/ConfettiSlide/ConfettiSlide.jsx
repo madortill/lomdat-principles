@@ -18,7 +18,7 @@ function ConfettiSlide({ data, onComplete }) {
           <div key={i} className={`confetti-piece piece-${i}`}></div>
         ))}
       </div>
-      <h1 className="confetti-title">כל הכבוד! סיימת את הפרק!</h1>
+      <h1 className="confetti-title">סיימת את הלומדה!</h1>
     </div>
   );
 }

@@ -24,15 +24,21 @@ import BillboardCarsSlide from "../../slides/BillboardCarsSlide/BillboardCarsSli
 import VehicleGameSlide from "../../slides/VehicleIdentifyGameSlide/VehicleIdentifyGameSlide";
 import NavbarLearning from "../../components/NavbarLearning/NavbarLearning";
 
-function LearningPage() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+function LearningPage({ progress, setProgress }) {
+  const navigate = useNavigate();
+
+  // const { currentSlide, maxVisitedSlide, completedSlides } = progress;
+  const { currentSlide, maxVisited, completed } = progress;
+
   const [showGarage, setShowGarage] = useState(false);
   const [firstLoad, setFirstLoad] = useState(true);
   const [canProceed, setCanProceed] = useState(false);
-  const navigate = useNavigate();
-  const [maxVisitedSlide, setMaxVisitedSlide] = useState(0);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-  const [completedSlides, setCompletedSlides] = useState({});
+
+  // const [currentSlide, setCurrentSlide] = useState(0);
+  // const [maxVisitedSlide, setMaxVisitedSlide] = useState(0);
+  // const [completedSlides, setCompletedSlides] = useState({});
+
   // const isLastSlide = currentSlide === slides.length - 1;
 
   // const nextSlide = () => {
@@ -46,26 +52,29 @@ function LearningPage() {
   //     setCurrentSlide(prev => prev + 1);
   // };
 
+  // פונקציה לעדכון הסטייט ב-App
+  const updateProgress = (newData) => {
+    setProgress((prev) => ({ ...prev, ...newData }));
+  };
+
   // פונקציה שמסמנת סלייד כהושלם
   const markSlideAsComplete = (slideId) => {
-    setCompletedSlides((prev) => ({
-      ...prev,
-      [slideId]: true,
-    }));
+    updateProgress({
+      completed: { ...completed, [slideId]: true },
+    });
   };
 
   const nextSlide = () => {
     const isLastSlide = currentSlide === slides.length - 1;
-
     if (isLastSlide) {
       navigate("/learning2");
       return;
     }
-
     const next = currentSlide + 1;
-
-    setCurrentSlide(next);
-    setMaxVisitedSlide((prev) => Math.max(prev, next));
+    updateProgress({
+      currentSlide: next,
+      maxVisited: Math.max(maxVisited, next),
+    });
   };
 
   // const prevSlide = () => {
@@ -74,14 +83,17 @@ function LearningPage() {
 
   const prevSlide = () => {
     let prevIndex = currentSlide - 1;
-
     while (prevIndex >= 0 && slides[prevIndex].type === "question") {
       prevIndex--;
     }
-
     if (prevIndex >= 0) {
-      setCurrentSlide(prevIndex);
+      updateProgress({ currentSlide: prevIndex });
     }
+  };
+
+  // פונקציה עבור הנאבבר כדי שיוכל לשנות סלייד
+  const setCurrentSlideFromNav = (index) => {
+    updateProgress({ currentSlide: index });
   };
 
   useEffect(() => {
@@ -111,10 +123,10 @@ function LearningPage() {
     { title: "רכב לבן", slideIndex: 1 },
     { title: "זיהוי רכב צבאי", slideIndex: 2 },
     { title: "סוגי רכבים", slideIndex: 12 },
-    { title: "סוגי נסיעות", slideIndex: 16 },
-    { title: "הוראות לרכב חום", slideIndex: 20 },
-    { title: "הוראות לרכב אישי", slideIndex: 21 },
-    { title: "סיכום", slideIndex: 22 },
+    { title: "סוגי נסיעות", slideIndex: 14 },
+    { title: "הוראות לרכב חום", slideIndex: 18 },
+    { title: "הוראות לרכב אישי", slideIndex: 19 },
+    { title: "סיכום", slideIndex: 21 },
   ];
 
   const renderSlide = () => {
@@ -130,7 +142,7 @@ function LearningPage() {
               markSlideAsComplete(slide.id);
             }}
             setIsOverlayOpen={setIsOverlayOpen}
-            wasCompleted={!!completedSlides[slide.id]}
+            wasCompleted={!!completed[slide.id]}
           />
         );
       case "vehicleTypes":
@@ -146,7 +158,7 @@ function LearningPage() {
               markSlideAsComplete(slide.id);
             }}
             setIsOverlayOpen={setIsOverlayOpen}
-            wasCompleted={!!completedSlides[slide.id]} // זה חשוב!
+            wasCompleted={!!completed[slide.id]} // זה חשוב!
           />
         );
       case "question":
@@ -166,7 +178,7 @@ function LearningPage() {
               setCanProceed(true);
               markSlideAsComplete(slide.id);
             }}
-            wasCompleted={!!completedSlides[slide.id]}
+            wasCompleted={!!completed[slide.id]}
           />
         );
       case "roadSign":
@@ -179,7 +191,7 @@ function LearningPage() {
               setCanProceed(true);
               markSlideAsComplete(slide.id);
             }}
-            wasCompleted={!!completedSlides[slide.id]}
+            wasCompleted={!!completed[slide.id]}
           />
         );
       case "vehicleGame":
@@ -210,7 +222,7 @@ function LearningPage() {
 
   useEffect(() => {
     // אם הסלייד הנוכחי כבר נמצא ברשימת המושלמים - אפשר להמשיך מיד
-    if (completedSlides[slide.id]) {
+    if (completed && completed[slide.id]) {
       setCanProceed(true);
       return;
     }
@@ -227,7 +239,7 @@ function LearningPage() {
     } else {
       setCanProceed(true);
     }
-  }, [slide, completedSlides]);
+  }, [slide, completed]);
 
   return (
     <div className="learning-page">
@@ -239,10 +251,11 @@ function LearningPage() {
       <img src={SmallCloud} className="small-cloud-opening-page-right" />
 
       <NavbarLearning
-        sectionsLearning1={sectionsLearning1}
+        title="זיהוי רכבים וסוגי נסיעות"
+        sections={sectionsLearning1} // אנחנו שולחים את זה כ-sections
         currentSlide={currentSlide}
-        setCurrentSlide={setCurrentSlide}
-        maxVisitedSlide={maxVisitedSlide}
+        setCurrentSlide={setCurrentSlideFromNav}
+        maxVisitedSlide={maxVisited} // שם המשתנה שיועבר לנאבבר
       />
 
       {(slide.id == "3" || slide.type === "vehicleTypes") && (

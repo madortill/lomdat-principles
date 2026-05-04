@@ -25,15 +25,43 @@ function App() {
     return <MobileBlocker />;
   }
 
+  // נתונים של פרק 1
+  const [ch1Progress, setCh1Progress] = useState({
+    currentSlide: 0,
+    maxVisited: 0,
+    completed: {},
+  });
+
+  // נתונים של פרק 2
+  const [ch2Progress, setCh2Progress] = useState({
+    currentSlide: 0,
+    maxVisited: 0,
+    completed: {},
+  });
+
   return (
-      <BrowserRouter basename="/lomdat-principles">
-        <Routes>
-          <Route path="/" element={<OpeningPage />} />
-          <Route path="/learning" element={<LearningPage />} />
-          <Route path="/learning2" element={<LearningPage2 />} />
-          <Route path="/end" element={<EndPage />} />
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter basename="/lomdat-principles">
+      <Routes>
+        <Route path="/" element={<OpeningPage />} />
+        <Route
+          path="/learning"
+          element={
+            <LearningPage progress={ch1Progress} setProgress={setCh1Progress} />
+          }
+        />
+        <Route
+          path="/learning2"
+          element={
+            <LearningPage2
+              progress={ch2Progress}
+              setProgress={setCh2Progress}
+              ch1Max={ch1Progress.maxVisited}
+            />
+          }
+        />
+        <Route path="/end" element={<EndPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
