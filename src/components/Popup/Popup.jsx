@@ -25,6 +25,18 @@ function AccordionItem({ item, onOpen, isRead }) {
 }
 
 function Popup({ data, onClose, wasCompleted, initialOpenedItems = [] }) {
+  const [zoomImg, setZoomImg] = useState(null);
+
+  const openZoom = (img) => {
+    setZoomImg(img);
+    setIsOverlayOpen(true);
+  };
+
+  const closeZoom = () => {
+    setZoomImg(null);
+    setIsOverlayOpen(false);
+  };
+
   // מאתחלים את הסטייט עם מה שקיבלנו מהאבא (או מערך ריק כברירת מחדל)
   const [openedItems, setOpenedItems] = useState(initialOpenedItems);
 
@@ -88,7 +100,13 @@ function Popup({ data, onClose, wasCompleted, initialOpenedItems = [] }) {
             {data.img && (
               <img src={data.img} alt="img" className="img-popup-2-drive" />
             )}
-            <p className={`slide-text2 ${data.side ? "slide-text2-on-right" : ""}`}>{data.text1}</p>
+            <p
+              className={`slide-text2 ${
+                data.side ? "slide-text2-on-right" : ""
+              }`}
+            >
+              {data.text1}
+            </p>
           </div>
           <button onClick={() => onClose(openedItems)} className="close-btn">
             {data.btn}
@@ -137,7 +155,9 @@ function Popup({ data, onClose, wasCompleted, initialOpenedItems = [] }) {
             {data.image && (
               <img src={data.image} alt="img" className="img-popup-2-drive" />
             )}
-            <p className={`slide-text2 ${data.side && "slide-text2-on-right"}`}>{data.text}</p>
+            <p className={`slide-text2 ${data.side && "slide-text2-on-right"}`}>
+              {data.text}
+            </p>
           </div>
           <button onClick={() => onClose(openedItems)} className="close-btn">
             {data.btn}
@@ -150,6 +170,7 @@ function Popup({ data, onClose, wasCompleted, initialOpenedItems = [] }) {
         <div className="popup-box-2-opendown">
           <h2 className="slide-title2 popup-title-2">{data.title}</h2>
           <p className="slide-text2">{data.text}</p>
+          <p className="popup-text2-opendown">{data.text2}</p>
           <div className="accordion">
             {data.opens.map((item, i) => (
               <AccordionItem
@@ -160,6 +181,16 @@ function Popup({ data, onClose, wasCompleted, initialOpenedItems = [] }) {
               />
             ))}
           </div>
+
+          <div className="img-wrapper-opendown">
+            <img
+              src={data.image}
+              alt="img-dropdown"
+              className="img-popup-2-opendown"
+              onClick={() => openZoom(data.image)}
+            />
+          </div>
+
           <button
             onClick={() => onClose(openedItems)} // שולחים את הרשימה המלאה בסיום
             className="close-btn close-btn-popup"
@@ -170,7 +201,11 @@ function Popup({ data, onClose, wasCompleted, initialOpenedItems = [] }) {
         </div>
       )}
 
-      {/* הוסר הכפתור הכללי שהיה כאן וגרם לכפל כפתורים */}
+      {zoomImg && (
+        <div className="image-zoom-overlay-opendown" onClick={closeZoom}>
+          <img src={zoomImg} className="image-zoom" />
+        </div>
+      )}
     </div>
   );
 }

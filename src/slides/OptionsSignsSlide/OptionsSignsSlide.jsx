@@ -62,7 +62,6 @@ function OptionsSignsSlide({ data, unlock, wasCompleted }) {
               className="sign-wrapper"
               style={{ position: "relative" }}
             >
-              {/* כאן השינוי - החלפת ה-div של ה-checkmark */}
               {isVisited && <div className="card-check">✔</div>}
 
               <img
@@ -78,18 +77,9 @@ function OptionsSignsSlide({ data, unlock, wasCompleted }) {
         })}
       </div>
 
-      {/* {openPopup && (
-        <Popup
-          data={openPopup}
-          onClose={handleClose}
-          // חשוב: אם הסלייד כולו הושלם, גם הפופאפים שלו נחשבים מושלמים
-          wasCompleted={wasCompleted}
-        />
-      )} */}
       {openPopup && (
         <Popup
           data={openPopup}
-          // כאן התיקון: הפופאפ עצמו ישלח לנו את ה-items כשהוא קורא ל-onClose
           onClose={(itemsFromPopup) =>
             handleClose(openPopup.optionIndex, itemsFromPopup)
           }

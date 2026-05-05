@@ -237,7 +237,8 @@
 }
 
 .accordion-item.open .accordion-content {
-    max-height: 400px; /* או יותר אם צריך */
+    max-height: 400px;
+    /* או יותר אם צריך */
     opacity: 1;
 }
 
@@ -256,11 +257,38 @@
 }
 
 /* תמונה שמאל למטה */
-.img-popup-2-opendown {
+.image-zoom-overlay-opendown {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.308);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+.img-wrapper-opendown {
     position: absolute;
     bottom: 1.5vh;
     left: 1.5vh;
-    width: 8vw;
+    width: 11vw;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+/* התמונה עצמה */
+.img-popup-2-opendown {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+}
+
+/* ה-hover */
+.img-wrapper-opendown:hover .img-popup-2-opendown {
+    transform: scale(1.15);
 }
 
 /* כפתור באמצע למטה */
@@ -299,7 +327,8 @@
 .close-btn-popup:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    pointer-events: none; /* 🔥 חשוב */
+    pointer-events: none;
+    /* 🔥 חשוב */
 }
 
 .arrow {
@@ -322,17 +351,19 @@
 }
 
 .read-v {
-    color: #4caf50; /* ירוק */
+    color: #4caf50;
+    /* ירוק */
     margin-right: 8px;
     font-weight: bold;
     filter: drop-shadow(0px 0px 2px white);
-  }
-  
-  .accordion-item.open .read-v {
-    color: #ffffff; /* משנה צבע כשהאקורדיון פתוח אם הרקע כהה */
-  }
+}
 
-  .card-check {
+.accordion-item.open .read-v {
+    color: #ffffff;
+    /* משנה צבע כשהאקורדיון פתוח אם הרקע כהה */
+}
+
+.card-check {
     position: absolute;
     z-index: 20;
     top: -8px;
@@ -347,14 +378,11 @@
     justify-content: center;
     font-weight: bold;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-    font-size: 14px; /* גודל הוי עצמו */
-}
-
-.slide-text2-on-right {
-    text-align: right;
+    font-size: 14px;
+    /* גודל הוי עצמו */
 }
 
 .slide-text2-on-right {
     text-align: right;
     margin-right: 2vw;
-  }
+}

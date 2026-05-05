@@ -2,19 +2,9 @@
     z-index: 35;
 }
 
-/* .notebook-popup {
-    position: relative;
-    width: min(700px, 90vw);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: openNotebook .35s ease;
-} */
-
 .notebook-popup {
     position: relative;
 
-    /* גודל רספונסיבי אמיתי */
     width: clamp(520px, 55vw, 1000px);
     max-height: 80vh;
 
@@ -33,18 +23,6 @@
     /* z-index: 30; */
 }
 
-/* .notebook-content {
-    position: absolute;
-    top: 14%;
-    left: 12%;
-    right: 12%;
-    display: flex;
-    flex-direction: column;
-    max-height: 75%;
-    overflow-y: auto;
-    text-align: right;
-} */
-
 .notebook-content {
 position: absolute;
 top: 14%;
@@ -53,15 +31,14 @@ right: 12%;
 display: flex;
 flex-direction: column;
 gap: clamp(8px,1vh,16px);
-max-height: 65%;
+max-height: 75%;
 overflow-y: auto;
 text-align: right;
 }
 
 /* כותרת */
-
 .notebook-title {
-    font-size: clamp(1.1rem, 1.2vw + .8vh, 2rem);
+    font-size: clamp(1.3rem, 1.3vw + .9vh, 2.2rem);
 /* font-size:clamp(1.2rem,1.2vw,1.8rem); */
     font-weight: 600;
     text-align: center;
@@ -69,14 +46,12 @@ text-align: right;
 }
 
 /* טקסט רגיל */
-
 .notebook-text {
     font-size: clamp(.75rem, .7vw + .4vh, 1.1rem);
     line-height: 1.5;
 }
 
 /* רשימת צ'ק */
-
 .notebook-checklist {
     display: flex;
     flex-direction: column;
@@ -85,16 +60,15 @@ text-align: right;
 }
 
 /* שורת צ'ק */
-
 .check-row {
     display: flex;
     align-items: flex-start;
     align-items: center;
-    gap: 8px;
+    gap: 0.8rem;
+    margin-bottom: 1vh;
 }
 
 /* האייקון */
-
 .check-icon {
     color: #4CAF50;
     font-weight: bold;
@@ -106,18 +80,16 @@ text-align: right;
 }
 
 /* טקסט הרשימה */
-
 .check-text {
     font-family: "Agam";
-    font-size: clamp(.85rem, 1vw + 0.6vh, 1.3rem);
-    line-height: 1.4;
+    font-size: clamp(.95rem, 1.1vw + 0.7vh, 1.65rem);
+    line-height: 0.9;
 }
 
 /* הערה */
-
 .notebook-note {
     margin-top: 10px;
-    font-size: clamp(.8rem, .6vw + .3vh, .95rem);
+    font-size: clamp(0.7rem, .65vw + .4vh, 1.3rem);
     background: rgba(255, 255, 255, .5);
     padding: 8px;
     border-radius: 6px;
@@ -125,7 +97,6 @@ text-align: right;
 }
 
 /* כפתור סגירה */
-
 .close-x {
     position: absolute;
     top: 10px;
@@ -137,7 +108,6 @@ text-align: right;
 }
 
 /* אנימציית פתיחה */
-
 @keyframes openNotebook {
     from {
         transform: scale(.85) rotate(-3deg);

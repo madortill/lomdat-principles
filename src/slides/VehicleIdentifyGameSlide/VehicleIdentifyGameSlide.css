@@ -120,7 +120,7 @@
 
 /* כביש */
 
-.road-wrapper {
+.road-wrapper-game-road {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -129,7 +129,7 @@
     background: #c9a36a;
 }
 
-.road-car-practice {
+.road-car-practice-game-road {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -158,7 +158,7 @@
 
 /* פס אמצע */
 
-.road-lines{
+.road-lines-game-road{
 
     position:absolute;
 
@@ -190,7 +190,7 @@
     }
 }
 
-.road-car-practice::after{
+.road-car-practice-game-road::after{
     display:none;
 }
 
