@@ -11,8 +11,8 @@ import logo from "../../assets/logo.png";
 import tillBlackLogo from "../../assets/till_blacklogo.svg";
 import bushLeft from "../../assets/bush-left.svg";
 import bushRight from "../../assets/bush-right.svg";
-import topic1 from "../../assets/car-plate-topic-1.svg";
-import topic2 from "../../assets/car-plate-topic-2.svg";
+import topic1 from "../../assets/car-plate-topic-1-end3.svg";
+import topic2 from "../../assets/car-plate-topic-2-end.svg";
 import aboutIcon from "../../assets/aboutIcon.svg";
 import mapal from "../../assets/keshet.svg";
 
