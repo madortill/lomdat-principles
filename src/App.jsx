@@ -127,6 +127,7 @@ function App() {
           }
         />
         <Route path="/end" element={<EndPage />} />
+        <Route path="*" element={<OpeningPage />} />
       </Routes>
     </HashRouter>
   );
