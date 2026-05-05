@@ -116,6 +116,10 @@ function OpeningPage() {
                             <span>מאי 2026</span>
                         </div>
 
+                        <div className="about-section memory-note">
+                            <span>הלומדה עוצבה בכתב ידה של סמ"ר אגם נעים ז"ל, פרמדיקית שנפלה בקרב ברצועת עזה. הגופן באדיבות פרויקט ההנצחה "אות חיים".</span>
+                        </div>
+
                     </div>
                 )}
 

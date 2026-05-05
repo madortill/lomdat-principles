@@ -372,6 +372,14 @@ body {
     font-size: clamp(0.9rem, 0.85vw, 1.1rem);
 }
 
+.memory-note {
+    font-family: "Agam";
+    font-size: clamp(1rem, 1vw, 1.2rem);
+    /* color: #002446; */
+    color: black;
+    /* font-weight: 600; */
+}
+
 .about-dev-img {
     width: 10vh;
 }
