@@ -51,14 +51,7 @@
     z-index: 5;
 }
 
-/* .car-img-billboard {
-    width: clamp(80px, 7vw, 130px);
-    cursor: pointer;
-    transition: transform .25s;
-} */
-
 .car-img-billboard {
-
     width: clamp(110px, 9vw, 180px);
     padding-bottom: 6vh;
 
@@ -67,7 +60,6 @@
     transition:
         transform .25s,
         filter .25s;
-
 }
 
 .car-box {
@@ -132,38 +124,7 @@
     max-width: 900px;
 }
 
-/* .billboard {
-    width: 80%;
-    max-width: 700px;
-    min-height: 180px;
-    background: #F3F3F3;
-    border: 8px solid #898989;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: clamp(15px, 2vw, 25px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-} */
-
-/* .billboard {
-    width: min(85%, 700px);
-    aspect-ratio: 3.5/1;
-    background: #F3F3F3;
-    border: 0.5vh solid #898989;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: clamp(10px, 1.5vh, 20px);
-    background:#e9e9e9;
-} */
-
 .billboard {
-
     width: min(85%, 700px);
 
     height: clamp(140px, 18vh, 200px);
@@ -183,11 +144,9 @@
     background: #e9e9e9;
 
     overflow: hidden;
-
 }
 
 .billboard::after {
-
     content: "";
 
     position: absolute;
@@ -202,12 +161,7 @@
             #F3F3F3);
 
     pointer-events: none;
-
 }
-
-/* .billboard-text:hover{
-cursor:grab;
-} */
 
 .billboard-pole {
     width: clamp(12px, 1.5vw, 30px);
@@ -217,14 +171,12 @@ cursor:grab;
 
 .lamp {
     position: absolute;
-
     right: clamp(10px, 2vw, 30px);
 
     /* יושב על הכביש */
     bottom: 0;
 
     height: clamp(220px, 32vh, 340px);
-
     z-index: 2;
     pointer-events: none;
 }
@@ -234,13 +186,6 @@ cursor:grab;
     font-weight: 500;
     margin-bottom: 10px;
 }
-
-/* .billboard-text {
-    font-size: clamp(0.8rem, 0.5vw + 0.55vh, 1.2rem);
-    max-width: 85%;
-    line-height: 1.5;
-} */
-
 
 .billboard-text {
     font-size: clamp(0.8rem, 0.5vw + 0.55vh, 1.1rem);

@@ -23,6 +23,20 @@ function EndPage() {
   const [aboutOpen, setAboutOpen] = useState(false);
   const popupRef = useRef(null);
 
+  const [closing, setClosing] = useState(false);
+
+  const toggleAbout = () => {
+    if (aboutOpen) {
+      setClosing(true);
+      setTimeout(() => {
+        setAboutOpen(false);
+        setClosing(false);
+      }, 300); // זמן אנימציה
+    } else {
+      setAboutOpen(true);
+    }
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -89,15 +103,24 @@ function EndPage() {
         className="till-logo-black-opening-page"
       />
 
-      <div className="about-container">
-        <img
-          src={aboutIcon}
-          className="about-btn about-btn-end"
-          onClick={() => setAboutOpen(!aboutOpen)}
-        />
+      <div
+        className="about-container"
+        onMouseEnter={() => {
+          setClosing(false);
+          setAboutOpen(true);
+        }}
+        onMouseLeave={() => {
+          setClosing(true);
+          setTimeout(() => {
+            setAboutOpen(false);
+            setClosing(false);
+          }, 200);
+        }}
+      >
+        <img src={aboutIcon} className="about-btn" onClick={toggleAbout} />
 
         {aboutOpen && (
-          <div className="about-popup">
+          <div className={`about-popup ${closing ? "closing" : "open"}`}>
             {/* <h3>אודות הלומדה</h3> */}
 
             <div className="about-section">

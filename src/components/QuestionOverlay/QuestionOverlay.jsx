@@ -1,106 +1,3 @@
-// import { useState, useEffect } from "react";
-// import "./QuestionOverlay.css";
-// import BlueAns from "../../assets/answer-blue.svg";
-// import RedAns from "../../assets/answer-red.svg";
-// import GreenAns from "../../assets/answer-green.svg";
-
-// function QuestionSlide({ data, onCorrect, isLastQuestion }) {
-//   const [selected, setSelected] = useState(null);
-//   const [isCorrect, setIsCorrect] = useState(false);
-//   const [animate, setAnimate] = useState(false);
-
-//   useEffect(() => {
-//     setSelected(null);
-//     setIsCorrect(false);
-//     setAnimate(true);
-//   }, [data.id]);
-
-//   // function handleAnswer(answer, index) {
-//   //     setSelected(index);
-//   //     setIsCorrect(answer.correct);
-//   // }
-
-//   function handleAnswer(answer, index) {
-//     if (isCorrect) return;
-
-//     setSelected(index);
-//     setIsCorrect(answer.correct);
-
-//     // אפקט אנימציה קצר
-//     const ansEl = document.querySelectorAll(".answer")[index];
-//     if (!ansEl) return;
-
-//     ansEl.classList.remove("animate-pop", "animate-shake");
-
-//     void ansEl.offsetWidth; // force reflow כדי לאתחל אנימציה
-
-//     if (answer.correct) {
-//       ansEl.classList.add("animate-pop");
-//       // ansEl.classList.add("animate-glow");
-//     } else {
-//       ansEl.classList.add("animate-shake");
-//     }
-//   }
-
-//   return (
-//     <div
-//       key={data.id}
-//       className={`question-slide ${animate ? "slide-down" : ""} ${
-//         isLastQuestion ? "slide-up" : ""
-//       }`}
-//     >
-//       <div className="question-title">{data.header}</div>
-
-//       <div className="question-container">
-//         <div className="question-box">{data.question}</div>
-
-//         {/* <div className="answers-grid">
-//                     {data.answers.map((ans, index) => {
-//                         let className = "answer";
-//                         if (selected === index) className = ans.correct ? "answer correct" : "answer wrong";
-//                         return (
-//                             <div key={index} className={className} onClick={() => handleAnswer(ans, index)}>
-//                                 {ans.text}
-//                             </div>
-//                         );
-//                     })}
-//                 </div> */}
-
-//         <div className="answers-grid">
-//           {data.answers.map((ans, index) => {
-//             let bg = BlueAns;
-
-//             if (selected === index) {
-//               bg = ans.correct ? GreenAns : RedAns;
-//             }
-
-//             return (
-//               <div
-//                 key={index}
-//                 className="answer"
-//                 onClick={() => handleAnswer(ans, index)}
-//               >
-//                 <img src={bg} className="answer-bg" alt="answer option" />
-
-//                 <span className="answer-text">{ans.text}</span>
-//               </div>
-//             );
-//           })}
-//         </div>
-
-//         <button
-//           className={`continue-btn-ques ${!isCorrect ? "disabled" : ""}`}
-//           onClick={isCorrect ? onCorrect : null}
-//         >
-//           המשך
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default QuestionSlide;
-
 import { useState, useEffect } from "react";
 import "./QuestionOverlay.css";
 import BlueAns from "../../assets/answer-blue.svg";
@@ -108,31 +5,45 @@ import RedAns from "../../assets/answer-red.svg";
 import GreenAns from "../../assets/answer-green.svg";
 
 function QuestionSlide({ data, onCorrect, isLastQuestion, wasCompleted }) {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState([]);
+  const [wrongSelected, setWrongSelected] = useState([]); // 👈 חדש
   const [isCorrect, setIsCorrect] = useState(false);
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    // אם השאלה כבר הושלמה בעבר
     if (wasCompleted) {
-      // מוצאים את האינדקס של התשובה הנכונה כדי לצבוע אותה
-      const correctIndex = data.answers.findIndex((ans) => ans.correct);
-      setSelected(correctIndex);
+      const correctIndexes = data.answers
+        .map((ans, i) => (ans.correct ? i : null))
+        .filter((i) => i !== null);
+
+      setSelected(correctIndexes);
       setIsCorrect(true);
     } else {
-      // איפוס רגיל לשאלה חדשה שעוד לא נענתה
-      setSelected(null);
+      setSelected([]);
+      setWrongSelected([]);
       setIsCorrect(false);
     }
+
     setAnimate(true);
   }, [data.id, wasCompleted]);
 
-  function handleAnswer(answer, index) {
-    // אם כבר צדקנו (או שהשאלה כבר הושלמה), אי אפשר ללחוץ שוב
-    if (isCorrect || wasCompleted) return;
+  // בדיקת נכונות לשאלות עם 2 תשובות
+  useEffect(() => {
+    if (data.twoAns) {
+      const correctIndexes = data.answers
+        .map((a, i) => (a.correct ? i : null))
+        .filter((i) => i !== null);
 
-    setSelected(index);
-    setIsCorrect(answer.correct);
+      const isAllCorrect =
+        selected.length === correctIndexes.length &&
+        selected.every((i) => correctIndexes.includes(i));
+
+      setIsCorrect(isAllCorrect);
+    }
+  }, [selected, data]);
+
+  function handleAnswer(answer, index) {
+    if (isCorrect || wasCompleted) return;
 
     const ansEl = document.querySelectorAll(".answer")[index];
     if (!ansEl) return;
@@ -140,10 +51,45 @@ function QuestionSlide({ data, onCorrect, isLastQuestion, wasCompleted }) {
     ansEl.classList.remove("animate-pop", "animate-shake");
     void ansEl.offsetWidth;
 
-    if (answer.correct) {
+    if (data.twoAns) {
+      // ❗ אם זו תשובה לא נכונה → רק להראות אדום זמני
+      if (!answer.correct) {
+        setWrongSelected([index]);
+
+        ansEl.classList.add("animate-shake");
+
+        // ❗ אחרי רגע האדום נעלם
+        setTimeout(() => {
+          setWrongSelected([]);
+        }, 500);
+
+        return;
+      }
+
+      // ✅ תשובה נכונה
+      setSelected((prev) => {
+        if (prev.includes(index)) {
+          return prev.filter((i) => i !== index);
+        }
+
+        if (prev.length >= 2) {
+          return [prev[1], index];
+        }
+
+        return [...prev, index];
+      });
+
       ansEl.classList.add("animate-pop");
     } else {
-      ansEl.classList.add("animate-shake");
+      // שאלה רגילה
+      setSelected([index]);
+      setIsCorrect(answer.correct);
+
+      if (answer.correct) {
+        ansEl.classList.add("animate-pop");
+      } else {
+        ansEl.classList.add("animate-shake");
+      }
     }
   }
 
@@ -163,11 +109,19 @@ function QuestionSlide({ data, onCorrect, isLastQuestion, wasCompleted }) {
           {data.answers.map((ans, index) => {
             let bg = BlueAns;
 
-            // לוגיקת צביעה:
-            // אם זה מה שנבחר - צובע בירוק/אדום
-            // אם השאלה הושלמה וזו התשובה הנכונה - צובע בירוק (גם אם לא לחצנו עכשיו)
-            if (selected === index) {
+            // שאלה רגילה
+            if (!data.twoAns && selected.includes(index)) {
               bg = ans.correct ? GreenAns : RedAns;
+            }
+
+            // שאלה עם 2 תשובות
+            if (data.twoAns && selected.includes(index)) {
+              bg = GreenAns;
+            }
+
+            // ❗ אדום זמני בלבד
+            if (wrongSelected.includes(index)) {
+              bg = RedAns;
             }
 
             return (
