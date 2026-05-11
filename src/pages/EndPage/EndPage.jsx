@@ -137,7 +137,7 @@ function EndPage() {
             <div className="about-section">
               <strong>מומחי תוכן:</strong>
               <span>סגן עדן רוקח</span>
-              <span>סמל שירה אשר לוי</span>
+              <span>רב"ט שירה אשר לוי</span>
             </div>
 
             <div className="about-section">

@@ -21,7 +21,7 @@ import NormalSlide from "../../slides/NormalSlide/NormalSlide";
 import QuestionSlide from "../../components/QuestionOverlay/QuestionOverlay";
 import CarStopSlide from "../../slides/CarStopSlide/CarStopSlide";
 import Tabs from "../../slides/Tabs/Tabs";
-import Popup from "../../components/Popup/Popup";
+import Popup from "../../components/Popup/Popup.jsx";
 import DriveSimulationSlide from "../../slides/DriveSimulationSlide/DriveSimulationSlide";
 import AfterStopSimulation from "../../slides/AfterStopSimulation/AfterStopSimulation";
 import TwoRoadSigns from "../../slides/TwoRoadSigns/TwoRoadSigns";
@@ -263,6 +263,7 @@ function LearningPage2({ progress, setProgress, ch1Max }) {
       )}
 
       <NavbarLearning
+        key={currentSlide}
         title="אופן עצירת רכבים והכוונות תנועה"
         sections={sectionsLearning2}
         currentSlide={currentSlide}
@@ -319,11 +320,11 @@ function LearningPage2({ progress, setProgress, ch1Max }) {
             )}
             {currentSlide === 0 && (
               <img
-              src={chapterBackBtn}
-              onClick={() => navigate("/learning")}
-              className="btn-nav"
-              alt="Back"
-            />
+                src={chapterBackBtn}
+                onClick={() => navigate("/learning")}
+                className="btn-nav"
+                alt="Back"
+              />
             )}
           </div>
         )}

@@ -209,7 +209,7 @@
 
 .accordion-item {
     color: white;
-    margin: 2%;
+    margin: 0 0.5vw;
     padding: 2%;
     border-radius: 20px;
     width: 10vw;
@@ -238,7 +238,6 @@
 
 .accordion-item.open .accordion-content {
     max-height: 400px;
-    /* או יותר אם צריך */
     opacity: 1;
 }
 
@@ -271,7 +270,7 @@
     position: absolute;
     bottom: 1.5vh;
     left: 1.5vh;
-    width: 11vw;
+    width: 13vw;
     border-radius: 12px;
     overflow: hidden;
     cursor: zoom-in;
@@ -348,6 +347,7 @@
     font-family: "Agam";
     font-size: clamp(1rem, 1.1vw + 0.9vh, 2.5rem);
     margin-bottom: 0;
+    margin-top: -2vh;
 }
 
 .read-v {
@@ -360,7 +360,6 @@
 
 .accordion-item.open .read-v {
     color: #ffffff;
-    /* משנה צבע כשהאקורדיון פתוח אם הרקע כהה */
 }
 
 .card-check {

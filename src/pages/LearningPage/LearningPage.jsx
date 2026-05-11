@@ -258,6 +258,7 @@ function LearningPage({ progress, setProgress }) {
       <img src={SmallCloud} className="small-cloud-opening-page-right" />
 
       <NavbarLearning
+        key={currentSlide}
         title="זיהוי רכבים וסוגי נסיעות"
         sections={sectionsLearning1} // אנחנו שולחים את זה כ-sections
         currentSlide={currentSlide}
