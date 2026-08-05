@@ -263,6 +263,8 @@ body {
     left: 8%;
     top: 4%;
     animation: cloudMove 12s linear infinite alternate;
+    z-index: 100;
+    cursor: pointer;
 }
 
 .big-cloud-opening-page-right {

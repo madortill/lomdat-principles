@@ -4,6 +4,7 @@ import "./EndPage.css";
 
 import road from "../../assets/road.svg";
 import BigCloud from "../../assets/cloud-big.svg";
+import BigCloudBtn from "../../assets/cloud-big-btn.svg";
 import SmallCloud from "../../assets/cloud-small.svg";
 import lightingPole from "../../assets/LightingPole.svg";
 import car from "../../assets/car-on-the-side.svg";
@@ -78,9 +79,12 @@ function EndPage() {
       </div>
 
       <img
-        src={BigCloud}
-        alt="big cloud"
+        src={BigCloudBtn}
         className="big-cloud-opening-page-left"
+        onClick={() =>
+          (window.location.href =
+            "https://madortill.github.io/traffic-learning-package/")
+        }
       />
       <img
         src={BigCloud}
